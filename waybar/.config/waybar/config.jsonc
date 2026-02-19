@@ -1,0 +1,140 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 22,
+    "spacing": 0,
+
+    "modules-left": [
+        "sway/workspaces",
+        "sway/window"
+    ],
+
+    "modules-right": [
+        "mpris",
+		"sway/scratchpad",
+        "custom/nightmode",
+        "pulseaudio",
+		"power-profiles-daemon",
+        // "network",
+        "battery",
+        "clock",
+        "tray"
+    ],
+
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": false,
+        "format": "{name}",
+        "numeric-first": true
+    },
+
+    "sway/window": {
+        "format": "  {title}",
+        "max-length": 50,
+        "rewrite": {
+            "(.*) - Mozilla Firefox": "ff: $1",
+            "(.*) - Chromium": "cr: $1"
+        }
+    },
+	"sway/scratchpad": {
+		"format": "{icon} {count}",
+		"show-empty": false,
+		"format-icons": ["", ""],
+		"tooltip": true,
+		"tooltip-format": "{app}: {title}"
+	},
+
+    "mpris": {
+        "format": "{player_icon} {title}",
+        "format-paused": "{status_icon} {title}",
+        "player-icons": {
+            "default": "󰎇",
+            "cmus": "󰎇",
+            "spotify": "󰓇",
+            "mpv": "󰐊"
+        },
+        "status-icons": {
+            "paused": "󰏤",
+            "playing": "󰐊",
+            "stopped": "󰓛"
+        },
+        "ignored-players": ["firefox", "chromium", "waterfox", "librewolf" ],
+        "max-length": 20
+    },
+
+    "custom/nightmode": {
+        "format": "󰖔",
+        "tooltip": true,
+        "tooltip-format": "Left: 4000K  Middle: 5000K  Right: 6000K  Scroll Up: Off",
+        "on-click": "pkill wlsunset > /dev/null 2>&1; wlsunset -t 4000 > /dev/null 2>&1 &",
+        "on-click-middle": "pkill wlsunset > /dev/null 2>&1; wlsunset -t 5000 > /dev/null 2>&1 &",
+        "on-click-right": "pkill wlsunset > /dev/null 2>&1; wlsunset -t 6000 > /dev/null 2>&1 &",
+        "on-scroll-up": "pkill wlsunset > /dev/null 2>&1",
+        "interval": "once"
+    },
+
+    "pulseaudio": {
+        "format": "󰕾 {volume}%",
+        "format-muted": "󰖁 mute",
+        "format-bluetooth": "󰂰 {volume}%",
+        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+
+	"power-profiles-daemon": {
+	"format": "{icon}",
+	"tooltip-format": "Profile: {profile}\nDriver: {driver}",
+	"tooltip": true,
+	"format-icons": {
+		"default":     "󰾅",
+		"performance": "󰓅",
+		"balanced":    "󰾅",
+		"power-saver": "󰌪"
+        }
+    },
+
+    "network": {
+        "interface": "enp0s20u1",
+        "format": "󰈁 {ifname}",
+        "format-wifi": "󰤨 {signalStrength}%",
+        "format-ethernet": "󰈀 eth",
+        "format-disconnected": "󰤭 down",
+        "tooltip-format": "{ipaddr}",
+        "on-click": "foot nmtui"
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "interval": 60,
+        "states": {
+            "warning": 40,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-full": "󰁹 full",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "󰥔 {:%H:%M  󰃮 %d %b}",
+        "format-alt": "{:%A, %B %d, %Y}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "on-scroll": 1
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    }
+}

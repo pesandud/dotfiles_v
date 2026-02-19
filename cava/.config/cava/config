@@ -1,0 +1,6 @@
+[general]
+framerate = 60
+output = term
+
+[color]
+theme = "tokyonight"
