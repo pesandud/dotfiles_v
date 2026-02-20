@@ -9,20 +9,22 @@
         "sway/window"
     ],
 
-    "modules-right": [
-        "mpris",
+	"modules-right": [
+		"mpris",
 		"sway/scratchpad",
-        "custom/nightmode",
-		"custom/power-profile",
-		"backlight",
+		"custom/nightmode",
 		"idle_inhibitor",
-        "pulseaudio",
-        "battery",
+		"backlight",
+		"custom/separator",
+		"custom/cpu-governor",
+		"custom/separator",
+		"battery",
 		"cpu",
 		"memory",
-        "clock",
-        "tray"
-    ],
+		"custom/separator",
+		"clock",
+		"tray"
+	],
 
     "sway/workspaces": {
         "disable-scroll": false,
@@ -39,6 +41,7 @@
             "(.*) - Chromium": "cr: $1"
         }
     },
+
 	"sway/scratchpad": {
 		"format": "{icon} {count}",
 		"show-empty": false,
@@ -46,11 +49,19 @@
 		"tooltip": true,
 		"tooltip-format": "{app}: {title}"
 	},
+
+	"custom/separator": {
+		"format": " | ",
+		"tooltip": false,
+		"interval": 0
+	},
+
 	"backlight": {
 		"device": "intel_backlight", // Or "amdgpu_bl0" depending on your Vivobook CPU
 		"format": "{icon} {percent}%",
 		"format-icons": ["", "", "", "", "", "", "", "", ""]
 	},
+
 	"idle_inhibitor": {
 		"format": "{icon}",
 		"format-icons": {
@@ -94,6 +105,18 @@
 		"on-click": "asusctl profile next",
 		"tooltip": false
 	},
+	"custom/cpu-governor": {
+		"format": "󰾆 {}",
+		"exec": "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
+		"interval": 5,
+		"tooltip": false
+	},
+	"custom/auto-cpufreq": {
+		"format": "󰈐 {}",
+		"exec": "systemctl is-active auto-cpufreq",
+		"interval": 3,
+		"tooltip": false
+	},
     "pulseaudio": {
         "format": "󰕾 {volume}%",
         "format-muted": "󰖁 mute",
@@ -104,15 +127,15 @@
     },
 
 	"power-profiles-daemon": {
-	"format": "{icon}",
-	"tooltip-format": "Profile: {profile}\nDriver: {driver}",
-	"tooltip": true,
-	"format-icons": {
-		"default":     "󰾅",
-		"performance": "󰓅",
-		"balanced":    "󰾅",
-		"power-saver": "󰌪"
-        }
+		"format": "{icon}",
+		"tooltip-format": "Profile: {profile}\nDriver: {driver}",
+		"tooltip": true,
+		"format-icons": {
+			"default":     "󰾅",
+			"performance": "󰓅",
+			"balanced":    "󰾅",
+			"power-saver": "󰌪"
+			}
     },
 
     "network": {

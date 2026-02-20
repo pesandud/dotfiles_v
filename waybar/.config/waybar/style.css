@@ -64,13 +64,20 @@ window#waybar {
     padding: 0 8px;
 }
 
+#custom-separator {
+    color: @gray;
+    padding: 0 6px;
+    font-weight: 800;
+}
+
 /* ── Right modules ──────────────────────────── */
 #scratchpad,
 #backlight,
 #idle_inhibitor,
 #memory,
 #cpu,
-#custom-power-profile,
+#custom-auto-cpufreq,
+#custom-cpu-governer,
 #mpris,
 #custom-nightmode,
 #pulseaudio,
