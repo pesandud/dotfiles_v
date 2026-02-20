@@ -82,7 +82,7 @@ ex() {
 }
 
 i(){ yay -S --disable-download-timeout --needed "${@}"; }
-s(){ yay -Ss "${@}"; }
+s(){ yay "${@}"; }
 u(){ yay -Rns "${@}"; }
 
 tns() { tmux new -s "${1:-main}"; }
@@ -121,6 +121,7 @@ alias -g L='| bat'
 alias -g M='| most'
 alias -g H='| head'
 alias -g T='| tail'
+alias -g H="--help"
 # Recursively grep for a string, ignore binaries, show line numbers
 alias -g RG='| xargs rg --line-number --column --smart-case'
 # normal mfs

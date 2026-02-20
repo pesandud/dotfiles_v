@@ -11,7 +11,7 @@
 @define-color purple    #bb9af7;
 
 * {
-    font-family: "FiraCode Nerd Font Propo", monospace;
+    font-family: "JetBrainsMono Nerd Font Propo", monospace;
     font-size: 12px;
     font-weight: 700;
     min-height: 0;
@@ -66,7 +66,8 @@ window#waybar {
 
 /* ── Right modules ──────────────────────────── */
 #scratchpad,
-#power-profiles-daemon,
+#backlight,
+#custom-power-profile,
 #mpris,
 #custom-nightmode,
 #pulseaudio,
@@ -79,6 +80,14 @@ window#waybar {
 
 #mpris {
     color: @cyan;
+}
+
+#custom-power-profile {
+	color: @fg;
+}
+
+#backlight {
+	color: @blue;
 }
 
 #custom-nightmode {

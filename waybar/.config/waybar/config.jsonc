@@ -13,9 +13,9 @@
         "mpris",
 		"sway/scratchpad",
         "custom/nightmode",
+		"custom/power-profile",
+		"backlight",
         "pulseaudio",
-		"power-profiles-daemon",
-        // "network",
         "battery",
         "clock",
         "tray"
@@ -42,6 +42,11 @@
 		"format-icons": ["", ""],
 		"tooltip": true,
 		"tooltip-format": "{app}: {title}"
+	},
+	"backlight": {
+		"device": "intel_backlight", // Or "amdgpu_bl0" depending on your Vivobook CPU
+		"format": "{icon} {percent}%",
+		"format-icons": ["", "", "", "", "", "", "", "", ""]
 	},
 
     "mpris": {
@@ -72,7 +77,13 @@
         "on-scroll-up": "pkill wlsunset > /dev/null 2>&1",
         "interval": "once"
     },
-
+	"custom/power-profile": {
+		"format": "󰈐 {}",
+		"exec": "asusctl profile get | grep -oP 'Active profile: \\w+' | awk  '{ print $3 }'",
+		"interval": 5,
+		"on-click": "asusctl profile next",
+		"tooltip": false
+	},
     "pulseaudio": {
         "format": "󰕾 {volume}%",
         "format-muted": "󰖁 mute",
