@@ -1,24 +1,14 @@
-# ------------------------------------------------------------------------------
-# 1. POWERLEVEL10K INSTANT PROMPT
-# ------------------------------------------------------------------------------
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# ------------------------------------------------------------------------------
-# 2. ZINIT & COMPLETION SYSTEM (Crucial Order)
-# ------------------------------------------------------------------------------
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Start completion system before loading fzf-tab
 autoload -Uz compinit
 compinit
 
-# ------------------------------------------------------------------------------
-# 3. PLUGINS & THEME
-# ------------------------------------------------------------------------------
 zinit snippet OMZ::lib/git.zsh
 zinit snippet OMZ::lib/completion.zsh
 zinit snippet OMZ::lib/theme-and-appearance.zsh
@@ -27,13 +17,9 @@ zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-completions
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-# Local FZF scripts
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
-# ------------------------------------------------------------------------------
-# 4. ENVIRONMENT & PATH
-# ------------------------------------------------------------------------------
 export BAT_THEME="tokyonight_night"
 export EDITOR=nvim
 export NVIM_APPNAME=nvim
@@ -43,9 +29,6 @@ declare -x https_proxy=socks5h://192.168.42.129:9050
 typeset -U path
 path=( ~/scripts ~/.local/bin ~/.npm_global/bin $path )
 
-# ------------------------------------------------------------------------------
-# 5. ZSH OPTIONS & HISTORY
-# ------------------------------------------------------------------------------
 setopt correct autocd autopushd pushdignoredups pushdminus
 HISTSIZE=5000
 HISTFILE=$HOME/.zsh_history
@@ -62,12 +45,6 @@ burp() {
          --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED \
          --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED \
          -javaagent:"$loader" -noverify -jar "$jar" "$@"
-}
-
-fs() {
-  local file line
-  read -r file line <<< "$(rg --line-number --column --no-heading --color=always --smart-case "${*:-}" | fzf --ansi --delimiter : --preview 'bat --color=always --highlight-line {2} {1}' | awk -F: '{print $1, $2}')"
-  [[ -n $file ]] && ${EDITOR:-vim} "+$line" "$file"
 }
 
 ex() {
@@ -100,9 +77,6 @@ sn(){
 pipxa(){ unset http_proxy https_proxy; p pipx install "${@}" -v; source ~/.zshrc; }
 pipxu(){ p pipx uninstall "${@}"; }
 
-# ------------------------------------------------------------------------------
-# 7. ALIASES
-# ------------------------------------------------------------------------------
 # suffix aliases
 alias -s md="bat"
 alias -s png="qiv"
@@ -122,7 +96,7 @@ alias -g M='| most'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g H="--help"
-# Recursively grep for a string, ignore binaries, show line numbers
+# recursively grep for a string
 alias -g RG='| xargs rg --line-number --column --smart-case'
 # normal mfs
 alias t="tmux"
@@ -175,16 +149,13 @@ alias la="ls -lah"
 alias lt="ls --tree"
 alias ll="ls -l"
 alias c="clear"
-# alias nirib="/home/n00b/git/niri/target/release/niri --session --config /home/n00b/git/niri/target/release/config.kdl"
-alias vii3="vi ~/.config/i3/config"
+# alias vii3="vi ~/.config/i3/config"
 alias vist="vi ~/dotfiles/st-flexipatch/config.h"
-alias viniri="vi ~/dotfiles/niri/.config/niri/config.kdl"
+# alias viniri="vi ~/dotfiles/niri/.config/niri/config.kdl"
 alias vivi="cd ~/dotfiles/nvim/.config/nvim/; vi ."
 alias visw="vi ~/.config/sway/config"
 
-# ------------------------------------------------------------------------------
-# 8. KEYBINDS & WIDGETS
-# ------------------------------------------------------------------------------
+# keybindings
 bindkey -v
 bindkey -M viins '^p' history-search-backward
 bindkey -M viins '^n' history-search-forward
@@ -207,9 +178,7 @@ clear-keep-buffer(){ zle clear-screen }; zle -N clear-keep-buffer; bindkey '^Al'
 copy-cmd(){ echo -n $BUFFER | wl-copy; zle -M "copied!" }; zle -N copy-cmd; bindkey '^Y' copy-cmd
 fancy-ctrl-z () { if [[ $#BUFFER -eq 0 ]]; then fg 2>/dev/null || zle redisplay; else zle push-input; zle clear-screen; fi }; zle -N fancy-ctrl-z; bindkey '^Z' fancy-ctrl-z
 
-# ------------------------------------------------------------------------------
-# 9. FZF & COMPLETION STYLING
-# ------------------------------------------------------------------------------
+# crazy fzf stuff
 export FZF_DEFAULT_OPTS="--highlight-line --info=inline-right --ansi --layout=reverse --border=none --color=bg+:#283457,bg:#16161e,border:#27a1b9,fg:#c0caf5,gutter:#16161e,header:#ff9e64,hl+:#2ac3de,hl:#2ac3de,info:#545c7e,marker:#ff007c,pointer:#ff007c,prompt:#2ac3de,query:#c0caf5:regular,scrollbar:#27a1b9,separator:#ff9e64,spinner:#ff007c"
 
 zstyle ':fzf-tab:*' fzf-flags --height=40% --border --layout=reverse
@@ -217,7 +186,5 @@ zstyle ':fzf-tab:complete:*:*' fzf-preview 'if [ -d $realpath ]; then eza --tree
 
 eval "$(zoxide init --cmd cd zsh)"
 
-# ------------------------------------------------------------------------------
-# 10. FINAL THEME LOAD
-# ------------------------------------------------------------------------------
+# load dis bisch
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

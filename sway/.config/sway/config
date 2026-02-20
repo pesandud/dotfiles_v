@@ -49,7 +49,7 @@ default_border pixel 1
 default_floating_border pixel 1
 for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="nm-connection-editor"] floating enable
-for_window [title="Librewolf — Sharing Indicator"] kill
+for_window [title="Librewolf — Picture in Picture"] kill
 client.focused          #7aa2f7 #1a1b26 #a9b1d6 #7aa2f7 #7aa2f7
 client.unfocused        #565f89 #1a1b26 #565f89 #565f89 #565f89
 client.focused_inactive #33467c #1a1b26 #a9b1d6 #33467c #33467c

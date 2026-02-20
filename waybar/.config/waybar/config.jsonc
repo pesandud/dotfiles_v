@@ -15,8 +15,11 @@
         "custom/nightmode",
 		"custom/power-profile",
 		"backlight",
+		"idle_inhibitor",
         "pulseaudio",
         "battery",
+		"cpu",
+		"memory",
         "clock",
         "tray"
     ],
@@ -47,6 +50,13 @@
 		"device": "intel_backlight", // Or "amdgpu_bl0" depending on your Vivobook CPU
 		"format": "{icon} {percent}%",
 		"format-icons": ["", "", "", "", "", "", "", "", ""]
+	},
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		}
 	},
 
     "mpris": {
@@ -128,7 +138,16 @@
         "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
         "tooltip": false
     },
-
+	"cpu": {
+		"interval": 10,
+		"format": " {}%",
+		"max-length": 10
+	},
+	"memory": {
+		"interval": 30,
+		"format": " {}%",
+		"max-length": 10
+	},
     "clock": {
         "format": "󰥔 {:%H:%M  󰃮 %d %b}",
         "format-alt": "{:%A, %B %d, %Y}",

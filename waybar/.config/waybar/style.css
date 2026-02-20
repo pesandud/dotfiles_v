@@ -67,6 +67,9 @@ window#waybar {
 /* ── Right modules ──────────────────────────── */
 #scratchpad,
 #backlight,
+#idle_inhibitor,
+#memory,
+#cpu,
 #custom-power-profile,
 #mpris,
 #custom-nightmode,
@@ -87,7 +90,7 @@ window#waybar {
 }
 
 #backlight {
-	color: @blue;
+	color: @fg;
 }
 
 #custom-nightmode {
@@ -96,7 +99,7 @@ window#waybar {
 }
 
 #pulseaudio {
-    color: @purple;
+    color: @fg;
 }
 
 #pulseaudio.muted {
