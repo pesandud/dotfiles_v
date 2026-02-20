@@ -11,10 +11,12 @@
 
 	"modules-right": [
 		"mpris",
+		"custom/separator",
 		"sway/scratchpad",
 		"custom/nightmode",
 		"idle_inhibitor",
 		"backlight",
+		"pulseaudio",
 		"custom/separator",
 		"custom/cpu-governor",
 		"custom/separator",
@@ -30,7 +32,14 @@
         "disable-scroll": false,
         "all-outputs": false,
         "format": "{name}",
-        "numeric-first": true
+        "numeric-first": true,
+		"persistent-workspaces": {
+		  "1": [],
+		  "2": [],
+		  "3": [],
+		  "4": [],
+		  "5": []
+		}
     },
 
     "sway/window": {
@@ -67,7 +76,11 @@
 		"format-icons": {
 			"activated": "",
 			"deactivated": ""
-		}
+		},
+		"on-click": "~/.config/waybar/scripts/toggle_idle.sh",
+		"return-type": "json",
+		"interval": 2,
+		"exec": "cat ~/.config/waybar/scripts/idle_state"
 	},
 
     "mpris": {
@@ -84,8 +97,7 @@
             "playing": "󰐊",
             "stopped": "󰓛"
         },
-        "ignored-players": ["firefox", "chromium", "waterfox", "librewolf" ],
-        "max-length": 20
+        "max-length": 30
     },
 
     "custom/nightmode": {

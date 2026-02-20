@@ -1,7 +1,3 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -15,10 +11,11 @@ zinit snippet OMZ::lib/theme-and-appearance.zsh
 
 zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-completions
-zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+
+PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#9ece6a}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}]%F{#f5c2e7} → %f'
 
 export BAT_THEME="tokyonight_night"
 export EDITOR=nvim
@@ -143,7 +140,6 @@ alias ta="tmux attach"
 alias t="tmux"
 # alias copy="xclip -selection clipboard"
 alias copy="wl-copy"
-# alias ls="ls --color=auto --sort=version"
 alias ls="eza --icons --grid --sort=name"
 alias la="ls -lah"
 alias lt="ls --tree"
@@ -152,7 +148,7 @@ alias c="clear"
 # alias vii3="vi ~/.config/i3/config"
 alias vist="vi ~/dotfiles/st-flexipatch/config.h"
 # alias viniri="vi ~/dotfiles/niri/.config/niri/config.kdl"
-alias vivi="cd ~/dotfiles/nvim/.config/nvim/; vi ."
+alias vivi="vi ~/.config/nvim"
 alias visw="vi ~/.config/sway/config"
 
 # keybindings
@@ -165,12 +161,12 @@ bindkey '^r' fzf-history-widget
 bindkey '^t' fzf-file-widget
 bindkey '^g' fzf-cd-widget
 
-_force_block_cursor() { echo -ne '\e[2 q' }
-_force_block_cursor
-precmd_functions+=(_force_block_cursor)
-zle-keymap-select() { _force_block_cursor }
-zle -N zle-keymap-select
-
+# _force_block_cursor() { echo -ne '\e[2 q' }
+# _force_block_cursor
+# precmd_functions+=(_force_block_cursor)
+# zle-keymap-select() { _force_block_cursor }
+# zle -N zle-keymap-select
+#
 # Widgets
 autoload -Uz edit-command-line
 zle -N edit-command-line; bindkey '^x^e' edit-command-line
@@ -185,6 +181,3 @@ zstyle ':fzf-tab:*' fzf-flags --height=40% --border --layout=reverse
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'if [ -d $realpath ]; then eza --tree --color=always --level=2 $realpath; else bat --color=always --style=numbers --line-range=:500 $realpath; fi'
 
 eval "$(zoxide init --cmd cd zsh)"
-
-# load dis bisch
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -1,4 +1,4 @@
-font pango:FiraCode Nerd Font Propo 10
+font pango:JetBrainsMono Nerd Font Propo 10
 
 ### Variables
 set $mod Mod4
@@ -6,10 +6,9 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term st
+set $term kitty
 set $menu rofi -show drun -theme ~/.config/rofi/theme.rasi
 
-output * bg ~/dotfiles/wall.png fill
 
 #
 # monitors

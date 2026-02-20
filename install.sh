@@ -2,7 +2,7 @@ info()  { echo -e "${GREEN}==>${NC} $1"; }
 warn()  { echo -e "${YELLOW}[!]${NC} $1"; }
 error() { echo -e "${RED}[x]${NC} $1"; exit 1; }
 
-info "[i] installing dependencies"
+info "installing dependencies"
 yay -S --needed --noconfirm --disable-download-timeout \
     sway \
     swaybg \
@@ -16,10 +16,10 @@ yay -S --needed --noconfirm --disable-download-timeout \
     wlsunset \
     playerctl \
     brightnessctl \
-    power-profiles-daemon \
+	cpu-autofreq \
     pavucontrol \
     python3 \
-    ttf-firacode-nerd \
+    ttf-jetbrains-mono-nerd \
     nm-connection-editor \
     networkmanager \
 	librewolf-bin \
@@ -28,7 +28,7 @@ yay -S --needed --noconfirm --disable-download-timeout \
     stow \
 
 info "enabling services..."
-sudo systemctl enable --now NetworkManager
-sudo systemctl enable --now power-profiles-daemon
 
 info "now manually run: stow <package>"
+info "example: "
+echo -e "\tstow sway tmux rofi mako zsh waybar"

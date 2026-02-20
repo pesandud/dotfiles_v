@@ -11,7 +11,7 @@
 @define-color purple    #bb9af7;
 
 * {
-    font-family: "JetBrainsMono Nerd Font Propo", monospace;
+    font-family: "JetBrainsMono Nerd Font Propo";
     font-size: 12px;
     font-weight: 700;
     min-height: 0;
@@ -38,13 +38,16 @@ window#waybar {
     color: @gray;
     background: transparent;
     border-bottom: 2px solid transparent;
-    transition: all 0.15s ease;
 }
 
 #workspaces button:hover {
     color: @fg;
     background: transparent;
     border-bottom: 2px solid @gray;
+}
+
+#workspaces button.empty {
+  opacity: 0.5;
 }
 
 #workspaces button.focused {
