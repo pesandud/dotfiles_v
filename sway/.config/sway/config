@@ -9,6 +9,8 @@ set $right l
 set $term kitty
 set $menu rofi -show drun -theme ~/.config/rofi/theme.rasi
 
+output * bg ~/dotfiles/walls/wall4.jpg fill
+seat seat0 xcursor_theme Sweet-cursors 24
 
 #
 # monitors
