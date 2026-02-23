@@ -6,7 +6,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term kitty
+set $term foot
 set $menu rofi -show drun -theme ~/.config/rofi/theme.rasi
 
 output * bg ~/dotfiles/walls/wall4.jpg fill
@@ -37,6 +37,8 @@ exec ~/.config/waybar/scripts/battery-notify.sh
       dwt enabled
       tap enabled
       natural_scroll enabled
+	  pointer_accel 0.8   # Adjust speed (-1.0 to 1.0)
+	  accel_profile "flat" # Optional: disables acceleration
       middle_emulation enabled
   }
 
@@ -50,7 +52,11 @@ default_border pixel 1
 default_floating_border pixel 1
 for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="nm-connection-editor"] floating enable
-for_window [title="Librewolf — Picture in Picture"] kill
+for_window [app_id="librewolf" title="Picture-in-Picture"] floating enable
+for_window [class="burp-StartBurp"] floating enable
+
+gaps outer 2
+
 client.focused          #7aa2f7 #1a1b26 #a9b1d6 #7aa2f7 #7aa2f7
 client.unfocused        #565f89 #1a1b26 #565f89 #565f89 #565f89
 client.focused_inactive #33467c #1a1b26 #a9b1d6 #33467c #33467c
@@ -62,10 +68,6 @@ client.focused_inactive #33467c #1a1b26 #a9b1d6 #33467c #33467c
 
 	bindsym $mod+Shift+s exec ~/dotfiles/scripts/ss.sh
 	bindsym $mod+Print exec ~/dotfiles/scripts/ss_save.sh
-
-	# screen lock
-	bindsym Ctrl+Shift+l exec playerctl -a pause && swaylock & systemctl suspend
-	bindsym Ctrl+Alt+l exec playerctl -a pause && swaylock
 
     # Start a terminal
     bindsym $mod+Return exec $term

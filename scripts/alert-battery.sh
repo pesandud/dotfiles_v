@@ -3,7 +3,7 @@
 # - Battery is discharging and below the threshold (20%)
 # - Battery is charging and full (80%)
 
-discharge_threshold=20  # Discharging threshold percentage to trigger alert
+discharge_threshold=35  # Discharging threshold percentage to trigger alert
 charge_threshold=80     # Charging threshold percentage to trigger alert
 
 # Use `acpi` to get battery status and capacity

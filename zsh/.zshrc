@@ -15,13 +15,16 @@ zinit light zsh-users/zsh-completions
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
-PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#9ece6a}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}]%F{#f5c2e7} → %f'
+# PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#9ece6a}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}]%F{#f5c2e7} → %f'
+PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#9ece6a}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}] %f'
 
 export BAT_THEME="tokyonight_night"
 export EDITOR=nvim
 export NVIM_APPNAME=nvim
 declare -x http_proxy=socks5h://192.168.42.129:9050
 declare -x https_proxy=socks5h://192.168.42.129:9050
+
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 typeset -U path
 path=( ~/scripts ~/.local/bin ~/.npm_global/bin $path )
@@ -34,8 +37,8 @@ setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups \
        hist_save_no_dups hist_ignore_dups hist_find_no_dups hist_verify
 
 burp() {
-    local loader="/home/n00b/.tools/burp/BurpLoaderKeygen_v1.18.jar"
-    local jar="/home/n00b/.tools/burp/burpsuite_pro_v2025.11.3/burpsuite_pro_v2025.11.3.jar"
+    local loader="$HOME/.tools/burp/BurpLoaderKeygen_v1.18.jar"
+    local jar="$HOME/.tools/burp/burpsuite_pro_v2025.11.3/burpsuite_pro_v2025.11.3.jar"
     java --add-opens=java.desktop/javax.swing=ALL-UNNAMED \
          --add-opens=java.base/java.lang=ALL-UNNAMED \
          --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED \
@@ -73,6 +76,8 @@ sn(){
 
 pipxa(){ unset http_proxy https_proxy; p pipx install "${@}" -v; source ~/.zshrc; }
 pipxu(){ p pipx uninstall "${@}"; }
+
+mann(){ man $1 | bat -l man --style=-numbers }
 
 # suffix aliases
 alias -s md="bat"
@@ -124,7 +129,7 @@ alias cm="cd ~/al/cm/pap"
 # alias mdwm="cd ~/dotfiles/rice/dwm-flexipatch/; sudo make clean install; cd -"
 alias mst="cd ~/dotfiles/st-flexipatch; sudo make clean install; cd -"
 alias pav="pavucontrol"
-alias neofetch="fastfetch --config examples/13.jsonc"
+alias neofetch="fastfetch --config examples/22.jsonc"
 alias git="proxychains -q git"
 alias gs="git status"
 alias ga="git add ."
@@ -170,7 +175,7 @@ bindkey '^g' fzf-cd-widget
 # Widgets
 autoload -Uz edit-command-line
 zle -N edit-command-line; bindkey '^x^e' edit-command-line
-clear-keep-buffer(){ zle clear-screen }; zle -N clear-keep-buffer; bindkey '^Al' clear-keep-buffer
+clear-keep-buffer(){ zle clear-screen }; zle -N clear-keep-buffer; bindkey '^Fl' clear-keep-buffer
 copy-cmd(){ echo -n $BUFFER | wl-copy; zle -M "copied!" }; zle -N copy-cmd; bindkey '^Y' copy-cmd
 fancy-ctrl-z () { if [[ $#BUFFER -eq 0 ]]; then fg 2>/dev/null || zle redisplay; else zle push-input; zle clear-screen; fi }; zle -N fancy-ctrl-z; bindkey '^Z' fancy-ctrl-z
 

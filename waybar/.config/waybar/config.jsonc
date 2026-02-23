@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 22,
+    "height": 20,
     "spacing": 0,
 
     "modules-left": [
@@ -9,37 +9,38 @@
         "sway/window"
     ],
 
-	"modules-right": [
-		"mpris",
-		"custom/separator",
-		"sway/scratchpad",
-		"custom/nightmode",
-		"idle_inhibitor",
-		"backlight",
-		"pulseaudio",
-		"custom/separator",
-		"custom/cpu-governor",
-		"custom/separator",
-		"battery",
-		"cpu",
-		"memory",
-		"custom/separator",
-		"clock",
-		"tray"
-	],
+    "modules-right": [
+        "mpris",
+        "custom/separator",
+        "sway/scratchpad",
+        "custom/nightmode",
+        "idle_inhibitor",
+        "backlight",
+        "pulseaudio",
+        "custom/separator",
+        "custom/cpu-governor",
+        "custom/separator",
+        "battery",
+        "temperature",
+        "cpu",
+        "memory",
+        "custom/separator",
+        "clock",
+        "tray"
+    ],
 
     "sway/workspaces": {
         "disable-scroll": false,
         "all-outputs": false,
         "format": "{name}",
         "numeric-first": true,
-		"persistent-workspaces": {
-		  "1": [],
-		  "2": [],
-		  "3": [],
-		  "4": [],
-		  "5": []
-		}
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
     },
 
     "sway/window": {
@@ -51,37 +52,37 @@
         }
     },
 
-	"sway/scratchpad": {
-		"format": "{icon} {count}",
-		"show-empty": false,
-		"format-icons": ["", ""],
-		"tooltip": true,
-		"tooltip-format": "{app}: {title}"
-	},
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
 
-	"custom/separator": {
-		"format": " | ",
-		"tooltip": false,
-		"interval": 0
-	},
+    "custom/separator": {
+        "format": " | ",
+        "tooltip": false,
+        "interval": 0
+    },
 
-	"backlight": {
-		"device": "intel_backlight", // Or "amdgpu_bl0" depending on your Vivobook CPU
-		"format": "{icon} {percent}%",
-		"format-icons": ["", "", "", "", "", "", "", "", ""]
-	},
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
 
-	"idle_inhibitor": {
-		"format": "{icon}",
-		"format-icons": {
-			"activated": "",
-			"deactivated": ""
-		},
-		"on-click": "~/.config/waybar/scripts/toggle_idle.sh",
-		"return-type": "json",
-		"interval": 2,
-		"exec": "cat ~/.config/waybar/scripts/idle_state"
-	},
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "on-click": "~/.config/waybar/scripts/toggle_idle.sh",
+        "return-type": "json",
+        "interval": 2,
+        "exec": "cat ~/.config/waybar/scripts/idle_state"
+    },
 
     "mpris": {
         "format": "{player_icon} {title}",
@@ -110,25 +111,29 @@
         "on-scroll-up": "pkill wlsunset > /dev/null 2>&1",
         "interval": "once"
     },
-	"custom/power-profile": {
-		"format": "󰈐 {}",
-		"exec": "asusctl profile get | grep -oP 'Active profile: \\w+' | awk  '{ print $3 }'",
-		"interval": 5,
-		"on-click": "asusctl profile next",
-		"tooltip": false
-	},
-	"custom/cpu-governor": {
-		"format": "󰾆 {}",
-		"exec": "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
-		"interval": 5,
-		"tooltip": false
-	},
-	"custom/auto-cpufreq": {
-		"format": "󰈐 {}",
-		"exec": "systemctl is-active auto-cpufreq",
-		"interval": 3,
-		"tooltip": false
-	},
+
+    "custom/power-profile": {
+        "format": "󰈐 {}",
+        "exec": "asusctl profile get | grep -oP 'Active profile: \\w+' | awk  '{ print $3 }'",
+        "interval": 5,
+        "on-click": "asusctl profile next",
+        "tooltip": false
+    },
+
+    "custom/cpu-governor": {
+        "format": "󰾆 {}",
+        "exec": "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
+        "interval": 5,
+        "tooltip": false
+    },
+
+    "custom/auto-cpufreq": {
+        "format": "󰈐 {}",
+        "exec": "systemctl is-active auto-cpufreq",
+        "interval": 3,
+        "tooltip": false
+    },
+
     "pulseaudio": {
         "format": "󰕾 {volume}%",
         "format-muted": "󰖁 mute",
@@ -138,16 +143,16 @@
         "tooltip": false
     },
 
-	"power-profiles-daemon": {
-		"format": "{icon}",
-		"tooltip-format": "Profile: {profile}\nDriver: {driver}",
-		"tooltip": true,
-		"format-icons": {
-			"default":     "󰾅",
-			"performance": "󰓅",
-			"balanced":    "󰾅",
-			"power-saver": "󰌪"
-			}
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "󰾅",
+            "performance": "󰓅",
+            "balanced": "󰾅",
+            "power-saver": "󰌪"
+        }
     },
 
     "network": {
@@ -165,7 +170,7 @@
         "interval": 60,
         "states": {
             "warning": 40,
-            "critical": 20
+            "critical": 30
         },
         "format": "{icon} {capacity}%",
         "format-charging": "󰂄 {capacity}%",
@@ -173,20 +178,34 @@
         "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
         "tooltip": false
     },
-	"cpu": {
-		"interval": 10,
-		"format": " {}%",
-		"max-length": 10
-	},
-	"memory": {
-		"interval": 30,
-		"format": " {}%",
-		"max-length": 10
-	},
+
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C ",
+        "format-critical": "{temperatureC}°C ",
+		"tooltip": false
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": " {}%",
+        "max-length": 10
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+		"max-length":10,
+    },
+
     "clock": {
         "format": "󰥔 {:%H:%M  󰃮 %d %b}",
         "format-alt": "{:%A, %B %d, %Y}",
         "tooltip-format": "<tt>{calendar}</tt>",
+		"timezones": [
+			"Asia/Colombo"
+		],
         "calendar": {
             "mode": "month",
             "on-scroll": 1

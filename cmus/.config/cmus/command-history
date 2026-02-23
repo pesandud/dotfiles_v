@@ -1,4 +1,18 @@
+vol +010000
+vol -30000
+vol -10000
+vol +10000
+vol -5000
+vol -100
+volume -100
 view sorted
+view sor
+view tree
+q
+refresh
+::;re
+add music/lofi/
+clear
 :source ~/.config/cmus/rc
 vi
 colorscheme dracula
@@ -11,7 +25,6 @@ colorscheme spotify
 colorscheme night
 save
 update-cache
-clear
 :clear
 set continue=true
 set mixer.alsa.device
@@ -23,7 +36,6 @@ opt
 set playlist_mode=normal
 colorscheme amazon
 bind -f common C toggle continue
-q
 s
 set continue
 set repeat=false
@@ -41,7 +53,6 @@ repeat off
 vol +1000
 vol -j
 vol 
-view tree
 view tre
 add ~/Music
 delete
@@ -49,9 +60,7 @@ clear cache
 cache
 clear 
 viwe sorted
-view sor
 colorscheme gruvbox-night
-refresh
 view settings
 view queue
 view browser

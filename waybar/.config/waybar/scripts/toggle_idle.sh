@@ -3,7 +3,7 @@
 export DISPLAY=:0
 export XDG_RUNTIME_DIR=/run/user/$(id -u)
 export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
-STATE_FILE="$HOME/.config/waybar/idle_state"
+STATE_FILE="$HOME/.config/waybar/scripts/idle_state"
 
 # Ensure state file exists
 if [ ! -f "$STATE_FILE" ]; then

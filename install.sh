@@ -4,28 +4,28 @@ error() { echo -e "${RED}[x]${NC} $1"; exit 1; }
 
 info "installing dependencies"
 yay -S --needed --noconfirm --disable-download-timeout \
-    sway \
-    swaybg \
-    swayidle \
-    swaylock \
-    waybar \
-    mako \
-    rofi \
-    grim \
-    slurp \
-    wlsunset \
-    playerctl \
-    brightnessctl \
+	sway \
+	swaybg \
+	swayidle \
+	swaylock \
+	waybar \
+	mako \
+	rofi \
+	grim \
+	slurp \
+	wlsunset \
+	playerctl \
+	brightnessctl \
 	cpu-autofreq \
-    pavucontrol \
-    python3 \
-    ttf-jetbrains-mono-nerd \
-    nm-connection-editor \
-    networkmanager \
+	pavucontrol \
+	python3 \
+	ttf-jetbrains-mono-nerd \
+	nm-connection-editor \
+	networkmanager \
 	librewolf-bin \
 	wlsunset \
 	tlp \
-    stow \
+	stow \
 
 info "enabling services..."
 
