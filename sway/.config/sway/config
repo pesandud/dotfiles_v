@@ -9,7 +9,7 @@ set $right l
 set $term foot
 set $menu rofi -show drun -theme ~/.config/rofi/theme.rasi
 
-output * bg ~/dotfiles/walls/wall4.jpg fill
+output * bg ~/dotfiles/walls/wall2.jpg fill
 seat seat0 xcursor_theme Sweet-cursors 24
 
 #

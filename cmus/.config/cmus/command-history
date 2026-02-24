@@ -1,3 +1,5 @@
+view sorted
+viwe sor
 vol +010000
 vol -30000
 vol -10000
@@ -5,7 +7,6 @@ vol +10000
 vol -5000
 vol -100
 volume -100
-view sorted
 view sor
 view tree
 q

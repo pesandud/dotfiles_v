@@ -1,3 +1,5 @@
+ZSH_THEME="robbyrussell" # set by `omz`
+
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -5,10 +7,9 @@ autoload -Uz _zinit
 autoload -Uz compinit
 compinit
 
-zinit snippet OMZ::lib/git.zsh
 zinit snippet OMZ::lib/completion.zsh
-zinit snippet OMZ::lib/theme-and-appearance.zsh
 
+zinit light ohmyzsh/ohmyzsh
 zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-completions
 
@@ -16,7 +17,8 @@ zinit light zsh-users/zsh-completions
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
 # PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#9ece6a}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}]%F{#f5c2e7} → %f'
-PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#9ece6a}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}] %f'
+# PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#9ece6a}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}] %f'
+# PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 export BAT_THEME="tokyonight_night"
 export EDITOR=nvim

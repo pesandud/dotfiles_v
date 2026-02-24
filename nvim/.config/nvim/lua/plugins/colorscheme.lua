@@ -40,6 +40,10 @@ return {
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
 			require("tokyonight").setup({
+				styles = {
+					comments = { italic = false },
+					keywords = { italic = false }
+				},
 				transparent = true,
 				on_colors = function(colors)
 					colors.bg = "#16161e"
