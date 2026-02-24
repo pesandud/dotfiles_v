@@ -27,6 +27,7 @@ exec swayidle -w \
 # autostart
 exec mako &
 exec ~/.config/waybar/scripts/battery-notify.sh
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -64,6 +65,7 @@ client.focused_inactive #33467c #1a1b26 #a9b1d6 #33467c #33467c
 ### Keybindings
 	bindsym $mod+m exec librewolf
 	bindsym $mod+p exec rofi -show drun -theme ~/.config/rofi/theme.rasi
+	bindsym $mod+c exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy
 	bindsym $mod+Shift+p exec ~/dotfiles/scripts/powermenu.sh
 
 	bindsym $mod+Shift+s exec ~/dotfiles/scripts/ss.sh
