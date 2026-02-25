@@ -1,5 +1,3 @@
-ZSH_THEME="robbyrussell" # set by `omz`
-
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -9,7 +7,6 @@ compinit
 
 zinit snippet OMZ::lib/completion.zsh
 
-zinit light ohmyzsh/ohmyzsh
 zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-completions
 
@@ -17,7 +14,7 @@ zinit light zsh-users/zsh-completions
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
 # PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#9ece6a}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}] %f'
-# PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+PROMPT="%{$fg[blue]%}%B%1~%b% %F{blue} :: %f%{$reset_color%}"
 
 export BAT_THEME="tokyonight_night"
 export EDITOR=nvim
@@ -78,7 +75,7 @@ sn(){
 pipxa(){ unset http_proxy https_proxy; p pipx install "${@}" -v; source ~/.zshrc; }
 pipxu(){ p pipx uninstall "${@}"; }
 
-mann(){ man $1 | bat -l man --style=-numbers }
+mann(){ man "$@" | bat -l man --style=-numbers }
 
 # suffix aliases
 alias -s md="bat"
@@ -110,13 +107,14 @@ alias bin='_bin(){ echo "obase=2; $1" | bc | sed "s/^/0b/" }; _bin'
 alias sc="sudo systemctl"
 alias obsidian="obsidian --disable-gpu --proxy-server=socks5://192.168.42.129:9050"
 alias pvi="proxychains -q nvim"
-alias please="sudo"
+alias _="sudo"
 alias uns="unset http_proxy https_proxy"
 alias vi="nvim"
 alias ..="cd .."
 alias ...="cd ../.."
 alias .3="cd ../../.."
 alias .4="cd ../../../.."
+alias .5="cd ../../../../.."
 alias chm="chmod +x"
 alias py="python3"
 alias ipy="ipython3"
@@ -130,7 +128,7 @@ alias cm="cd ~/al/cm/pap"
 # alias mdwm="cd ~/dotfiles/rice/dwm-flexipatch/; sudo make clean install; cd -"
 alias mst="cd ~/dotfiles/st-flexipatch; sudo make clean install; cd -"
 alias pav="pavucontrol"
-alias neofetch="fastfetch --config examples/22.jsonc"
+alias neofetch="fastfetch --config examples/13.jsonc"
 alias git="proxychains -q git"
 alias gs="git status"
 alias ga="git add ."
@@ -147,14 +145,15 @@ alias t="tmux"
 # alias copy="xclip -selection clipboard"
 alias copy="wl-copy"
 alias ls="eza --icons --grid --sort=name"
+alias l="ls"
 alias la="ls -lah"
 alias lt="ls --tree"
 alias ll="ls -l"
 alias c="clear"
 # alias vii3="vi ~/.config/i3/config"
-alias vist="vi ~/dotfiles/st-flexipatch/config.h"
+# alias vist="vi ~/dotfiles/st-flexipatch/config.h"
 # alias viniri="vi ~/dotfiles/niri/.config/niri/config.kdl"
-alias vivi="vi ~/.config/nvim"
+# alias vivi="vi ~/.config/nvim"
 alias visw="vi ~/.config/sway/config"
 
 # keybindings
