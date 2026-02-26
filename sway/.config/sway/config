@@ -57,6 +57,7 @@ for_window [app_id="librewolf" title="Picture-in-Picture"] floating enable
 for_window [class="burp-StartBurp"] floating enable
 
 gaps outer 2
+gaps inner 2
 
 client.focused          #7aa2f7 #1a1b26 #a9b1d6 #7aa2f7 #7aa2f7
 client.unfocused        #565f89 #1a1b26 #565f89 #565f89 #565f89

@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -21,11 +28,20 @@ export EDITOR=nvim
 export NVIM_APPNAME=nvim
 declare -x http_proxy=socks5h://192.168.42.129:9050
 declare -x https_proxy=socks5h://192.168.42.129:9050
+export JAVA_HOME=/usr/lib/jvm/java-25-openjdk
+
+
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 typeset -U path
-path=( ~/scripts ~/.local/bin ~/.npm_global/bin $path )
+path=( 
+	~/scripts
+	~/.local/bin 
+	~/.npm_global/bin
+	$JAVA_HOME/bin
+	$path 
+)
 
 setopt correct autocd autopushd pushdignoredups pushdminus
 HISTSIZE=5000
@@ -44,6 +60,8 @@ burp() {
          --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED \
          -javaagent:"$loader" -noverify -jar "$jar" "$@"
 }
+
+ida() {	/home/cat/.tools/ida/ida }
 
 ex() {
   if [ -f "$1" ] ; then
