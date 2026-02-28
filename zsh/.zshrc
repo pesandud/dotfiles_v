@@ -20,8 +20,8 @@ zinit light zsh-users/zsh-completions
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
-# PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#9ece6a}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}] %f'
-PROMPT="%{$fg[blue]%}%B%1~%b% %F{blue} :: %f%{$reset_color%}"
+#PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#9ece6a}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}] %f'
+PROMPT='%(?.%F{14}●.%F{9}●)%f %F{blue}%~%f %F{blue}>%f '
 
 export BAT_THEME="tokyonight_night"
 export EDITOR=nvim

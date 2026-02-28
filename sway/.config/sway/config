@@ -10,7 +10,7 @@ set $term foot
 set $menu rofi -show drun -theme ~/.config/rofi/theme.rasi
 
 output * bg ~/dotfiles/walls/wall2.jpg fill
-seat seat0 xcursor_theme Sweet-cursors 24
+seat seat0 xcursor_theme Bibata-Modern-Ice 24
 
 #
 # monitors
@@ -71,6 +71,7 @@ client.focused_inactive #33467c #1a1b26 #a9b1d6 #33467c #33467c
 
 	bindsym $mod+Shift+s exec ~/dotfiles/scripts/ss.sh
 	bindsym $mod+Print exec ~/dotfiles/scripts/ss_save.sh
+	bindsym $mod+period exec rofimoji --clipboarder wl-copy --selector rofi
 
     # Start a terminal
     bindsym $mod+Return exec $term
