@@ -1,21 +1,20 @@
 return 
-{
-  "folke/which-key.nvim",
-  event = "VeryLazy",
-  opts = {
-		-- 	win = {
-		-- 		wo = {
-		-- 			winblend = 0,
-		-- 		},
-		-- 	},
-		},
-  keys = {
-    {
-      "<leader>?",
-      function()
-        require("which-key").show({ global = false })
-      end,
-      desc = "Buffer Local Keymaps (which-key)",
+{ -- Useful plugin to show you pending keybinds.
+    'folke/which-key.nvim',
+    event = 'VimEnter',
+    ---@module 'which-key'
+    ---@type wk.Opts
+    ---@diagnostic disable-next-line: missing-fields
+    opts = {
+      -- delay between pressing a key and opening which-key (milliseconds)
+      delay = 0,
+      icons = { mappings = vim.g.have_nerd_font },
+
+      -- Document existing key chains
+      spec = {
+        { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
+        { '<leader>t', group = '[T]oggle' },
+        { 'gr', group = 'LSP Actions', mode = { 'n' } },
+      },
     },
-  },
 }

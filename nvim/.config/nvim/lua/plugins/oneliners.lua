@@ -1,4 +1,7 @@
--- return {}
+local enabled = false
+if not enabled then
+	return {}
+end
 return {
 	"catgoose/nvim-colorizer.lua",
 	enabled = true,

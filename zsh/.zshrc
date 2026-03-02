@@ -20,8 +20,8 @@ zinit light zsh-users/zsh-completions
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
-#PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#9ece6a}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}] %f'
-PROMPT='%(?.%F{14}●.%F{9}●)%f %F{blue}%~%f %F{blue}$%f '
+#PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#bb9af7}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}] %f'
+PROMPT='%(?.%F{14}●.%F{9}●)%f %F{#7aa2f7}%~%f %(?.%F{14}.%F{9})%f '
 
 export BAT_THEME="tokyonight_night"
 export EDITOR=nvim
@@ -176,9 +176,11 @@ alias visw="vi ~/.config/sway/config"
 
 # keybindings
 bindkey -v
+export KEYTIMEOUT=25
 bindkey -M viins '^p' history-search-backward
 bindkey -M viins '^n' history-search-forward
-bindkey -M viins 'jk' vi-cmd-mode
+bindkey -M viins '^[' vi-cmd-mode
+# bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^u' backward-kill-word
 bindkey '^r' fzf-history-widget
 bindkey '^t' fzf-file-widget

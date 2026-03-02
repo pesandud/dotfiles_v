@@ -4,9 +4,10 @@ return {
 	config = function()
 		require("mini.ai").setup()
 		require("mini.surround").setup()
-		-- require("mini.tabline").setup({
-		-- 	show_icons = false
-		-- })
+		require("mini.tabline").setup({
+			show_icons = false,
+		})
+
 		require("mini.indentscope").setup({
 			options = {
 				border = "top",
@@ -21,30 +22,11 @@ return {
 			end,
 		})
 
-		-- require("mini.pairs").setup()
-		-- require('mini.animte').setup()
-		-- require("mini.statusline").setup({
-		-- 	content = {
-		-- 		active = function()
-		-- 			-- 1. Filename (Relative path)
-		-- 			local filename = MiniStatusline.section_filename({ trunc_width = 140 })
-		--
-		-- 			-- 2. Location (Line number : Column)
-		-- 			local location = MiniStatusline.section_location({ trunc_width = 75 })
-		--
-		-- 			-- 3. Search Count (Shows 1/5 when searching)
-		-- 			local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
-		--
-		-- 			return MiniStatusline.combine_groups({
-		-- 				{ hl = "MiniStatuslineFilename", strings = { filename } },
-		-- 				"%=", -- Push everything following to the right
-		-- 				{ hl = mode_hl, strings = { search, location } },
-		-- 			})
-		-- 		end,
-		-- 	},
-		-- 	use_icons = true,
-		-- 	set_vim_settings = false,
-		-- })
+		vim.api.nvim_set_hl(0, "MiniTablineCurrent", {
+			fg = "#1a1b26",
+			bg = "#7aa2f7",
+			bold = true,
+		})
 
 		vim.keymap.set("n", "<leader>x", function()
 			local bd = require("mini.bufremove").delete
