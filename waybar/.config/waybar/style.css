@@ -41,6 +41,12 @@ window#waybar {
     border-bottom: 2px solid transparent;
 }
 
+#workspaces button.active {
+    color: @fg;
+    background: transparent;
+    border-bottom: 2px solid @fg;
+}
+
 #workspaces button:hover {
     color: @fg;
     background: transparent;

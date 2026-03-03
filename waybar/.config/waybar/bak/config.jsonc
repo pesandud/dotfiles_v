@@ -1,0 +1,238 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 20,
+    "spacing": 0,
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+
+    "modules-right": [
+        "mpris",
+        "custom/separator",
+        "hyprland/scratchpad",
+        "custom/nightmode",
+        "idle_inhibitor",
+        "backlight",
+        "pulseaudio",
+        "custom/separator",
+        "custom/cpu-governor",
+        "custom/separator",
+        "battery",
+        "temperature",
+        "cpu",
+        "memory",
+        "custom/separator",
+        "clock",
+        "tray"
+    ],
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "format": "{name}",
+        "numeric-first": true,
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
+    },
+
+    "hyprland/window": {
+        "format": "  {title}",
+        "max-length": 50,
+        "rewrite": {
+            "(.*) - Mozilla Firefox": "ff: $1",
+            "(.*) - Chromium": "cr: $1"
+        }
+    },
+
+    "hyprland/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+
+    "custom/separator": {
+        "format": " | ",
+        "tooltip": false,
+        "interval": 0
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+
+    // "idle_inhibitor": {
+    //     "format": "{icon}",
+    //     "format-icons": {
+    //         "activated": "",
+    //         "deactivated": ""
+    //     },
+    //     "on-click": "~/.config/waybar/scripts/toggle_idle.sh",
+    //     "return-type": "json",
+    //     "interval": 2,
+    //     "exec": "cat ~/.config/waybar/scripts/idle_state"
+    // },
+	"idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": "",
+        "deactivated": ""
+		}
+	},
+
+    "mpris": {
+        "format": "{player_icon} {title}",
+        "format-paused": "{status_icon} {title}",
+        "player-icons": {
+            "default": "󰎇",
+            "cmus": "󰎇",
+            "spotify": "󰓇",
+            "mpv": "󰐊"
+        },
+        "status-icons": {
+            "paused": "󰏤",
+            "playing": "󰐊",
+            "stopped": "󰓛"
+        },
+        "max-length": 30
+    },
+
+	"custom/nightmode": {
+		"format": "󰖔",
+		"tooltip": true,
+		"tooltip-format": "left: 4000k | mid: 5000k | right: 6000k | scroll: off",
+		"on-click": "pkill wlsunset || wlsunset -t 4000",
+		"on-click-middle": "pkill wlsunset || wlsunset -t 5000",
+		"on-click-right": "pkill wlsunset || wlsunset -t 6000",
+		"on-scroll-up": "pkill wlsunset",
+		"interval": "once"
+	},
+
+    "custom/power-profile": {
+        "format": "󰈐 {}",
+        "exec": "asusctl profile get | grep -oP 'Active profile: \\w+' | awk  '{ print $3 }'",
+        "interval": 5,
+        "on-click": "asusctl profile next",
+        "tooltip": false
+    },
+
+    "custom/cpu-governor": {
+        "format": "󰾆 {}",
+        "exec": "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
+        "interval": 5,
+        "tooltip": false
+    },
+
+    "custom/auto-cpufreq": {
+        "format": "󰈐 {}",
+        "exec": "systemctl is-active auto-cpufreq",
+        "interval": 3,
+        "tooltip": false
+    },
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-muted": "󰖁 Muted",
+		"format-icons": {
+			"default": ["󰕿", "󰖀", "󰕾"]
+		},
+		"on-click": "pavucontrol",
+		"scroll-step": 5
+	},
+    // "pulseaudio": {
+    //     "format": "󰕾 {volume}%",
+    //     "format-muted": "󰖁 mute",
+    //     "format-bluetooth": "󰂰 {volume}%",
+    //     "scroll-step": 5,
+    //     "on-click": "pavucontrol",
+    //     "tooltip": false
+    // },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "󰾅",
+            "performance": "󰓅",
+            "balanced": "󰾅",
+            "power-saver": "󰌪"
+        }
+    },
+
+    "network": {
+        "interface": "enp0s20u1",
+        "format": "󰈁 {ifname}",
+        "format-wifi": "󰤨 {signalStrength}%",
+        "format-ethernet": "󰈀 eth",
+        "format-disconnected": "󰤭 down",
+        "tooltip-format": "{ipaddr}",
+        "on-click": "foot nmtui"
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "interval": 60,
+        "states": {
+            "warning": 40,
+            "critical": 30
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-full": "󰁹 full",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip": false
+    },
+
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C ",
+        "format-critical": "{temperatureC}°C ",
+		"tooltip": false
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": " {}%",
+        "max-length": 10
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+		"max-length":10,
+    },
+
+    "clock": {
+        "format": "󰥔 {:%H:%M  󰃮 %d %b}",
+        "format-alt": "{:%A, %B %d, %Y}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+		"timezones": [
+			"Asia/Colombo"
+		],
+        "calendar": {
+            "mode": "month",
+            "on-scroll": 1
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    }
+}

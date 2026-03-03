@@ -1,0 +1,188 @@
+@define-color bg        #1a1b26;
+@define-color bg-alt    #24283b;
+@define-color gray      #565f89;
+@define-color fg        #a9b1d6;
+@define-color red       #f7768e;
+@define-color orange    #ff9e64;
+@define-color yellow    #e0af68;
+@define-color green     #9ece6a;
+@define-color cyan      #7dcfff;
+@define-color blue      #7aa2f7;
+@define-color purple    #bb9af7;
+
+* {
+    font-family: "DejavuSansM Nerd Font Propo";
+    font-size: 12px;
+    font-weight: bold;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+
+window#waybar {
+    background-color: @bg;
+    color: @fg;
+    min-height: 0;
+}
+
+/* ── Workspaces ─────────────────────────────── */
+
+#workspaces {
+    margin: 0;
+    padding: 0 4px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: @gray;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button:hover {
+    color: @fg;
+    background: transparent;
+    border-bottom: 2px solid @gray;
+}
+
+#workspaces button.empty {
+    opacity: 0.5;
+}
+
+#workspaces button.focused {
+    color: @blue;
+    background: transparent;
+    border-bottom: 2px solid @blue;
+}
+
+#workspaces button.urgent {
+    color: @red;
+    border-bottom: 2px solid @red;
+}
+
+/* ── Window title ───────────────────────────── */
+
+#window {
+    color: @fg;
+    padding: 0 8px;
+}
+
+#custom-separator {
+    color: @fg;
+    padding: 0 6px;
+    font-weight: 800;
+}
+
+/* ── Modules ──────────────────────────── */
+
+#scratchpad,
+#backlight,
+#idle_inhibitor,
+#temperature,
+#memory,
+#cpu,
+#custom-auto-cpufreq,
+#custom-cpu-governer,
+#mpris,
+#custom-nightmode,
+#pulseaudio,
+#clock {
+    padding: 0 10px;
+    color: @fg;
+}
+
+#mpris {
+    color: @fg;
+}
+
+#custom-power-profile {
+    color: @fg;
+}
+
+#backlight {
+    color: @fg;
+}
+
+#custom-nightmode {
+    color: @fg;
+    font-size: 14px;
+}
+
+#pulseaudio {
+    color: @fg;
+}
+
+#pulseaudio.muted {
+    color: @fg;
+}
+
+#power-profiles-daemon {
+    font-size: 14px;
+    color: @fg;
+}
+
+#power-profiles-daemon.performance {
+    color: @fg;
+}
+
+#power-profiles-daemon.balanced {
+    color: @fg;
+}
+
+#power-profiles-daemon.power-saver {
+    color: @fg;
+}
+
+/* ── Battery (unchanged colors) ───────────────── */
+
+#battery {
+    padding: 0 10px;
+    color: @green;
+}
+
+#battery.warning {
+    color: @orange;
+}
+
+#battery.critical {
+    color: @red;
+}
+
+#battery.charging {
+    color: @green;
+}
+
+#battery.critical:not(.charging) {
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        color: @red;
+    }
+}
+
+/* ── Tray (unchanged) ───────────────── */
+
+#tray {
+    padding: 0 8px;
+}
+
+/* ── Tooltips ───────────────────────────────── */
+
+tooltip {
+    background: @bg-alt;
+    border: 1px solid @gray;
+    border-radius: 0;
+}
+
+tooltip label {
+    color: @fg;
+    padding: 6px;
+}

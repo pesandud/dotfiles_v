@@ -5,14 +5,14 @@
     "spacing": 0,
 
     "modules-left": [
-        "sway/workspaces",
-        "sway/window"
+        "hyprland/workspaces",
+        "hyprland/window"
     ],
 
     "modules-right": [
         "mpris",
         "custom/separator",
-        "sway/scratchpad",
+        "hyprland/scratchpad",
         "custom/nightmode",
         "idle_inhibitor",
         "backlight",
@@ -28,9 +28,8 @@
         "clock",
         "tray"
     ],
-
-    "sway/workspaces": {
-        "disable-scroll": false,
+    "hyprland/workspaces": {
+        "disable-scroll": true,
         "all-outputs": false,
         "format": "{name}",
         "numeric-first": true,
@@ -43,7 +42,7 @@
         }
     },
 
-    "sway/window": {
+    "hyprland/window": {
         "format": "  {title}",
         "max-length": 50,
         "rewrite": {
@@ -52,7 +51,7 @@
         }
     },
 
-    "sway/scratchpad": {
+    "hyprland/scratchpad": {
         "format": "{icon} {count}",
         "show-empty": false,
         "format-icons": ["", ""],
@@ -72,17 +71,24 @@
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
 
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        },
-        "on-click": "~/.config/waybar/scripts/toggle_idle.sh",
-        "return-type": "json",
-        "interval": 2,
-        "exec": "cat ~/.config/waybar/scripts/idle_state"
-    },
+    // "idle_inhibitor": {
+    //     "format": "{icon}",
+    //     "format-icons": {
+    //         "activated": "",
+    //         "deactivated": ""
+    //     },
+    //     "on-click": "~/.config/waybar/scripts/toggle_idle.sh",
+    //     "return-type": "json",
+    //     "interval": 2,
+    //     "exec": "cat ~/.config/waybar/scripts/idle_state"
+    // },
+	"idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": "",
+        "deactivated": ""
+		}
+	},
 
     "mpris": {
         "format": "{player_icon} {title}",
@@ -101,16 +107,16 @@
         "max-length": 30
     },
 
-    "custom/nightmode": {
-        "format": "󰖔",
-        "tooltip": true,
-        "tooltip-format": "Left: 4000K  Middle: 5000K  Right: 6000K  Scroll Up: Off",
-        "on-click": "pkill wlsunset > /dev/null 2>&1; wlsunset -t 4000 > /dev/null 2>&1 &",
-        "on-click-middle": "pkill wlsunset > /dev/null 2>&1; wlsunset -t 5000 > /dev/null 2>&1 &",
-        "on-click-right": "pkill wlsunset > /dev/null 2>&1; wlsunset -t 6000 > /dev/null 2>&1 &",
-        "on-scroll-up": "pkill wlsunset > /dev/null 2>&1",
-        "interval": "once"
-    },
+	"custom/nightmode": {
+		"format": "󰖔",
+		"tooltip": true,
+		"tooltip-format": "left: 4000k | mid: 5000k | right: 6000k | scroll: off",
+		"on-click": "pkill wlsunset || wlsunset -t 4000",
+		"on-click-middle": "pkill wlsunset || wlsunset -t 5000",
+		"on-click-right": "pkill wlsunset || wlsunset -t 6000",
+		"on-scroll-up": "pkill wlsunset",
+		"interval": "once"
+	},
 
     "custom/power-profile": {
         "format": "󰈐 {}",
@@ -133,15 +139,23 @@
         "interval": 3,
         "tooltip": false
     },
-
-    "pulseaudio": {
-        "format": "󰕾 {volume}%",
-        "format-muted": "󰖁 mute",
-        "format-bluetooth": "󰂰 {volume}%",
-        "scroll-step": 5,
-        "on-click": "pavucontrol",
-        "tooltip": false
-    },
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-muted": "󰖁 Muted",
+		"format-icons": {
+			"default": ["󰕿", "󰖀", "󰕾"]
+		},
+		"on-click": "pavucontrol",
+		"scroll-step": 5
+	},
+    // "pulseaudio": {
+    //     "format": "󰕾 {volume}%",
+    //     "format-muted": "󰖁 mute",
+    //     "format-bluetooth": "󰂰 {volume}%",
+    //     "scroll-step": 5,
+    //     "on-click": "pavucontrol",
+    //     "tooltip": false
+    // },
 
     "power-profiles-daemon": {
         "format": "{icon}",
