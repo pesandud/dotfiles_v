@@ -9,7 +9,7 @@ font pango:SauceCodePro Nerd Font Propo 10
     set $term foot
     set $menu rofi -show drun -theme ~/.config/rofi/theme.rasi
 
-    output * bg ~/dotfiles/walls/wall2.jpg fill
+    output * bg ~/dotfiles/walls/girl-with-mlue-hair.jpg fill
     seat seat0 xcursor_theme Bibata-Modern-Ice 24
 
     #
