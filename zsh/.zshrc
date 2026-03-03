@@ -172,7 +172,8 @@ alias c="clear"
 # alias vist="vi ~/dotfiles/st-flexipatch/config.h"
 # alias viniri="vi ~/dotfiles/niri/.config/niri/config.kdl"
 # alias vivi="vi ~/.config/nvim"
-alias visw="vi ~/.config/sway/config"
+# alias visw="vi ~/.config/sway/config"
+alias vipr="vi ~/.config/hypr/hyprland.conf"
 
 # keybindings
 bindkey -v
@@ -201,6 +202,7 @@ fancy-ctrl-z () { if [[ $#BUFFER -eq 0 ]]; then fg 2>/dev/null || zle redisplay;
 vi-yank-copy() { zle .vi-yank; echo -n "$CUTBUFFER" | wl-copy 2>/dev/null & }; zle -N vi-yank-copy; bindkey -M vicmd 'y' vi-yank-copy
 
 export FZF_DEFAULT_OPTS="--highlight-line --info=inline-right --ansi --layout=reverse --border=none --color=bg+:#283457,bg:#16161e,border:#27a1b9,fg:#c0caf5,gutter:#16161e,header:#ff9e64,hl+:#2ac3de,hl:#2ac3de,info:#545c7e,marker:#ff007c,pointer:#ff007c,prompt:#2ac3de,query:#c0caf5:regular,scrollbar:#27a1b9,separator:#ff9e64,spinner:#ff007c"
+export FZF_DEFAULT_OPTS="--highlight-line --info=inline-right --ansi --layout=reverse --border=none --color=border:#27a1b9,fg:#c0caf5,gutter:#16161e,header:#ff9e64,hl+:#2ac3de,hl:#2ac3de,info:#545c7e,marker:#ff007c,pointer:#ff007c,prompt:#2ac3de,query:#c0caf5:regular,scrollbar:#27a1b9,separator:#ff9e64,spinner:#ff007c"
 
 zstyle ':fzf-tab:*' fzf-flags --height=40% --border --layout=reverse
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'if [ -d $realpath ]; then eza --tree --color=always --level=2 $realpath; else bat --color=always --style=numbers --line-range=:500 $realpath; fi'
