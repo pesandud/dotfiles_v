@@ -1,3 +1,7 @@
+colorscheme night
+colorscheme cyan
+colorscheme onedark
+colorscheme spotify
 view sorted
 viwe sor
 vol +010000
@@ -19,11 +23,8 @@ vi
 colorscheme dracula
 colorscheme default
 colorscheme catppuccin
-colorscheme onedark
 colorscheme tok
 colorscheme zenburn
-colorscheme spotify
-colorscheme night
 save
 update-cache
 :clear
