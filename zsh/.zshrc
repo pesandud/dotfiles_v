@@ -95,6 +95,9 @@ pipxu(){ p pipx uninstall "${@}"; }
 
 mann(){ man "$@" | bat -l man --style=-numbers }
 
+urlencode() { python3 -c "import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))" }
+urldecode() { python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))" }
+
 # suffix aliases
 alias -s md="bat"
 alias -s png="qiv"
@@ -187,12 +190,16 @@ bindkey '^r' fzf-history-widget
 bindkey '^t' fzf-file-widget
 bindkey '^g' fzf-cd-widget
 
-# _force_block_cursor() { echo -ne '\e[2 q' }
-# _force_block_cursor
-# precmd_functions+=(_force_block_cursor)
-# zle-keymap-select() { _force_block_cursor }
+# zle-keymap-select() {
+#   if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+#     echo -ne '\e[2 q' # Block
+#   elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} == "" ]] || [[ $1 = 'beam' ]]; then
+#     echo -ne '\e[6 q' # Beam/Line
+#   fi
+# }
 # zle -N zle-keymap-select
-#
+# _fix_cursor() { echo -ne '\e[6 q' } # Ensure beam on startup
+# precmd_functions+=(_fix_cursor)
 # Widgets
 autoload -Uz edit-command-line
 zle -N edit-command-line; bindkey '^x^e' edit-command-line

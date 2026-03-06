@@ -88,6 +88,7 @@ window#waybar {
 #mpris,
 #cava,
 #custom-nightmode,
+#custom-clipboard,
 #pulseaudio,
 #clock {
     padding: 0 10px;

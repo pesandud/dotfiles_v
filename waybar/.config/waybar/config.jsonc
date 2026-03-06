@@ -13,7 +13,7 @@
 		"cava",
         "mpris",
         "custom/separator",
-        // "hyprland/scratchpad",
+		"custom/clipboard",
         "custom/nightmode",
         "idle_inhibitor",
         "backlight",
@@ -133,6 +133,10 @@
         "max-length": 30
     },
 
+	"custom/clipboard": {
+		"format": "",
+		"on-click": "cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+	},
 	"custom/nightmode": {
 		"format": "󰖔",
 		"tooltip": true,

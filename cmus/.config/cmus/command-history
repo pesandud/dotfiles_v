@@ -1,6 +1,9 @@
+colorscheme tokyonight
+colorscheme dracula
+colorscheme onedark
+theme onedrak
 colorscheme night
 colorscheme cyan
-colorscheme onedark
 colorscheme spotify
 view sorted
 viwe sor
@@ -20,7 +23,6 @@ add music/lofi/
 clear
 :source ~/.config/cmus/rc
 vi
-colorscheme dracula
 colorscheme default
 colorscheme catppuccin
 colorscheme tok

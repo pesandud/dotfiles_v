@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 local asm_group = vim.api.nvim_create_augroup("asm_file_settings", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "asm", "gas" },
+  pattern = { "gas" },
   group = asm_group,
   desc = "Set GAS assembly comment character to #",
   callback = function()
