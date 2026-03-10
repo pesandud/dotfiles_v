@@ -11,7 +11,7 @@ allow_images=true
 image_size=36
 
 # search & UX
-matching=fuzzy
+# matching=fuzzy
 insensitive=true
 hide_scroll=false
 prompt=

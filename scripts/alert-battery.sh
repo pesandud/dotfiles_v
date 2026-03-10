@@ -13,7 +13,7 @@ acpi -b | awk -F'[,:%]' '{print $2, $3}' | {
   # If battery is discharging and capacity is below the discharge threshold
   if [ "${status}" = "Discharging" ] && [ "${capacity}" -lt "${discharge_threshold}" ]; then
     # Send a notification that appears for 5 minutes
-    notify-send -t 300000 "Charge your battery! (${capacity}%)"
+    notify-send -t 300000 "Charge your battery u fool (${capacity}%)"
   
   # If battery is charging and capacity is above the charge threshold (80%)
   elif [ "${status}" = "Charging" ] && [ "${capacity}" -ge "${charge_threshold}" ]; then
