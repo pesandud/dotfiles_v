@@ -21,7 +21,7 @@ zinit light zsh-users/zsh-completions
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
 #PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#bb9af7}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}] %f'
-PROMPT='%(?.%F{14}●.%F{9}●)%f %F{#7aa2f7}%~%f %(?.%F{14}.%F{9})%f '
+PROMPT='%(?.%F{14}●.%F{9}●)%f %F{#7aa2f7}%~%f %(?.%F{14}$.%F{9}$)%f '
 
 export BAT_THEME="tokyonight_night"
 export EDITOR=nvim
@@ -63,15 +63,27 @@ burp() {
 
 ida() {	/home/cat/.tools/ida/ida }
 
-ex() {
-  if [ -f "$1" ] ; then
-    case "$1" in
-      *.tar.bz2) tar xjf "$1" ;; *.tar.gz) tar xzf "$1" ;; *.bz2) bunzip2 "$1" ;;
-      *.rar) unrar x "$1" ;; *.gz) gunzip "$1" ;; *.tar) tar xf "$1" ;;
-      *.zip) unzip "$1" ;; *.7z) 7z x "$1" ;;
-      *) echo "'$1' cannot be extracted via ex()" ;;
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.tar.xz)    tar xJf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1     ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
     esac
-  else echo "'$1' is not a valid file" ; fi
+  else
+    echo "'$1' is not a valid file"
+  fi
 }
 
 i(){ yay -S --disable-download-timeout --needed "${@}"; }
