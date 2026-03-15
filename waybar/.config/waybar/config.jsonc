@@ -135,7 +135,10 @@
 
 	"custom/clipboard": {
 		"format": "",
-		"on-click": "cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+		"on-click": "cliphist list | wofi --dmenu | cliphist decode | wl-copy",
+		"tooltip": true,
+		"tooltip-format": "middle click: wipe clipboard",
+		"on-click-middle": "cliphist wipe"
 	},
 	"custom/nightmode": {
 		"format": "󰖔",
@@ -170,13 +173,21 @@
         "tooltip": false
     },
 	"pulseaudio": {
-		"format": "{icon} {volume}%",
-		"format-muted": "󰖁 Muted",
+		"format": "{icon} {volume}%  {format_source}",
+		"format-muted": "󰖁 Muted  {format_source}",
+		"format-source": " {volume}%",
+		"format-source-muted": " Muted",
 		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
 			"default": ["󰕿", "󰖀", "󰕾"]
 		},
 		"on-click": "pavucontrol",
-		"scroll-step": 5
+		"on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
 	},
     // "pulseaudio": {
     //     "format": "󰕾 {volume}%",

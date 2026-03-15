@@ -189,6 +189,7 @@ alias vist="vi ~/dotfiles/st-flexipatch/config.h"
 # alias vivi="vi ~/.config/nvim"
 # alias visw="vi ~/.config/sway/config"
 alias vipr="vi ~/.config/hypr/hyprland.conf"
+alias vifoot="vi ~/.config/foot/foot.ini"
 
 # keybindings
 bindkey -v
@@ -218,7 +219,7 @@ zle -N edit-command-line; bindkey '^x^e' edit-command-line
 clear-keep-buffer(){ zle clear-screen }; zle -N clear-keep-buffer; bindkey '^Fl' clear-keep-buffer
 copy-cmd(){ echo -n $BUFFER | wl-copy; zle -M "copied!" }; zle -N copy-cmd; bindkey '^Y' copy-cmd
 fancy-ctrl-z () { if [[ $#BUFFER -eq 0 ]]; then fg 2>/dev/null || zle redisplay; else zle push-input; zle clear-screen; fi }; zle -N fancy-ctrl-z; bindkey '^Z' fancy-ctrl-z
-vi-yank-copy() { zle .vi-yank; echo -n "$CUTBUFFER" | wl-copy 2>/dev/null & }; zle -N vi-yank-copy; bindkey -M vicmd 'y' vi-yank-copy
+vi-yank-copy() { zle .vi-yank; echo -n "$CUTBUFFER" | wl-copy 2>/dev/null }; zle -N vi-yank-copy; bindkey -M vicmd 'y' vi-yank-copy
 
 export FZF_DEFAULT_OPTS="--highlight-line --info=inline-right --ansi --layout=reverse --border=none --color=bg+:#283457,bg:#16161e,border:#27a1b9,fg:#c0caf5,gutter:#16161e,header:#ff9e64,hl+:#2ac3de,hl:#2ac3de,info:#545c7e,marker:#ff007c,pointer:#ff007c,prompt:#2ac3de,query:#c0caf5:regular,scrollbar:#27a1b9,separator:#ff9e64,spinner:#ff007c"
 export FZF_DEFAULT_OPTS="--highlight-line --info=inline-right --ansi --layout=reverse --border=none --color=border:#27a1b9,fg:#c0caf5,gutter:#16161e,header:#ff9e64,hl+:#2ac3de,hl:#2ac3de,info:#545c7e,marker:#ff007c,pointer:#ff007c,prompt:#2ac3de,query:#c0caf5:regular,scrollbar:#27a1b9,separator:#ff9e64,spinner:#ff007c"
