@@ -17,12 +17,15 @@ zinit snippet OMZ::lib/completion.zsh
 zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-completions
 
+# prompt
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
 #PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#bb9af7}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}] %f'
-# PROMPT='%(?.%F{14}●.%F{9}●)%f %F{#7aa2f7}%~%f %(?.%F{14}$.%F{9}$)%f '
-PROMPT='%F{#7aa2f7}%~%f %(?.%F{14}❯.%F{#7aa2f7}❯)%f '
+#PROMPT='%(?.%F{14}●.%F{9}●)%f %F{#7aa2f7}%~%f %(?.%F{14}$.%F{9}$)%f '
+#PROMPT='%F{#7aa2f7}%~%f %(?.%F{14}❯.%F{#7aa2f7}❯)%f '
 
 export BAT_THEME="tokyonight_night"
 export EDITOR=nvim
@@ -230,3 +233,6 @@ zstyle ':fzf-tab:*' fzf-flags --height=40% --border --layout=reverse
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'if [ -d $realpath ]; then eza --tree --color=always --level=2 $realpath; else bat --color=always --style=numbers --line-range=:500 $realpath; fi'
 
 eval "$(zoxide init --cmd cd zsh)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
