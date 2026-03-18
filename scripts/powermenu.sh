@@ -15,7 +15,7 @@ case "$chosen" in
         systemctl suspend
         ;;
     *Lock*)
-			swaylock
+		hyprlock
         ;;
     *Logout*)
         loginctl terminate-user $USER

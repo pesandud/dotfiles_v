@@ -176,7 +176,7 @@
 		"format": "{icon} {volume}%  {format_source}",
 		"format-muted": "󰖁 Muted  {format_source}",
 		"format-source": " {volume}%",
-		"format-source-muted": " Muted",
+		"format-source-muted": "  Muted",
 		"format-icons": {
 			"headphone": "",
 			"hands-free": "",
