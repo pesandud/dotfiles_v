@@ -1,3 +1,8 @@
+local enabled = false
+if not enabled then
+	return {}
+end
+
 return {
 	"saghen/blink.cmp",
 	enabled = true,

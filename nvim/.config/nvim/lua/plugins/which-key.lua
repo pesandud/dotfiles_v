@@ -1,3 +1,8 @@
+local enabled = false
+if not enabled then
+	return {}
+end
+
 return 
 { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',

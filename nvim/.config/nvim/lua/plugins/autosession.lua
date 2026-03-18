@@ -1,6 +1,10 @@
+local enabled = false
+if not enabled then
+	return {}
+end
+
 return {
   "rmagatti/auto-session",
-	enabled = false,
   lazy = false,
   ---@module "auto-session"
   ---@type AutoSession.Config

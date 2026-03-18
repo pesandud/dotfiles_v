@@ -1,6 +1,10 @@
+local enabled = false
+if not enabled then
+	return {}
+end
+
 return {
 	"sphamba/smear-cursor.nvim",
-	enabled = false,
 	opts = {
 		stiffness = 0.4,
 		trailing_stiffness = 0.3,
