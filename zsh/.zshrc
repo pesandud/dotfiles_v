@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
@@ -18,7 +18,7 @@ zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-completions
 
 # prompt
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+# zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
@@ -26,16 +26,13 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 #PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#bb9af7}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}] %f'
 #PROMPT='%(?.%F{14}●.%F{9}●)%f %F{#7aa2f7}%~%f %(?.%F{14}$.%F{9}$)%f '
 #PROMPT='%F{#7aa2f7}%~%f %(?.%F{14}❯.%F{#7aa2f7}❯)%f '
+PROMPT='%B%F{#565f89}[%F{#7aa2f7}%n%F{#565f89}@%F{#7aa2f7}%m %F{#3b4261}%1~%F{#565f89}]$ %b%f'
 
 export BAT_THEME="tokyonight_night"
 export EDITOR=nvim
-export NVIM_APPNAME=nvim
 declare -x http_proxy=socks5h://192.168.42.129:9050
 declare -x https_proxy=socks5h://192.168.42.129:9050
 export JAVA_HOME=/usr/lib/jvm/java-25-openjdk
-
-
-
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 typeset -U path
@@ -235,4 +232,4 @@ zstyle ':fzf-tab:complete:*:*' fzf-preview 'if [ -d $realpath ]; then eza --tree
 eval "$(zoxide init --cmd cd zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
