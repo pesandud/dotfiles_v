@@ -13,6 +13,7 @@
 		"cava",
         "mpris",
         "custom/separator",
+		"custom/screenshot",
 		"custom/clipboard",
         "custom/nightmode",
         "idle_inhibitor",
@@ -132,6 +133,13 @@
         },
         "max-length": 30
     },
+
+	"custom/screenshot": {
+		"format": "󰹑",
+		"on-click": "hyprshot -m region -z --clipboard-only",
+		"tooltip": true,
+		"tooltip-format": "take screenshot",
+	},
 
 	"custom/clipboard": {
 		"format": "",
