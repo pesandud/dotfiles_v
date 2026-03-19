@@ -26,6 +26,7 @@
         "temperature",
         "cpu",
         "memory",
+		"network",
         "custom/separator",
         "clock",
         "tray"
@@ -136,7 +137,7 @@
 
 	"custom/screenshot": {
 		"format": "󰹑",
-		"on-click": "hyprshot -m region -z --clipboard-only",
+		"on-click": "hyprshot -m region --raw | satty --filename -",
 		"tooltip": true,
 		"tooltip-format": "take screenshot",
 	},
@@ -218,15 +219,16 @@
         }
     },
 
-    "network": {
-        "interface": "enp0s20u1",
-        "format": "󰈁 {ifname}",
-        "format-wifi": "󰤨 {signalStrength}%",
-        "format-ethernet": "󰈀 eth",
-        "format-disconnected": "󰤭 down",
-        "tooltip-format": "{ipaddr}",
-        "on-click": "foot nmtui"
-    },
+	"network": {
+		"interface": "enp0s20f0u4",
+		"format": "󰈁 {ifname}",
+		"format-wifi": "󰤨 {signalStrength}%",
+		"format-ethernet": "󰈀 eth",
+		"format-disconnected": "󰤭 down",
+		"tooltip": true,
+		"tooltip-format": "{ipaddr}/{cidr}\nGW: {gwaddr}\n󰁝 {bandwidthUpBits}  󰁅 {bandwidthDownBits}",
+		"on-click": "foot nmtui"
+	},
 
     "battery": {
         "bat": "BAT0",
@@ -247,17 +249,19 @@
         "critical-threshold": 80,
         "format": "{temperatureC}°C ",
         "format-critical": "{temperatureC}°C ",
-		"tooltip": false
+        "on-click": "foot btop",
+		"tooltip": true,
+		"tooltip-format": "click to open btop"
     },
 
     "cpu": {
-        "interval": 10,
+        "interval": 15,
         "format": " {}%",
         "max-length": 10
     },
 
     "memory": {
-        "interval": 30,
+        "interval": 15,
         "format": " {}%",
 		"max-length":10,
     },

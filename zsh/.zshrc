@@ -26,7 +26,8 @@ zinit light zsh-users/zsh-completions
 #PROMPT='%F{#5c6a8e}[%F{#7aa2f7}%n%F{#5c6a8e}@%F{#bb9af7}%m%F{#5c6a8e} %F{#e0af68}%1~%F{#5c6a8e}] %f'
 #PROMPT='%(?.%F{14}●.%F{9}●)%f %F{#7aa2f7}%~%f %(?.%F{14}$.%F{9}$)%f '
 #PROMPT='%F{#7aa2f7}%~%f %(?.%F{14}❯.%F{#7aa2f7}❯)%f '
-PROMPT='%B%F{#565f89}[%F{#7aa2f7}%n%F{#565f89}@%F{#7aa2f7}%m %F{#3b4261}%1~%F{#565f89}]$ %b%f'
+# PROMPT='%B%F{#565f89}[%F{#7aa2f7}%n%F{#565f89}@%F{#7aa2f7}%m %F{#3b4261}%1~%F{#565f89}]$ %b%f'
+PROMPT='%B%F{#7aa2f7}%n %F{#565f89}%~ %F{#9aa5ce}$%b%f '
 
 export BAT_THEME="tokyonight_night"
 export EDITOR=nvim
@@ -34,6 +35,7 @@ declare -x http_proxy=socks5h://192.168.42.129:9050
 declare -x https_proxy=socks5h://192.168.42.129:9050
 export JAVA_HOME=/usr/lib/jvm/java-25-openjdk
 export _JAVA_AWT_WM_NONREPARENTING=1
+export BROWSER="librewolf"
 
 typeset -U path
 path=( 
@@ -184,7 +186,7 @@ alias la="ls -lah"
 alias lt="ls --tree"
 alias ll="ls -l"
 alias c="clear"
-alias sdm="cd ~/docs; librewolf intel_manual.pdf; cd -"
+alias sdm="cd ~/docs; $BROWSER intel_manual.pdf; cd -"
 # alias vii3="vi ~/.config/i3/config"
 alias vist="vi ~/dotfiles/st-flexipatch/config.h"
 # alias viniri="vi ~/dotfiles/niri/.config/niri/config.kdl"

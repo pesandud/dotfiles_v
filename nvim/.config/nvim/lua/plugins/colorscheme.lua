@@ -8,6 +8,7 @@ return {
             require("tokyonight").setup({
                 styles = {
                     keywords = { italic = false },
+                    comments = { italic = false },
                 },
                 transparent = true,
                 on_colors = function(colors)
