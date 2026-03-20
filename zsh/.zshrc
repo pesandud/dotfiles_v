@@ -96,9 +96,23 @@ u(){ yay -Rns "${@}"; }
 tns() { tmux new -s "${1:-main}"; }
 tat() { local session=$(tmux ls | fzf); [[ $session ]] && tmux a -t "${session%%:*}"; }
 
-pullzsh(){ git -C ~/.zsh/plugins/fzf-tab pull; git -C ~/.zsh/plugins/zsh-completions pull; }
+#pullzsh(){ git -C ~/.zsh/plugins/fzf-tab pull; git -C ~/.zsh/plugins/zsh-completions pull; }
 
-gc(){ if [[ $# -eq 0 ]]; then git commit --allow-empty-message -m ""; else git commit -m "$@"; fi; }
+gc() {
+  if [[ $# -eq 0 ]]; then
+    command git commit --allow-empty-message -m ""
+  else
+    command git commit -m "$*"
+  fi
+}
+
+ga() {
+  if [[ $# -eq 0 ]]; then
+    command git add .
+  else
+    command git add "$@"
+  fi
+}
 
 sn(){
   neofetch; echo -ne "shutting down in "; for i in {1..3}; do echo -ne "${i}... "; sleep 0.9; done
@@ -164,10 +178,9 @@ alias cm="cd ~/al/cm/pap"
 # alias mdwm="cd ~/dotfiles/rice/dwm-flexipatch/; sudo make clean install; cd -"
 alias mst="cd ~/dotfiles/st-flexipatch; sudo make clean install; cd -"
 alias pav="pavucontrol"
-alias neo="fastfetch --config examples/8.jsonc"
+alias neo="fastfetch --config examples/13.jsonc"
 alias git="proxychains -q git"
 alias gs="git status"
-alias ga="git add ."
 alias gd="git diff"
 alias gp="git push -u origin main"
 alias gall="ga; gc; gp"

@@ -48,10 +48,11 @@
     "hyprland/window": {
         "format": "  {title}",
         "max-length": 50,
-        "rewrite": {
-            "(.*) - Mozilla Firefox": "ff: $1",
-            "(.*) - Chromium": "cr: $1"
-        }
+        // "rewrite": {
+        //     "(.*) - Librewolf": "lw: $1",
+        //     "(.*) - Brave": "br: $1",
+        //     "(.*) - Chromium": "cr: $1"
+        // }
     },
 
     // "hyprland/scratchpad": {
@@ -120,7 +121,7 @@
 
     "mpris": {
         "format": "{player_icon} {title}",
-        "format-paused": "{status_icon} {title}",
+        "format-paused": "{status_icon} {title:.30}",
         "player-icons": {
             "default": "󰎇",
             "cmus": "󰎇",
@@ -132,7 +133,6 @@
             "playing": "󰐊",
             "stopped": "󰓛"
         },
-        "max-length": 30
     },
 
 	"custom/screenshot": {
@@ -255,15 +255,13 @@
     },
 
     "cpu": {
-        "interval": 15,
+        "interval": 10,
         "format": " {}%",
-        "max-length": 10
     },
 
     "memory": {
-        "interval": 15,
+        "interval": 10,
         "format": " {}%",
-		"max-length":10,
     },
 
     "clock": {

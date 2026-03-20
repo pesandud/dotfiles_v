@@ -1,6 +1,6 @@
 max-visible=1
 anchor=top-right
-font=Ioskeley Mono 13
+font=JetBrainsMono Nerd Font Propo 13
 on-notify=exec pw-play /usr/share/sounds/freedesktop/stereo/message.oga
 layer=overlay
 default-timeout=5000
