@@ -77,6 +77,23 @@ window#waybar {
     font-weight: 800;
 }
 
+/* ── Group drawer ───────────────────────────── */
+
+#group-controls {
+    background: transparent;
+    padding: 0;
+}
+#custom-controls-handle {
+    padding: 0 10px;
+    color: @purple;
+}
+
+.controls-child {
+    padding: 0 10px;
+    color: @fg;
+}
+
+/* ── General modules ────────────────────────── */
 #scratchpad,
 #backlight,
 #idle_inhibitor,
@@ -84,7 +101,7 @@ window#waybar {
 #memory,
 #cpu,
 #custom-auto-cpufreq,
-#custom-cpu-governer,
+#custom-cpu-governor,
 #custom-screenshot,
 #mpris,
 #cava,
@@ -96,49 +113,15 @@ window#waybar {
     color: @fg;
 }
 
-#mpris {
-    color: @fg;
-}
-
-#custom-power-profile {
-    color: @fg;
-}
-
-#backlight {
-    color: @fg;
-}
-
 #custom-nightmode {
-    color: @fg;
     font-size: 14px;
-}
-
-#pulseaudio {
-    color: @fg;
 }
 
 #pulseaudio.muted {
     color: @fg;
 }
 
-#power-profiles-daemon {
-    font-size: 14px;
-    color: @fg;
-}
-
-#power-profiles-daemon.performance {
-    color: @fg;
-}
-
-#power-profiles-daemon.balanced {
-    color: @fg;
-}
-
-#power-profiles-daemon.power-saver {
-    color: @fg;
-}
-
-/* ── Battery (unchanged colors) ───────────────── */
+/* ── Battery ────────────────────────────────── */
 
 #battery {
     padding: 0 10px;
@@ -171,7 +154,7 @@ window#waybar {
     }
 }
 
-/* ── Tray (unchanged) ───────────────── */
+/* ── Tray ───────────────────────────────────── */
 
 #tray {
     padding: 0 8px;
