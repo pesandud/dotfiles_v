@@ -6,6 +6,7 @@
 
     "modules-left": [
         "hyprland/workspaces",
+		"cava",
 		"mpris"
     ],
 
@@ -14,13 +15,11 @@
 	],
 
     "modules-right": [
-        "custom/separator",
 		"group/controls",
         "custom/separator",
         "custom/cpu-governor",
         "custom/separator",
         "battery",
-		"network",
         "temperature",
         "cpu",
         "memory",
@@ -84,7 +83,7 @@
 },
 
 "custom/controls-handle": {
-    "format": "󰾆",
+    "format": "󰁍",
     "tooltip": false,
     "interval": 0
 },
@@ -114,7 +113,18 @@
         "deactivated": ""
 		}
 	},
-
+	"cava": {
+		"framerate": 30,
+		"autosens": 1,
+		"bars": 14,
+		"lower_cutoff_freq": 50,
+		"higher_cutoff_freq": 10000,
+		"method": "pipewire",
+		"source": "auto",
+		"reverse": false,
+		"bar_delimiter": 0,
+		"format-icons": [" ", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+	},
     "mpris": {
         "format": "{player_icon} {title:.30}",
         "format-paused": "{status_icon} {title:.30}",

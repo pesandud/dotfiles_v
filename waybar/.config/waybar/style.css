@@ -84,6 +84,7 @@ window#waybar {
     padding: 0;
 }
 #custom-controls-handle {
+	font-size: 15px;
     padding: 0 10px;
     color: @purple;
 }
@@ -111,6 +112,10 @@ window#waybar {
 #clock {
     padding: 0 10px;
     color: @fg;
+}
+
+#mpris {
+	color: @cyan;
 }
 
 #custom-nightmode {
