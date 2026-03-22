@@ -105,7 +105,7 @@ window#waybar {
 #custom-cpu-governor,
 #custom-screenshot,
 #mpris,
-#cava,
+#custom-power,
 #custom-nightmode,
 #custom-clipboard,
 #pulseaudio,
@@ -151,6 +151,10 @@ window#waybar {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+
+#custom-power {
+	color: @red;
 }
 
 @keyframes blink {
