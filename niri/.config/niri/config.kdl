@@ -97,7 +97,7 @@ window-rule {
 window-rule {
     match app-id=r#"waterfox$"#
     match app-id=r#"librewolf$"#
-    //match app-id=r#"foot"#
+    match app-id=r#"foot"#
     match app-id=r#"st-256color"#
     match app-id=r#"org.telegram.desktop$"#
     match app-id=r#"chromium$"#
@@ -129,7 +129,7 @@ binds {
     //Mod+Return { spawn "foot"; }
     // Mod+d { spawn-sh "wofi show drun"; }
     Mod+Shift+P { spawn "wlogout"; }
-    Mod+m { spawn "librewolf"; }
+    Mod+b { spawn "librewolf"; }
     // Mod+e { spawn "thunar"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
