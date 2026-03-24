@@ -11,7 +11,7 @@ monitor=eDP-1, preferred, auto, 1
 ### MY PROGRAMS ###
 ###################
 
-$terminal = foot
+$terminal = st
 $fileManager = thunar
 $menu = wofi show drun
 
@@ -19,9 +19,8 @@ $menu = wofi show drun
 ### AUTOSTART ###
 #################
 
-# exec-once = waybar & hypridle & mako & systemctl --user start hyprpolkitagent
-exec-once = dms run
-# exec-once = swaybg -m fill -i ~/dotfiles/walls/blue-girlie.jpg
+exec-once = waybar & hypridle & mako & systemctl --user start hyprpolkitagent
+exec-once = swaybg -m fill -i ~/dotfiles/walls/blue-girlie.jpg
 exec-once = wl-paste --type text --watch cliphist store # Stores only text data
 exec-once = wl-paste --type image --watch cliphist store # Stores only image data
 
@@ -52,9 +51,8 @@ bind = SUPER SHIFT, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl
 
 bind = $mainMod SHIFT, R, exec, hyprctl reload
 
-# $reload_waybar = pkill waybar; waybar &
-# bind = $mainMod SHIFT, W, exec, $reload_waybar
-bind = $mainMod SHIFT, W, exec, dms restart
+$reload_waybar = pkill waybar; waybar &
+bind = $mainMod SHIFT, W, exec, $reload_waybar
 bind = $mainMod SHIFT, E, exec, hyprctl dispatch exit
 # bind = $mainMod SHIFT, P, exec, ~/dotfiles/scripts/powermenu.sh
 bind = $mainMod SHIFT, P, exec, wlogout
@@ -150,12 +148,6 @@ permission = /usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland, screencopy, a
 #####################
 ### LOOK AND FEEL ###
 #####################
-# plugin {
-#     hyprscrolling {
-#         column_width = 0.7
-#         fullscreen_on_one_column = false
-#     }
-# }
 
 general {
     gaps_in = 1
@@ -363,7 +355,3 @@ windowrule {
     move = 20 monitor_h-120
     float = yes
 }
-
-source = ./dms/cursor.conf
-
-source = ./dms/outputs.conf

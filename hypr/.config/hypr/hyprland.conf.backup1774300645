@@ -54,7 +54,6 @@ bind = $mainMod SHIFT, R, exec, hyprctl reload
 
 # $reload_waybar = pkill waybar; waybar &
 # bind = $mainMod SHIFT, W, exec, $reload_waybar
-bind = $mainMod SHIFT, W, exec, dms restart
 bind = $mainMod SHIFT, E, exec, hyprctl dispatch exit
 # bind = $mainMod SHIFT, P, exec, ~/dotfiles/scripts/powermenu.sh
 bind = $mainMod SHIFT, P, exec, wlogout
@@ -365,5 +364,3 @@ windowrule {
 }
 
 source = ./dms/cursor.conf
-
-source = ./dms/outputs.conf

@@ -56,7 +56,7 @@ setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups \
 burp() {
     local loader="$HOME/.tools/burp/BurpLoaderKeygen_v1.18.jar"
     local jar="$HOME/.tools/burp/burpsuite_pro_v2025.11.3/burpsuite_pro_v2025.11.3.jar"
-    java --add-opens=java.desktop/javax.swing=ALL-UNNAMED \
+    proxychains -q java --add-opens=java.desktop/javax.swing=ALL-UNNAMED \
          --add-opens=java.base/java.lang=ALL-UNNAMED \
          --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED \
          --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED \
@@ -90,6 +90,7 @@ ex ()
 }
 
 i(){ yay -S --disable-download-timeout --needed "${@}"; }
+bi(){ sudo proxychains -q pacman -S "${@}"; }
 s(){ yay "${@}"; }
 u(){ yay -Rns "${@}"; }
 
@@ -202,7 +203,7 @@ alias c="clear"
 alias sdm="(cd ~/docs; $BROWSER intel_manual.pdf)"
 # alias vii3="vi ~/.config/i3/config"
 alias vist="vi ~/dotfiles/st-flexipatch/config.h"
-# alias viniri="vi ~/dotfiles/niri/.config/niri/config.kdl"
+alias viniri="vi ~/dotfiles/niri/.config/niri/config.kdl"
 # alias vivi="vi ~/.config/nvim"
 # alias visw="vi ~/.config/sway/config"
 alias vipr="vi ~/.config/hypr/hyprland.conf"
