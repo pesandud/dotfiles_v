@@ -1,22 +1,21 @@
 [general]
 live_config_reload = true
 import = [
-	"~/dotfiles/alacritty/.config/alacritty/alacritty-theme/themes/tokyo_night.toml"
+	"./dank-theme.toml"
 ]
 
 [window]
-padding = { x = 5, y = 5 }
+padding = { x = 0, y = 0 }
 dynamic_title = true
 decorations = "None"
-opacity = 0.98
+# opacity = 0.98
 blur = false
-startup_mode = "Windowed"
 
 [font]
-size = 16
-normal = { family = "SauceCodePro Nerd Font Propo", style = "Medium" }
-bold = { family = "SauceCodePro Nerd Font Propo", style = "Bold" }
-italic = { family = "SauceCodePro Nerd Font Propo", style = "Italic" }
+size = 18
+normal = { family = "JetBrainsMono Nerd Font Propo", style = "Medium" }
+bold = { family = "JetBrainsMono Nerd Font Propo", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font Propo", style = "Italic" }
 offset = { x = 0, y = 0 }
 glyph_offset = { x = 0, y = 0 }
 

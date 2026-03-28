@@ -43,6 +43,7 @@ path=(
 	~/.local/bin 
 	~/.npm_global/bin
 	$JAVA_HOME/bin
+	$(go env GOPATH)/bin
 	$path 
 )
 
@@ -245,7 +246,6 @@ export FZF_DEFAULT_OPTS="--highlight-line --info=inline-right --ansi --layout=re
 zstyle ':fzf-tab:*' fzf-flags --height=40% --border --layout=reverse
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'if [ -d $realpath ]; then eza --tree --color=always --level=2 $realpath; else bat --color=always --style=numbers --line-range=:500 $realpath; fi'
 
-eval "$(zoxide init --cmd cd zsh)"
-
+eval "$(zoxide init zsh)"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

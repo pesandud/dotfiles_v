@@ -23,10 +23,10 @@ vim.o.list = false
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
 vim.api.nvim_set_hl(0, "CursorLine", {})
--- vim.api.nvim_create_autocmd("ColorScheme", {
---   callback = function()
---     vim.api.nvim_set_hl(0, "CursorLineNr", {
---       fg = "#7aa2f7",
---     })
---   end,
--- })
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "CursorLineNr", {
+      fg = "#7aa2f7",
+    })
+  end,
+})

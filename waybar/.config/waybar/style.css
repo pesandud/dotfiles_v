@@ -12,7 +12,7 @@
 
 * {
     font-family: "JetBrainsMono Nerd Font Propo";
-    font-size: 11px;
+    font-size: 13px;
     font-weight: bold;
     min-height: 0;
     border: none;
@@ -23,36 +23,52 @@
 
 window#waybar {
     background-color: @bg;
-    color: @fg;
-    min-height: 0;
 }
 
+window#waybar > box {
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    background: transparent;
+    border-radius: 8px;
+    border: 1px solid rgba(122, 162, 247, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Workspaces ─────────────────────────────── */
+
 #workspaces {
-    margin: 0;
-    padding: 0 4px;
+    border: none;
+    margin: 0 5px;
+    padding: 0;
 }
 
 #workspaces button {
+    margin: 3px 3px;
+    background-color: @gray;
+    color: @bg;
     padding: 0 8px;
-    color: @gray;
-    background: transparent;
-    border-bottom: 2px solid transparent;
-}
-
-#workspaces button.active {
-    color: @fg;
-    background: transparent;
-    border-bottom: 2px solid @fg;
+    border-radius: 8px;
+    min-width: 5px;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 #workspaces button:hover {
+    background: rgba(122, 162, 247, 0.2);
     color: @fg;
-    background: transparent;
-    border-bottom: 2px solid @gray;
 }
 
-#workspaces button.empty {
-    opacity: 0.5;
+#workspaces button.active {
+    background-color: @blue;
+    color: @bg;
+    padding: 0 16px;
+    min-width: 6px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #workspaces button.focused {
@@ -62,39 +78,58 @@ window#waybar {
 }
 
 #workspaces button.urgent {
-    color: @red;
+    background-color: @red;
+    color: @bg;
     border-bottom: 2px solid @red;
 }
 
+/* ── Window ─────────────────────────────────── */
+
 #window {
+    background-color: @bg-alt;
     color: @fg;
     padding: 0 8px;
+    border-radius: 6px;
+    margin: 4px 3px;
 }
 
+/* ── Separator ──────────────────────────────── */
+
 #custom-separator {
-    color: @fg;
-    padding: 0 6px;
+    color: @gray;
+    padding: 0 4px;
     font-weight: 800;
+    background: transparent;
+    margin: 0;
 }
 
 /* ── Group drawer ───────────────────────────── */
 
 #group-controls {
     background: transparent;
+    border-radius: 6px;
+    margin: 4px 3px;
     padding: 0;
 }
+
 #custom-controls-handle {
-	font-size: 15px;
+    font-size: 15px;
     padding: 0 10px;
     color: @purple;
+    background: @bg-alt;
+    border-radius: 6px;
 }
 
 .controls-child {
     padding: 0 10px;
     color: @fg;
+    background: @bg-alt;
+    border-radius: 6px;
+    margin: 0 2px;
 }
 
 /* ── General modules ────────────────────────── */
+
 #scratchpad,
 #backlight,
 #idle_inhibitor,
@@ -108,28 +143,84 @@ window#waybar {
 #custom-power,
 #custom-nightmode,
 #custom-clipboard,
+#battery,
+#tray,
 #pulseaudio,
 #clock {
+    background: @bg-alt;
+    border-radius: 6px;
     padding: 0 10px;
+    margin: 4px 3px;
     color: @fg;
+    transition: background 0.2s ease;
 }
 
+/* ── Per-module colors ──────────────────────── */
+
 #mpris {
-	color: @cyan;
+    color: @cyan;
+}
+
+#clock {
+    color: @blue;
+}
+
+#cpu {
+    color: @green;
+}
+
+#memory {
+    color: @purple;
+}
+
+#temperature {
+    color: @yellow;
+}
+
+#temperature.critical {
+    color: @red;
+}
+
+#custom-cpu-governor {
+    color: @orange;
 }
 
 #custom-nightmode {
     font-size: 14px;
+    color: @yellow;
+}
+
+#custom-screenshot {
+    color: @cyan;
+}
+
+#custom-clipboard {
+    color: @fg;
+}
+
+#idle_inhibitor {
+    color: @gray;
+}
+
+#idle_inhibitor.activated {
+    color: @yellow;
+}
+
+#backlight {
+    color: @yellow;
+}
+
+#pulseaudio {
+    color: @blue;
 }
 
 #pulseaudio.muted {
-    color: @fg;
+    color: @gray;
 }
 
 /* ── Battery ────────────────────────────────── */
 
 #battery {
-    padding: 0 10px;
     color: @green;
 }
 
@@ -153,14 +244,15 @@ window#waybar {
     animation-direction: alternate;
 }
 
-#custom-power {
-	color: @red;
+@keyframes blink {
+    to { color: @red; }
 }
 
-@keyframes blink {
-    to {
-        color: @red;
-    }
+/* ── Power button ───────────────────────────── */
+
+#custom-power {
+    color: @red;
+    font-size: 15px;
 }
 
 /* ── Tray ───────────────────────────────────── */
@@ -169,12 +261,21 @@ window#waybar {
     padding: 0 8px;
 }
 
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @red;
+}
+
 /* ── Tooltips ───────────────────────────────── */
 
 tooltip {
     background: @bg-alt;
     border: 1px solid @gray;
-    border-radius: 0;
+    border-radius: 6px;
 }
 
 tooltip label {

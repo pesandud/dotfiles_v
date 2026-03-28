@@ -5,6 +5,7 @@
 /home/cat/music/lofi/mask [aSXRhqlkvDE].mp3
 /home/cat/music/lofi/someone [0MUqeshR4w0].mp3
 /home/cat/music/lofi/Ji-Eun's Sunset [Ej_onDLqCPA].mp3
+/home/cat/music/top shit/SpotiDownloader.com - Anganmana Sumana - Dilo.mp3
 /home/cat/music/lofi/skinny atlas - all day dreaming [ZVATs7IgDgU].mp3
 /home/cat/music/lofi/Quiet Dreams of Crowns and Metamorphosis [6nJnJ0hTgis].mp3
 /home/cat/music/lofi/You're Gonna Be Ok [pvGlGQZzc0M].mp3

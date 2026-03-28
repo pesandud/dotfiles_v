@@ -5,11 +5,21 @@ hotkey-overlay {
     skip-at-startup
 }
 
+gestures {
+	hot-corners {
+		off
+	}
+}
+
 environment {
     _JAVA_AWT_WM_NONREPARENTING "1"
     AWT_TOOLKIT "MToolkit"
     XDG_CURRENT_DESKTOP "niri"
     XDG_SESSION_TYPE "wayland"
+
+    // MOZ_ENABLE_WAYLAND "1"       // For Waterfox/Librewolf
+    // GTK_USE_PORTAL "1"           // Forces apps to use the Portal for file pickers/sharing
+    // QT_QPA_PLATFORM "wayland"    // For any Qt apps
 }
 
 input {
@@ -24,6 +34,7 @@ input {
     touchpad {
         tap
         natural-scroll
+        accel-profile "flat"
     }
     mouse {
         accel-speed 0.7
@@ -43,8 +54,15 @@ layout {
         proportion 0.66667
     }
 
+	struts {
+		bottom -2
+		left -2
+		top 0
+		right -2
+	}
+
     shadow {
-        on
+		off
         softness 20
         spread 5
         offset x=0 y=5
@@ -89,15 +107,21 @@ animations {
 window-rule {
     match app-id=r#"waterfox$"# title="^Picture-in-Picture$"
     match app-id=r#"chromium$"# title="^Picture-in-Picture$"
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
+    match app-id=r#"brave$"# title="^Picture-in-Picture$"
     match app-id=r#"burp-StartBurp$"#
+    match app-id=r#"satty$"#
     open-floating true
 }
 
 window-rule {
     match app-id=r#"waterfox$"#
     match app-id=r#"librewolf$"#
+    match app-id=r#"brave-browser$"#
+    match app-id=r#"firefox$"#
     match app-id=r#"foot"#
+    match app-id=r#"alacritty"#
     match app-id=r#"st-256color"#
     match app-id=r#"org.telegram.desktop$"#
     match app-id=r#"chromium$"#
@@ -123,8 +147,7 @@ spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPL
 spawn-at-startup "dms" "run"
 
 binds {
-    Mod+Shift+S { spawn "~/dotfiles/scripts/ss.sh"; }
-    Mod+Shift+W { spawn "dms restart"; }
+    Mod+Shift+S { spawn "~/dotfiles/scripts/ss_satty.sh"; }
     Mod+Shift+Slash { show-hotkey-overlay; }
     //Mod+Return { spawn "foot"; }
     // Mod+d { spawn-sh "wofi show drun"; }
@@ -203,3 +226,5 @@ include "dms/alttab.kdl"
 include "dms/binds.kdl"
 include "dms/outputs.kdl"
 include "dms/cursor.kdl"
+
+include "dms/windowrules.kdl"

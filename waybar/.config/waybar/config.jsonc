@@ -1,36 +1,31 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 20,
+    "height": 30,
     "spacing": 0,
 
     "modules-left": [
-        "hyprland/workspaces",
-		"mpris"
+        "niri/workspaces"
     ],
 
 	"modules-center": [
+		"mpris",
 		"clock"
 	],
 
     "modules-right": [
 		"group/controls",
-        "custom/separator",
         "custom/cpu-governor",
-        "custom/separator",
         "battery",
         "temperature",
         "cpu",
         "memory",
 		"custom/power",
-        "custom/separator",
         "tray"
     ],
-    "hyprland/workspaces": {
-        "disable-scroll": true,
+    "niri/workspaces": {
+        "disable-scroll": false,
         "all-outputs": false,
-        "format": "{name}",
-        "numeric-first": true,
         "persistent-workspaces": {
             "1": [],
             "2": [],
@@ -59,7 +54,7 @@
     // },
 
     "custom/separator": {
-        "format": " | ",
+        "format": " ",
         "tooltip": false,
         "interval": 0
     },

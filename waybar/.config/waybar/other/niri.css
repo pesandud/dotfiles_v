@@ -83,6 +83,7 @@ window#waybar > box {
 #bluetooth,
 #mpris {
     padding: 0 5px;
+	background-color: #1d2024;
 }
 
 #custom-launcher {
