@@ -1,4 +1,6 @@
-@import "./colors.css" window {
+@import ".config/wofi/colors.css";
+
+window {
   margin: 0px;
   /* Using @color8 (dark grey) for a subtle border */
   border: 2px solid @color8;

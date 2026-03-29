@@ -17,7 +17,7 @@ hide_scroll=false
 prompt=
 
 # terminal
-term=st
+term=alacritty
 
 # keybinds (vim-ish)
 key_up=Ctrl-p
