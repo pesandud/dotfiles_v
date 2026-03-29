@@ -1,284 +1,213 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 30,
-    "spacing": 0,
+  "layer": "top",
+  "position": "top",
+  "height": 21,
+  "spacing": 1,
+  "reload_style_on_change": true,
 
-    "modules-left": [
-        "niri/workspaces"
-    ],
+  // Layout from Config 1
+  "modules-left": ["custom/launcher", "niri/workspaces"],
 
-	"modules-center": [
-		"mpris",
-		"clock"
-	],
+  "modules-center": ["mpris", "clock"],
 
-    "modules-right": [
-		"group/controls",
-        "custom/cpu-governor",
-        "battery",
-        "temperature",
-        "cpu",
-        "memory",
-		"custom/power",
-        "tray"
-    ],
-    "niri/workspaces": {
-        "disable-scroll": false,
-        "all-outputs": false,
-        "persistent-workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": []
-        }
-    },
+  "modules-right": [
+    "group/controls",
+    "battery",
+    "temperature",
+    "cpu",
+    "memory",
+    "custom/power",
+    "tray",
+  ],
 
-    "hyprland/window": {
-        "format": "  {title}",
-        "max-length": 50,
-        // "rewrite": {
-        //     "(.*) - Librewolf": "lw: $1",
-        //     "(.*) - Brave": "br: $1",
-        //     "(.*) - Chromium": "cr: $1"
-        // }
-    },
+  // Module Definitions (Merged Icons & Logic)
+  "custom/launcher": {
+    "format": "",
+    "on-click": "wofi show drun",
+    "tooltip": false,
+  },
 
-    // "hyprland/scratchpad": {
-    //     "format": "{icon} {count}",
-    //     "show-empty": false,
-    //     "format-icons": ["", ""],
-    //     "tooltip": true,
-    //     "tooltip-format": "{app}: {title}"
-    // },
-
-    "custom/separator": {
-        "format": " ",
-        "tooltip": false,
-        "interval": 0
-    },
-
-    "clock": {
-        "format": "{:%H:%M - %A, %B %d }",
-        "format-alt": "󰥔 {:%H:%M  󰃮 %d %b}",
-        "tooltip-format": "<tt>{calendar}</tt>",
-		"timezones": [
-			"Asia/Colombo"
-		],
-        "calendar": {
-            "mode": "month",
-            "on-scroll": 1
-        },
-        "actions": {
-            "on-click-right": "mode",
-            "on-scroll-up": "shift_up",
-            "on-scroll-down": "shift_down"
-        }
-    },
-
-
-	"group/controls": {
-		"orientation": "inherit",
-		"drawer": {
-			"transition-duration": 500,
-			"children-class": "controls-child",
-			"transition-left-to-right": false
-		},
-		"modules": [
-			"custom/controls-handle",
-			"custom/screenshot",
-			"custom/clipboard",
-			"custom/nightmode",
-			"idle_inhibitor",
-			"backlight",
-			"pulseaudio"
-		]
-	},
-
-	"custom/controls-handle": {
-		"format": "󰁍",
-		"tooltip": false,
-		"interval": 0
-	},
-	
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
-
-    // "idle_inhibitor": {
-    //     "format": "{icon}",
-    //     "format-icons": {
-    //         "activated": "",
-    //         "deactivated": ""
-    //     },
-    //     "on-click": "~/.config/waybar/scripts/toggle_idle.sh",
-    //     "return-type": "json",
-    //     "interval": 2,
-    //     "exec": "cat ~/.config/waybar/scripts/idle_state"
-    // },
-	"idle_inhibitor": {
+  "niri/workspaces": {
     "format": "{icon}",
     "format-icons": {
-        "activated": "",
-        "deactivated": ""
-		}
-	},
-
-    "mpris": {
-        "format": "{player_icon} {title:.30}",
-        "format-paused": "{status_icon} {title:.30}",
-        "player-icons": {
-            "default": "󰎇",
-            "cmus": "󰎇",
-            "spotify": "󰓇",
-            "mpv": "󰐊"
-        },
-        "status-icons": {
-            "paused": "󰏤",
-            "playing": "󰐊",
-            "stopped": "󰓛"
-        },
+      "default": "󰄰",
+      "active": "󰄯",
     },
+  },
 
-	"custom/screenshot": {
-		"format": "󰹑",
-		"on-click": "hyprshot -m region --raw | satty --filename -",
-		"tooltip": true,
-		"tooltip-format": "take screenshot",
-	},
-
-	"custom/clipboard": {
-		"format": "",
-		"on-click": "cliphist list | wofi --dmenu | cliphist decode | wl-copy",
-		"tooltip": true,
-		"tooltip-format": "middle click: wipe clipboard",
-		"on-click-middle": "cliphist wipe"
-	},
-	"custom/nightmode": {
-		"format": "󰖔",
-		"tooltip": true,
-		"tooltip-format": "left: 4000k | mid: 5000k | right: 6000k | scroll: off",
-		"on-click": "pkill hyprsunset || hyprsunset -t 4000",
-		"on-click-middle": "pkill hyprsunset || hyprsunset -t 5000",
-		"on-click-right": "pkill hyprsunset || hyprsunset -t 6000",
-		"on-scroll-up": "pkill wlsunset",
-		"interval": "once"
-	},
-
-    "custom/power-profile": {
-        "format": "󰈐 {}",
-        "exec": "asusctl profile get | grep -oP 'Active profile: \\w+' | awk  '{ print $3 }'",
-        "interval": 5,
-        "on-click": "asusctl profile next",
-        "tooltip": false
+  "cava": {
+    "framerate": 60, // Increased for smoother animation
+    "autosens": 1, // Keep enabled, but we will cap it
+    "sensitivity": 1, // Start much lower (1 instead of 100)
+    "bars": 14, // Slightly fewer bars helps clarity in a small bar
+    "lower_cutoff_freq": 50,
+    "higher_cutoff_freq": 10000,
+    "hide_on_silence": true,
+    "method": "pulse",
+    "source": "auto",
+    "stereo": true,
+    "reverse": false,
+    "bar_delimiter": 0,
+    "monstercat": true, // Turning this ON helps "smooth" the peaks together
+    "waves": false,
+    "noise_reduction": 0.99, // Slightly lower to reduce "jitter"
+    "input_delay": 2,
+    "format-icons": [" ", "▂", "▃", "▄", "▅", "▆", "▇", "█"], // Added a blank space for silence
+    "actions": {
+      "on-click-right": "mode",
     },
+  },
 
-    "custom/cpu-governor": {
-        "format": "󰾆 {}",
-        "exec": "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
-        "interval": 5,
-        "tooltip": false
+  "mpris": {
+    "format": "{player_icon} {title:.30}",
+    "player-icons": {
+      "default": "󰎇",
+      "spotify": "󰓇",
+      "mpv": "󰐊",
     },
-
-    "custom/auto-cpufreq": {
-        "format": "󰈐 {}",
-        "exec": "systemctl is-active auto-cpufreq",
-        "interval": 3,
-        "tooltip": false
+    "status-icons": {
+      "paused": "󰏤",
     },
-	"pulseaudio": {
-		"format": "{icon} {volume}%  {format_source}",
-		"format-muted": "󰖁 Muted  {format_source}",
-		"format-source": " {volume}%",
-		"format-source-muted": "  Muted",
-		"format-icons": {
-			"headphone": "",
-			"hands-free": "",
-			"headset": "",
-			"phone": "",
-			"portable": "",
-			"car": "",
-			"default": ["󰕿", "󰖀", "󰕾"]
-		},
-		"on-click": "pavucontrol",
-		"on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-	},
-    // "pulseaudio": {
-    //     "format": "󰕾 {volume}%",
-    //     "format-muted": "󰖁 mute",
-    //     "format-bluetooth": "󰂰 {volume}%",
-    //     "scroll-step": 5,
-    //     "on-click": "pavucontrol",
-    //     "tooltip": false
-    // },
+  },
 
-    "power-profiles-daemon": {
-        "format": "{icon}",
-        "tooltip-format": "Profile: {profile}\nDriver: {driver}",
-        "tooltip": true,
-        "format-icons": {
-            "default": "󰾅",
-            "performance": "󰓅",
-            "balanced": "󰾅",
-            "power-saver": "󰌪"
-        }
+  "clock": {
+    "format": "{:%H:%M - %A, %B %d }",
+    "format-alt": "󰥔 {:%H:%M  󰃮 %d %b}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "timezones": ["Asia/Colombo"],
+    "calendar": {
+      "mode": "month",
+      "on-scroll": 1,
     },
-
-	"network": {
-		"interface": "enp0s20f0u4",
-		"format": "󰈁 {ifname}",
-		"format-wifi": "󰤨 {signalStrength}%",
-		"format-ethernet": "󰈀 eth",
-		"format-disconnected": "󰤭 down",
-		"tooltip": true,
-		"tooltip-format": "{ipaddr}/{cidr}\nGW: {gwaddr}\n󰁝 {bandwidthUpBits}  󰁅 {bandwidthDownBits}",
-		"on-click": "foot nmtui"
-	},
-
-    "battery": {
-        "bat": "BAT0",
-        "interval": 60,
-        "states": {
-            "warning": 40,
-            "critical": 30
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": "󰂄 {capacity}%",
-        "format-full": "󰁹 full",
-        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-        "tooltip": false
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
     },
+  },
 
-    "temperature": {
-        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
-        "critical-threshold": 80,
-        "format": "{temperatureC}°C ",
-        "format-critical": "{temperatureC}°C ",
-        "on-click": "foot btop",
-		"tooltip": true,
-		"tooltip-format": "click to open btop"
+  "group/controls": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "controls-child",
+      "transition-left-to-right": false,
     },
+    "modules": [
+      "custom/controls-handle",
+      "idle_inhibitor",
+      "backlight",
+      "pulseaudio",
+      "custom/screenshot",
+      "custom/clipboard",
+      "custom/nightmode",
+    ],
+  },
 
-    "cpu": {
-        "interval": 10,
-        "format": " {}%",
+  "custom/controls-handle": {
+    "format": "",
+    "tooltip": false,
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": "",
     },
+  },
 
-    "memory": {
-        "interval": 10,
-        "format": " {}%",
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃚", "󰃛", "󰃜", "󰃝", "󰃞", "󰃟", "󰃠"],
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%  {format_source}",
+    "format-muted": "󰖁 Muted  {format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "  Muted",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["󰕿", "󰖀", "󰕾"],
     },
-	"custom/power": {
-		"format": "⏻",
-		"on-click": "wlogout",
-		"tooltip": false
-	},
+    "on-click": "pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+  },
 
-    "tray": {
-        "icon-size": 16,
-        "spacing": 8
-    }
+  "custom/screenshot": {
+    "format": "󰹑",
+    "on-click": "hyprshot -m region --raw | satty --filename -",
+    "tooltip": true,
+    "tooltip-format": "take screenshot",
+  },
+
+  "custom/clipboard": {
+    "format": "",
+    "on-click": "cliphist list | wofi --dmenu | cliphist decode | wl-copy",
+    "tooltip": true,
+    "tooltip-format": "middle click: wipe clipboard",
+    "on-click-middle": "cliphist wipe",
+  },
+
+  "custom/nightmode": {
+    "format": "󰖔",
+    "tooltip": true,
+    "tooltip-format": "left: 4000k | mid: 5000k | right: 6000k | scroll: off",
+    "on-click": "pkill wlsunset || wlsunset -T 4500",
+    "on-click-middle": "pkill wlsunset || wlsunset -T 5000",
+    "on-click-right": "pkill wlsunset || wlsunset -T 6000",
+    "on-scroll-up": "pkill wlsunset",
+    "interval": "once",
+  },
+
+  "custom/cpu-governor": {
+    "format": "󰾆 {}",
+    "exec": "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
+    "interval": 5,
+  },
+
+  "battery": {
+    "states": { "critical": 10 },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "tooltip": true,
+    "tooltip-format": "{timeTo} left ({capacity}%)",
+  },
+
+  "temperature": {
+    "critical-threshold": 80,
+    "format": " {temperatureC}°C",
+    "on-click": "exec alacritty -e btop",
+  },
+
+  "cpu": {
+    "interval": 10,
+    "format": " {usage}%",
+    "on-click": "exec alacritty -e btop",
+  },
+
+  "memory": {
+    "interval": 10,
+    "format": " {percentage}%",
+    "on-click": "exec alacritty -e btop",
+  },
+
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "wlogout",
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 8,
+  },
 }

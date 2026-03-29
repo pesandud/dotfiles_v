@@ -1,53 +1,59 @@
-window {
-margin: 0px;
-border: 2px solid #414868;
-border-radius: 5px;
-background-color: #24283b;
-font-family: "JetBrainsMono Nerd Font Propo";
-font-weight: bold;
-font-size: 14px;
+@import "./colors.css" window {
+  margin: 0px;
+  /* Using @color8 (dark grey) for a subtle border */
+  border: 2px solid @color8;
+  border-radius: 5px;
+  /* Pure black background from @background */
+  background-color: @background;
+  font-family: "JetBrainsMono Nerd Font Propo";
+  font-weight: bold;
+  font-size: 14px;
 }
 
 #input {
-margin: 5px;
-border: 1px solid #24283b;
-color: #c0caf5;
-background-color: #24283b;
+  margin: 5px;
+  border: 1px solid @color8;
+  color: @foreground;
+  background-color: @color0;
 }
 
 #input image {
-	color: #c0caf5;
+  color: @foreground;
 }
 
 #inner-box {
-margin: 5px;
-border: none;
-background-color: #24283b;
+  margin: 5px;
+  border: none;
+  background-color: @background;
 }
 
 #outer-box {
-margin: 5px;
-border: none;
-background-color: #24283b;
+  margin: 5px;
+  border: none;
+  background-color: @background;
 }
 
 #scroll {
-margin: 0px;
-border: none;
+  margin: 0px;
+  border: none;
 }
 
 #text {
-margin: 5px;
-border: none;
-color: #c0caf5;
-} 
+  margin: 5px;
+  border: none;
+  color: @foreground;
+}
 
 #entry:selected {
-	background-color: #414868;
-	font-weight: normal;
+  /* Muted teal highlight using @color1 */
+  background-color: @color1;
+  /* Using @color0 (black) for text contrast when selected */
+  color: @color0;
+  font-weight: normal;
 }
 
 #text:selected {
-	background-color: #414868;
-	font-weight: normal;
+  background-color: @color1;
+  color: @color0;
+  font-weight: normal;
 }

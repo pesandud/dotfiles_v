@@ -11,87 +11,87 @@
 @define-color purple    #bb9af7;
 
 * {
-    font-family: "JetBrainsMono Nerd Font Propo";
-    font-size: 11px;
-    font-weight: bold;
-    min-height: 0;
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    margin: 0;
+  font-family: "JetBrainsMono Nerd Font Propo";
+  font-size: 11px;
+  font-weight: bold;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
 }
 
 window#waybar {
-    background-color: @bg;
-    color: @fg;
-    min-height: 0;
+  background-color: @bg;
+  color: @fg;
+  min-height: 0;
 }
 
 #workspaces {
-    margin: 0;
-    padding: 0 4px;
+  margin: 0;
+  padding: 0 4px;
 }
 
 #workspaces button {
-    padding: 0 8px;
-    color: @gray;
-    background: transparent;
-    border-bottom: 2px solid transparent;
+  padding: 0 8px;
+  color: @gray;
+  background: transparent;
+  border-bottom: 2px solid transparent;
 }
 
 #workspaces button.active {
-    color: @fg;
-    background: transparent;
-    border-bottom: 2px solid @fg;
+  color: @fg;
+  background: transparent;
+  border-bottom: 2px solid @fg;
 }
 
 #workspaces button:hover {
-    color: @fg;
-    background: transparent;
-    border-bottom: 2px solid @gray;
+  color: @fg;
+  background: transparent;
+  border-bottom: 2px solid @gray;
 }
 
 #workspaces button.empty {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 #workspaces button.focused {
-    color: @blue;
-    background: transparent;
-    border-bottom: 2px solid @blue;
+  color: @blue;
+  background: transparent;
+  border-bottom: 2px solid @blue;
 }
 
 #workspaces button.urgent {
-    color: @red;
-    border-bottom: 2px solid @red;
+  color: @red;
+  border-bottom: 2px solid @red;
 }
 
 #window {
-    color: @fg;
-    padding: 0 8px;
+  color: @fg;
+  padding: 0 8px;
 }
 
 #custom-separator {
-    color: @fg;
-    padding: 0 6px;
-    font-weight: 800;
+  color: @fg;
+  padding: 0 6px;
+  font-weight: 800;
 }
 
 /* ── Group drawer ───────────────────────────── */
 
 #group-controls {
-    background: transparent;
-    padding: 0;
+  background: transparent;
+  padding: 0;
 }
 #custom-controls-handle {
-	font-size: 15px;
-    padding: 0 10px;
-    color: @purple;
+  font-size: 15px;
+  padding: 0 10px;
+  color: @purple;
 }
 
 .controls-child {
-    padding: 0 10px;
-    color: @fg;
+  padding: 0 10px;
+  color: @fg;
 }
 
 /* ── General modules ────────────────────────── */
@@ -110,74 +110,74 @@ window#waybar {
 #custom-clipboard,
 #pulseaudio,
 #clock {
-    padding: 0 10px;
-    color: @fg;
+  padding: 0 10px;
+  color: @fg;
 }
 
 #mpris {
-	color: @cyan;
+  color: @cyan;
 }
 
 #custom-nightmode {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 #pulseaudio.muted {
-    color: @fg;
+  color: @fg;
 }
 
 /* ── Battery ────────────────────────────────── */
 
 #battery {
-    padding: 0 10px;
-    color: @green;
+  padding: 0 10px;
+  color: @green;
 }
 
 #battery.warning {
-    color: @orange;
+  color: @orange;
 }
 
 #battery.critical {
-    color: @red;
+  color: @red;
 }
 
 #battery.charging {
-    color: @green;
+  color: @green;
 }
 
 #battery.critical:not(.charging) {
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 #custom-power {
-	color: @red;
+  color: @red;
 }
 
 @keyframes blink {
-    to {
-        color: @red;
-    }
+  to {
+    color: @red;
+  }
 }
 
 /* ── Tray ───────────────────────────────────── */
 
 #tray {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 
 /* ── Tooltips ───────────────────────────────── */
 
 tooltip {
-    background: @bg-alt;
-    border: 1px solid @gray;
-    border-radius: 0;
+  background: @bg-alt;
+  border: 1px solid @gray;
+  border-radius: 0;
 }
 
 tooltip label {
-    color: @fg;
-    padding: 6px;
+  color: @fg;
+  padding: 6px;
 }

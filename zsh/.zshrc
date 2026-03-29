@@ -38,13 +38,13 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export BROWSER="librewolf"
 
 typeset -U path
-path=( 
+path=(
 	~/scripts
-	~/.local/bin 
+	~/.local/bin
 	~/.npm_global/bin
 	$JAVA_HOME/bin
 	$(go env GOPATH)/bin
-	$path 
+	$path
 )
 
 setopt correct autocd autopushd pushdignoredups pushdminus
@@ -130,26 +130,26 @@ urlencode() { python3 -c "import sys, urllib.parse as ul; print(ul.quote_plus(sy
 urldecode() { python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))" }
 
 # suffix aliases
-alias -s md="bat"
-alias -s png="qiv"
-alias -s jpg="qiv"
-alias -s pcap="wireshark"
-alias -s json="jq ."
-alias -s html="librewolf"
-alias -s log="bat"
-alias -s pdf="evince"
-alias -s py="python3"
+# alias -s md="bat"
+# alias -s png="qiv"
+# alias -s jpg="qiv"
+# alias -s pcap="wireshark"
+# alias -s json="jq ."
+# alias -s html="librewolf"
+# alias -s log="bat"
+# alias -s pdf="evince"
+# alias -s py="python3"
 # global aliases
-alias -g NE="2>/dev/null"
+# alias -g NE="2>/dev/null"
 alias -g C="| wl-copy"
-alias -g G='| grep --color=auto'
+# alias -g G='| grep --color=auto'
 alias -g L='| bat'
-alias -g M='| most'
-alias -g H='| head'
-alias -g T='| tail'
+# alias -g M='| most'
+# alias -g H='| head'
+# alias -g T='| tail'
 alias -g H="--help"
 # recursively grep for a string
-alias -g RG='| xargs rg --line-number --column --smart-case'
+# alias -g RG='| xargs rg --line-number --column --smart-case'
 # normal mfs
 alias t="tmux"
 alias hex='_hex(){ printf "0x%x\n" $(($1)) }; _hex'
@@ -186,9 +186,9 @@ alias gs="git status"
 alias gd="git diff"
 alias gp="git push -u origin main"
 alias gall="ga; gc; gp"
-alias p="proxychains -q" 
-alias vizsh="vi ~/.zshrc" 
-alias so="source ~/.zshrc" 
+alias p="proxychains -q"
+alias vizsh="vi ~/.zshrc"
+alias so="source ~/.zshrc"
 alias autorm="sudo pacman -Rns \$(pacman -Qdtq)"
 alias tks="tmux kill-server"
 alias ta="tmux attach"
