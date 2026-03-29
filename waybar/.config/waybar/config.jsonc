@@ -1,11 +1,15 @@
 {
+  "reload_style_on_change": true,
+  "toggle": true,
   "layer": "top",
   "position": "top",
-  "height": 21,
-  "spacing": 1,
-  "reload_style_on_change": true,
+  "margin-top": 0,
+  "margin-bottom": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "spacing": 0,
 
-  // Layout from Config 1
+  // layouts
   "modules-left": ["custom/launcher", "niri/workspaces"],
 
   "modules-center": ["mpris", "clock"],
@@ -13,14 +17,13 @@
   "modules-right": [
     "group/controls",
     "battery",
-    "temperature",
     "cpu",
     "memory",
     "custom/power",
     "tray",
   ],
 
-  // Module Definitions (Merged Icons & Logic)
+  // modules
   "custom/launcher": {
     "format": "",
     "on-click": "wofi show drun",
