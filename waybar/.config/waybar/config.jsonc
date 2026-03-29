@@ -12,7 +12,7 @@
   // layouts
   "modules-left": ["custom/launcher", "niri/workspaces"],
 
-  "modules-center": ["mpris", "clock"],
+  "modules-center": ["clock"],
 
   "modules-right": [
     "group/controls",
