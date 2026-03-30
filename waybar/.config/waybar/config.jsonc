@@ -26,7 +26,7 @@
   // modules
   "custom/launcher": {
     "format": "",
-    "on-click": "wofi show drun",
+    "on-click": "pgrep -x wofi >/dev/null || wofi",
     "tooltip": false,
   },
 
