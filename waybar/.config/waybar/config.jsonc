@@ -19,8 +19,8 @@
     "battery",
     "cpu",
     "memory",
-    "custom/power",
     "tray",
+    "custom/power",
   ],
 
   // modules
