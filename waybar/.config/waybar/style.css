@@ -1,14 +1,14 @@
 @import "./colors.css";
 
 * {
-  font-family: "JetBrainsMono Nerd Font Propo";
+  font-family: "Comic Code", "Symbols Nerd Font";
   font-size: 12px;
   border: none;
   border-radius: 0;
 }
 
 window#waybar {
-  background-color: @background; /* #000000 */
+  background-color: @background;
   border-bottom: 1px solid @color8;
   color: @foreground;
 }

@@ -7,7 +7,7 @@ window {
   border-radius: 5px;
   /* Pure black background from @background */
   background-color: @background;
-  font-family: "JetBrainsMono Nerd Font Propo";
+  font-family: "Comic Code";
   font-weight: bold;
   font-size: 14px;
 }
