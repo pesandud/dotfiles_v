@@ -1,0 +1,372 @@
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m-1) ]]; then
+  compinit -C
+else
+  compinit
+fi
+
+zinit ice wait"0" lucid
+zinit snippet OMZ::lib/completion.zsh
+
+zinit ice wait"0" lucid
+zinit light Aloxaf/fzf-tab
+
+# zinit ice depth"1" atload'source ~/.p10k.zsh'
+# zinit light romkatv/powerlevel10k
+
+# 1. Load FZF scripts FIRST
+[[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
+[[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+
+# 2. Configure ZVM Hooks
+function zvm_config() {
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+  ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+}
+
+# This hook runs after ZVM finishes its setup
+function zvm_after_init() {
+  zvm_bindkey viins '^R' fzf-history-widget
+  zvm_bindkey viins '^T' fzf-file-widget
+  zvm_bindkey viins '^G' fzf-cd-widget
+}
+
+# Keep this for search-logic consistency
+function zvm_after_lazy_keybindings() {
+  zvm_bindkey viins '^P' history-search-backward
+  zvm_bindkey viins '^N' history-search-forward
+  zvm_bindkey viins '^U' backward-kill-word
+  zvm_bindkey viins '^R' fzf-history-widget
+}
+
+# 3. Load ZVM (Non-Turbo, to ensure it grabs the keys on startup)
+zinit ice depth"1"
+zinit light jeffreytse/zsh-vi-mode
+
+# Starship configuration
+# export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+# export STARSHIP_CACHE=~/.starship/cache
+# eval "$(starship init zsh)"
+
+# Format man pages
+export MANROFFOPT="-c"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# exports
+declare -x http_proxy=socks5h://192.168.42.129:9050
+declare -x https_proxy=socks5h://192.168.42.129:9050
+PROMPT='%B%F{#7aa2f7}%n %F{#565f89}%~ %F{#9aa5ce}$%b%f '
+
+export JAVA_HOME=/usr/lib/jvm/java-25-openjdk
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+export BROWSER="librewolf"
+export BAT_THEME="tokyonight_night"
+export EDITOR=nvim
+
+# path
+typeset -U path
+path=(
+	~/scripts
+	~/.local/bin
+	~/.npm_global/bin
+	$JAVA_HOME/bin
+	$(go env GOPATH)/bin
+  ~/learn/osdev/babysteps/toolchain/bin
+	$path
+)
+
+# PATH additions
+# for p in ~/.local/bin ~/Applications/depot_tools; do
+#   if [[ -d "$p" ]] && [[ ":$PATH:" != *":$p:"* ]]; then
+#     export PATH="$p:$PATH"
+#   fi
+# done
+
+######################
+### Key Bindings  ####
+######################
+# Enable vim bindings
+# bindkey -v
+# export KEYTIMEOUT=25
+# bindkey -M viins '^p' history-search-backward
+# bindkey -M viins '^n' history-search-forward
+# bindkey -M viins '^[' vi-cmd-mode
+#  bindkey -M viins 'jk' vi-cmd-mode
+# bindkey '^u' backward-kill-word
+# bindkey '^r' fzf-history-widget
+# bindkey '^t' fzf-file-widget
+# bindkey '^g' fzf-cd-widget
+
+# zle-keymap-select() {
+#   if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+#     echo -ne '\e[2 q' # Block
+#   elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} == "" ]] || [[ $1 = 'beam' ]]; then
+#     echo -ne '\e[6 q' # Beam/Line
+#   fi
+# }
+# zle -N zle-keymap-select
+# _fix_cursor() { echo -ne '\e[6 q' } # Ensure beam on startup
+# precmd_functions+=(_fix_cursor)
+# Widgets
+autoload -Uz edit-command-line
+zle -N edit-command-line; bindkey '^x^e' edit-command-line
+clear-keep-buffer(){ zle clear-screen }; zle -N clear-keep-buffer; bindkey '^Fl' clear-keep-buffer
+copy-cmd(){ echo -n $BUFFER | wl-copy; zle -M "copied!" }; zle -N copy-cmd; bindkey '^Y' copy-cmd
+fancy-ctrl-z () { if [[ $#BUFFER -eq 0 ]]; then fg 2>/dev/null || zle redisplay; else zle push-input; zle clear-screen; fi }; zle -N fancy-ctrl-z; bindkey '^Z' fancy-ctrl-z
+vi-yank-copy() { zle .vi-yank; echo -n "$CUTBUFFER" | wl-copy 2>/dev/null }; zle -N vi-yank-copy; bindkey -M vicmd 'y' vi-yank-copy
+
+export FZF_DEFAULT_OPTS="--highlight-line --info=inline-right --ansi --layout=reverse --border=none --color=bg+:#283457,bg:#16161e,border:#27a1b9,fg:#c0caf5,gutter:#16161e,header:#ff9e64,hl+:#2ac3de,hl:#2ac3de,info:#545c7e,marker:#ff007c,pointer:#ff007c,prompt:#2ac3de,query:#c0caf5:regular,scrollbar:#27a1b9,separator:#ff9e64,spinner:#ff007c"
+export FZF_DEFAULT_OPTS="--highlight-line --info=inline-right --ansi --layout=reverse --border=none --color=border:#27a1b9,fg:#c0caf5,gutter:#16161e,header:#ff9e64,hl+:#2ac3de,hl:#2ac3de,info:#545c7e,marker:#ff007c,pointer:#ff007c,prompt:#2ac3de,query:#c0caf5:regular,scrollbar:#27a1b9,separator:#ff9e64,spinner:#ff007c"
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+zstyle ':fzf-tab:*' fzf-flags --height=40% --border --layout=reverse
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'if [ -d $realpath ]; then eza --tree --color=always --level=2 $realpath; else bat --color=always --style=numbers --line-range=:500 $realpath; fi'
+
+# Zsh-specific settings
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt BANG_HIST
+setopt appendhistory
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_find_no_dups
+setopt hist_ignore_space
+setopt extended_history
+setopt correct
+setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups \
+       hist_save_no_dups hist_ignore_dups hist_find_no_dups hist_verify
+
+##################
+### Functions  ###
+##################
+# Backup function
+backup() {
+  if [[ -n "$1" ]]; then
+    cp "$1" "$1.bak"
+  else
+    echo "Usage: backup <filename>"
+  fi
+}
+# Enhanced copy function
+copy() {
+  local count=$#
+  if [[ $count -eq 2 ]] && [[ -d "$1" ]]; then
+    local from="${1%/}"  # Remove trailing slash
+    local to="$2"
+    command cp -r "$from" "$to"
+  else
+    command cp "$@"
+  fi
+}
+
+# mkcd DIR
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+ex() {
+  if [[ -f $1 ]]; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.tar.xz)    tar xJf $1   ;;
+      *.tar.zst)   tar --zstd -xf $1 ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xvf $1   ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+burp() {
+    local loader="$HOME/.tools/burp/BurpLoaderKeygen_v1.18.jar"
+    local jar="$HOME/.tools/burp/burpsuite_pro_v2025.11.3/burpsuite_pro_v2025.11.3.jar"
+    proxychains -q java --add-opens=java.desktop/javax.swing=ALL-UNNAMED \
+         --add-opens=java.base/java.lang=ALL-UNNAMED \
+         --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED \
+         --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED \
+         --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED \
+         -javaagent:"$loader" -noverify -jar "$jar" "$@"
+}
+
+ida() { /home/cat/.tools/ida/ida }
+
+i(){ yay -S --disable-download-timeout --needed "${@}"; }
+bi(){ sudo proxychains -q pacman -S "${@}"; }
+s(){ yay "${@}"; }
+u(){ yay -Rns "${@}"; }
+
+tns() { tmux new -s "${1:-main}"; }
+ftns() {
+  local dir=$(fzf --walker=dir)
+  [[ -z "$dir" ]] && return
+  local session_name=$(basename "$dir" | tr '.' '_')
+
+  # Create the session in the background if it doesn't exist
+  if ! tmux has-session -t "$session_name" 2>/dev/null; then
+    tmux new-session -d -s "$session_name" -c "$dir"
+  fi
+
+  # If we're already in tmux, switch. Otherwise, attach.
+  if [[ -n "$TMUX" ]]; then
+    tmux switch-client -t "$session_name"
+  else
+    tmux attach-session -t "$session_name"
+  fi
+}
+tat() { local session=$(tmux ls | fzf); [[ $session ]] && tmux a -t "${session%%:*}"; }
+
+ga() {
+  if [[ $# -eq 0 ]]; then
+    command git add .
+  else
+    command git add "$@"
+  fi
+}
+
+gc() {
+  if [[ $# -eq 0 ]]; then
+    command git commit --allow-empty-message -m ""
+  else
+    command git commit -m "$*"
+  fi
+}
+
+pipxa(){ unset http_proxy https_proxy; p pipx install "${@}" -v; source ~/.zshrc; }
+pipxu(){ p pipx uninstall "${@}"; }
+
+mann(){ man "$@" | bat -l man --style=-numbers }
+
+urlencode() { python3 -c "import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))" }
+urldecode() { python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))" }
+
+##################
+### Aliases    ###
+##################
+alias -g C="| wl-copy"
+alias -g L='| bat'
+alias -g H="--help"
+
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
+# System helpers
+alias fixpacman="sudo rm /var/lib/pacman/db.lck"
+alias tarnow='tar -acf '
+alias untar='tar -zxvf '
+alias wget='wget -c '
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+
+# Arch helpers
+alias big="expac -H M '%m\t%n' | sort -h | nl"
+alias gitpkg='pacman -Q | grep -i "\-git" | wc -l'
+alias update='sudo pacman -Syu'
+alias mirror="sudo cachyos-rate-mirrors"
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+
+# Shortcuts
+alias apt='man pacman'
+alias apt-get='man pacman'
+alias please='sudo'
+alias jctl="journalctl -p 3 -xb"
+alias nf='neofetch'
+alias ff='fastfetch'
+alias uf='uwufetch'
+alias q='exit'
+alias h='history'
+alias c='clear'
+
+# Git shortcuts
+alias gs='git status'
+alias gcl='git clone'
+alias gl='git log --oneline'
+alias gd='git diff'
+alias gp="git push -u origin main"
+
+# System control
+alias lsearch='yay -Qs'
+alias shutdown='systemctl poweroff'
+alias du='dust'
+
+alias hex='_hex(){ printf "0x%x\n" $(($1)) }; _hex'
+alias dec='_dec(){ printf "%d\n" $(($1)) }; _dec'
+alias oct='_oct(){ printf "0o%o\n" $(($1)) }; _oct'
+alias bin='_bin(){ echo "obase=2; $1" | bc | sed "s/^/0b/" }; _bin'
+alias sc="sudo systemctl"
+# alias obsidian="obsidian --disable-gpu --proxy-server=socks5://192.168.42.129:9050"
+alias pvi="proxychains -q nvim"
+alias uns="unset http_proxy https_proxy"
+alias vi="nvim"
+alias chm="chmod +x"
+# alias py="python3"
+# alias ipy="ipython3"
+# alias sus="systemctl suspend"
+alias y="yazi"
+alias chem="cd ~/al/chem/pap"
+alias ph="cd ~/al/ph/pap"
+alias cm="cd ~/al/cm/pap"
+
+# alias mst="(cd ~/dotfiles/st-flexipatch; sudo make clean install)"
+# alias pav="pavucontrol"
+alias neo="fastfetch --config examples/13.jsonc"
+alias git="proxychains -q git"
+alias gall="ga; gc; gp"
+alias p="proxychains -q"
+alias vizsh="vi ~/dotfiles/zsh/zshrc"
+
+alias so="source ~/.zshrc"
+alias autorm="sudo pacman -Rns \$(pacman -Qdtq)"
+
+alias tks="tmux kill-server"
+alias ta="tmux attach"
+alias t="tmux"
+# alias copy="xclip -selection clipboard"
+
+# ls replacements (matching fish exactly)
+alias ls='eza -l --icons --color=always --group-directories-first'
+alias la='eza -al --icons --color=always --group-directories-first '
+alias ll='eza -l --icons --color=always --group-directories-first '
+alias lt='eza -a --tree --icons --color=always --group-directories-first '
+alias l.='eza -a | grep -e "^\."'
+
+alias sdm="(cd ~/docs; $BROWSER intel_manual.pdf)"
+alias lw="$BROWSER"
+# alias vii3="vi ~/.config/i3/config"
+# alias vist="vi ~/dotfiles/st-flexipatch/config.h"
+alias viniri="vi ~/.config/niri/config.kdl"
+# alias vivi="vi ~/.config/nvim"
+# alias visw="vi ~/.config/sway/config"
+# alias vipr="vi ~/.config/hypr/hyprland.conf"
+
+# Zsh-specific plugins
+# source $HOME/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+# source $HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+
+eval "$(zoxide init zsh)"
+
+# zinit ice wait"0" lucid
+# zinit light zsh-users/zsh-autosuggestions
+
+zinit ice wait"0" lucid atinit"zpcompinit; zpcdreplay"
+zinit light zsh-users/zsh-syntax-highlighting

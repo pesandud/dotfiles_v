@@ -1,0 +1,243 @@
+ @import "./colors.css";
+
+* {
+  font-family: "CodeNewRoman Nerd Font Propo";
+  font-size: 12px;
+	font-weight: bold;
+  border: none;
+
+  border-radius: 0;
+
+}
+
+
+window#waybar {
+
+  background-color: @background;
+
+  border-bottom: 1px solid @color8;
+
+  color: @foreground;
+
+}
+
+
+/* Common styling for all modules */
+
+#workspaces,
+
+#mpris,
+
+#cava,
+
+#clock,
+
+#backlight,
+
+#pulseaudio,
+
+#idle_inhibitor,
+
+#custom-cpu-governor,
+
+#custom-nightmode,
+
+#custom-launcher,
+
+#custom-screenshot,
+
+#custom-screenshot,
+
+#battery,
+
+#temperature,
+
+#cpu,
+
+#memory,
+
+#custom-power,
+
+#tray {
+
+  padding: 0 10px;
+
+  margin: 4px 0;
+
+  color: @foreground;
+
+}
+
+
+/* Hover effects */
+
+#custom-power:hover,
+
+#battery:hover,
+
+#pulseaudio:hover {
+
+  background-color: @color8;
+
+  color: @color2;
+
+}
+
+
+/* Workspaces */
+
+#workspaces button {
+
+  color: @color4;
+
+  padding: 0 5px;
+
+}
+
+
+#workspaces button.active {
+
+  color: @color2; /* D0DFEE - Light Highlight */
+
+  border-bottom: 2px solid @color2;
+
+}
+
+
+#workspaces button:hover {
+
+  background: @color8;
+
+  color: @foreground;
+
+}
+
+
+/* Specific Module Colors */
+
+#custom-launcher {
+
+  font-size: 14px;
+
+  padding-right: 0px;
+
+}
+
+
+#clock {
+
+  color: @color7;
+
+  font-weight: bold;
+
+}
+
+
+#cava {
+
+  color: @color3;
+
+  background: transparent;
+
+  font-size: 9px;
+
+  margin-top: 8px;
+
+  margin-bottom: 8px;
+
+  padding-right: 12px;
+
+}
+
+
+#mpris {
+
+  color: @color3; /* 5F81A5 - Muted Blue */
+
+}
+
+
+#battery {
+
+  margin-left: 3px;
+
+}
+
+#battery.charging,
+
+#battery.plugged {
+
+  color: @color2;
+
+}
+
+
+#battery.critical:not(.charging) {
+
+  color: @color1; /* 5F8787 - Warning Teal */
+
+  animation-name: blink;
+
+  animation-duration: 0.5s;
+
+  animation-timing-function: linear;
+
+  animation-iteration-count: infinite;
+
+  animation-direction: alternate;
+
+}
+
+
+#temperature.critical {
+
+  color: @color1;
+
+}
+
+
+#custom-power {
+
+  color: @color1;
+
+  padding-right: 15px;
+
+}
+
+
+#tray {
+
+  padding-right: 10px;
+
+}
+
+
+/* Tooltip Styling */
+
+tooltip {
+
+  background: @color0;
+
+  border: 1px solid @color4;
+
+}
+
+
+tooltip label {
+
+  color: @foreground;
+
+}
+
+
+@keyframes blink {
+
+  to {
+
+    background-color: @color1;
+
+    color: @color0;
+
+  }
+
+} 

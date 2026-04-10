@@ -1,19 +1,22 @@
 @import "./colors.css";
 
+/* Global Reset & Typography */
 * {
-  font-family: "Comic Code", "Symbols Nerd Font";
-  font-size: 12px;
-  border: none;
-  border-radius: 0;
+	font-family: "CodeNewRoman Nerd Font Propo";
+	font-size: 13px; /* Slightly bumped up for legibility */
+	font-weight: bold;
+	border: none;
+	border-radius: 0;
+	transition: all 0.3s ease; /* Makes hovers smooth */
 }
 
+/* Main Bar Window */
 window#waybar {
-  background-color: @background;
-  border-bottom: 1px solid @color8;
-  color: @foreground;
+	background-color: transparent;
+	color: @foreground;
 }
 
-/* Common styling for all modules */
+/* Common styling for all modules - The "Pill" look */
 #workspaces,
 #mpris,
 #cava,
@@ -24,7 +27,7 @@ window#waybar {
 #custom-cpu-governor,
 #custom-nightmode,
 #custom-launcher,
-#custom-screenshot,
+#custom-clipboard,
 #custom-screenshot,
 #battery,
 #temperature,
@@ -32,102 +35,130 @@ window#waybar {
 #memory,
 #custom-power,
 #tray {
-  padding: 0 10px;
-  margin: 4px 0;
-  color: @foreground;
+	padding: 0 12px;
+	margin: 4px 4px;
+	color: @foreground;
+	background-color: #24272d
+; /* Subtle module background */
+	border-radius: 8px;
 }
 
+#custom-controls-handle {
+	margin-right: 5px;
+}
 /* Hover effects */
 #custom-power:hover,
 #battery:hover,
-#pulseaudio:hover {
-  background-color: @color8;
-  color: @color2;
+#pulseaudio:hover,
+#workspaces button:hover {
+	background-color: @color8;
+	color: @color6; /* Cyan highlight on hover */
 }
 
 /* Workspaces */
+#workspaces {
+	background-color: transparent; /* Container is clear */
+}
+
 #workspaces button {
-  color: @color4;
-  padding: 0 5px;
+	color: @color4; /* Blue */
+	padding: 0 8px;
+	margin: 0 2px;
+	border-radius: 6px;
 }
 
 #workspaces button.active {
-  color: @color2; /* D0DFEE - Light Highlight */
-  border-bottom: 2px solid @color2;
+	color: @color0;
+	background-color: @color4; /* Active workspace is a solid blue pill */
+	box-shadow: 0 0 5px @color4;
 }
 
-#workspaces button:hover {
-  background: @color8;
-  color: @foreground;
+#workspaces button.urgent {
+	color: @color0;
+	background-color: @color1; /* Red for urgent */
 }
 
-/* Specific Module Colors */
+/* Specific Module Colors & Styles */
 #custom-launcher {
-  font-size: 14px;
-  padding-right: 0px;
+	font-size: 16px;
+	padding-right: 0px;
+	margin-right: 0px;
+	color: #1793d1; /* archlinux mlue */
+	background: transparent;
 }
 
 #clock {
-  color: @color7;
-  font-weight: bold;
+	color: @color5; /* Purple/Magenta */
+	font-weight: 900;
 }
 
 #cava {
-  color: @color3;
-  background: transparent;
-  font-size: 9px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  padding-right: 12px;
+	color: @color6;
+	background: transparent;
+	font-size: 10px;
+	padding-right: 12px;
 }
 
 #mpris {
-  color: @color3; /* 5F81A5 - Muted Blue */
+	color: @color3; /* Yellow/Orange */
+	font-style: italic;
+}
+
+#pulseaudio {
+	color: @color4; /* Blue */
+}
+
+#backlight {
+	color: @color3; /* Yellow */
 }
 
 #battery {
-  margin-left: 3px;
+	color: @color2; /* Green */
 }
+
 #battery.charging,
 #battery.plugged {
-  color: @color2;
+	color: @color2;
+	text-shadow: 0 0 5px @color2;
 }
 
 #battery.critical:not(.charging) {
-  color: @color1; /* 5F8787 - Warning Teal */
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+	color: @color1; 
+	animation-name: blink;
+	animation-duration: 0.8s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
 #temperature.critical {
-  color: @color1;
+	color: @color1;
 }
+
+#cpu { color: @color5; }
+#memory { color: @color2; }
 
 #custom-power {
-  color: @color1;
-  padding-right: 15px;
-}
-
-#tray {
-  padding-right: 10px;
+	color: @color1; /* Red */
+	margin-right: 10px;
 }
 
 /* Tooltip Styling */
 tooltip {
-  background: @color0;
-  border: 1px solid @color4;
+	background: @color0;
+	border: 1px solid @color4;
+	border-radius: 10px;
 }
 
 tooltip label {
-  color: @foreground;
+	color: @foreground;
+	padding: 8px;
 }
 
+/* Animations */
 @keyframes blink {
-  to {
-    background-color: @color1;
-    color: @color0;
-  }
+	to {
+			background-color: @color1;
+			color: @color0;
+	}
 }

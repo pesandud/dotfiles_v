@@ -2,37 +2,55 @@
 
 window {
   margin: 0px;
-  /* Using @color8 (dark grey) for a subtle border */
-  border: 2px solid @color8;
-  border-radius: 5px;
-  /* Pure black background from @background */
-  background-color: @background;
-  font-family: "Comic Code";
-  font-weight: bold;
+  /* Deep bluish-black background */
+  background-color: #1a1b26; 
+  /* Ultra thin, dark border so it doesn't "pop" too much */
+  border: 1px solid #24283b; 
+  border-radius: 10px;
+  font-family: "CodeNewRoman Nerd Font Propo";
+	font-weight: bold;
   font-size: 14px;
+}
+
+#outer-box {
+  margin: 10px;
+  border: none;
+  background-color: transparent;
 }
 
 #input {
   margin: 5px;
-  border: 1px solid @color8;
+  padding: 10px;
+  border: none;
+  /* Darker than the window for that "recessed" look */
+  background-color: #16161e;
   color: @foreground;
-  background-color: @color0;
-}
-
-#input image {
-  color: @foreground;
+  border-radius: 5px;
 }
 
 #inner-box {
-  margin: 5px;
+  margin-top: 10px;
   border: none;
-  background-color: @background;
+  background-color: transparent;
 }
 
-#outer-box {
-  margin: 5px;
-  border: none;
-  background-color: @background;
+#entry {
+  padding: 8px;
+  margin: 2px 0px;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+/* The selection: Blue-tinted charcoal instead of a bright color */
+#entry:selected {
+  background-color: #24283b; 
+  outline: none;
+}
+
+#text:selected {
+  /* Only the text gets the bright Tokyo Blue to guide your eye */
+  color: #7aa2f7; 
+  font-weight: bold;
 }
 
 #scroll {
@@ -42,20 +60,5 @@ window {
 
 #text {
   margin: 5px;
-  border: none;
-  color: @foreground;
-}
-
-#entry:selected {
-  /* Muted teal highlight using @color1 */
-  background-color: @color1;
-  /* Using @color0 (black) for text contrast when selected */
-  color: @color0;
-  font-weight: normal;
-}
-
-#text:selected {
-  background-color: @color1;
-  color: @color0;
-  font-weight: normal;
+  color: #9aa5ce; /* Slightly dimmed text for the "minimal" feel */
 }

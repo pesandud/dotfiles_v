@@ -10,7 +10,7 @@ return {
                     keywords = { italic = false },
                     comments = { italic = false },
                 },
-                transparent = true,
+                transparent = false,
                 on_colors = function(colors)
                     colors.bg = "#16161e"
                 end,
