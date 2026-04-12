@@ -70,7 +70,6 @@ window#waybar {
 #workspaces button.active {
 	color: @color0;
 	background-color: @color4; /* Active workspace is a solid blue pill */
-	box-shadow: 0 0 5px @color4;
 }
 
 #workspaces button.urgent {

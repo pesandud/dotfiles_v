@@ -59,7 +59,9 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # exports
 declare -x http_proxy=socks5h://192.168.42.129:9050
 declare -x https_proxy=socks5h://192.168.42.129:9050
-PROMPT='%B%F{#7aa2f7}%n %F{#565f89}%~ %F{#9aa5ce}$%b%f '
+# PROMPT='%B%F{#7aa2f7}%n %F{#565f89}%~ %F{#9aa5ce}$%b%f '
+# PROMPT='%B%F{#7aa2f7}%n%F{#565f89}@%f%F{#7aa2f7}%m%f%F{#565f89}:%~%F{#9aa5ce}$%b%f '
+PROMPT='%B%F{#7aa2f7}%n%F{#565f89}%F{#565f89}:%~%F{#9aa5ce}$%b%f '
 
 export JAVA_HOME=/usr/lib/jvm/java-25-openjdk
 export _JAVA_AWT_WM_NONREPARENTING=1

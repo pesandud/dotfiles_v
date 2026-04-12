@@ -1,0 +1,60 @@
+/* Reset and Global Styles */
+* {
+    background-image: none;
+    box-shadow: none;
+    font-family: "CodeNewRoman Nerd Font Propo", sans-serif;
+}
+
+/* The Overlay Window */
+window {
+    background-color: rgba(26, 27, 38, 0.85); /* Tokyo Night Background with Transparency */
+}
+
+/* Button Styling */
+button {
+    border-radius: 20px;
+    border: 2px solid #414868;
+    color: #c0caf5;
+    background-color: #24283b;
+    margin: 15px;
+    transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.4); /* Smooth pop effect */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+}
+
+/* Hover & Active States */
+button:focus, 
+button:active, 
+button:hover {
+    background-color: #bb9af7; /* Magenta/Purple Accent */
+    color: #1a1b26;
+    border-color: #7aa2f7; /* Blue Accent */
+    outline-style: none;
+    background-size: 35%; /* Subtle icon zoom on hover */
+}
+
+/* Icon Definitions */
+#lock {
+    background-image: image(url("/usr/share/wlogout/icons/lock.png"));
+}
+
+#logout {
+    background-image: image(url("/usr/share/wlogout/icons/logout.png"));
+}
+
+#suspend {
+    background-image: image(url("/usr/share/wlogout/icons/suspend.png"));
+}
+
+#hibernate {
+    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"));
+}
+
+#shutdown {
+    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"));
+}
+
+#reboot {
+    background-image: image(url("/usr/share/wlogout/icons/reboot.png"));
+}

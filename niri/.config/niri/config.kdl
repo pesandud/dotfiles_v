@@ -32,7 +32,7 @@ keyboard {
  repeat-rate 35
  xkb {
 		layout "us"
-		options "caps:escape"
+		// options "caps:escape"
 	}
 }
 
@@ -153,7 +153,7 @@ binds {
 	MOD+SHIFT+CTRL+J                    { move-column-to-monitor-down; }
 
 	// Workspace Management
-	MOD+O			                          hotkey-overlay-title="Open Overview" repeat=false { toggle-overview; }
+	MOD+ESCAPE			                          hotkey-overlay-title="Open Overview" repeat=false { toggle-overview; }
 	MOD+WHEELSCROLLDOWN                 cooldown-ms=100 { focus-workspace-down; }
 	MOD+WHEELSCROLLUP                   cooldown-ms=100 { focus-workspace-up; }
 
@@ -298,23 +298,20 @@ window-rule {
 	open-floating true
 }
 
-window-rule {
-	match app-id=r#"waterfox$"#
-	match app-id=r#"thunar$"#
-	match app-id=r#"librewolf$"#
-	match app-id=r#"brave-browser$"#
-	match app-id=r#"firefox$"#
-	match app-id=r#"foot"#
-	match app-id=r#"$discord"#
-	match app-id=r#"st-256color"#
-	match app-id=r#"org.telegram.desktop$"#
-	match app-id=r#"chromium$"#
-	match app-id=r#"org.gnome.Evince$"#
-	match app-id=r#"org.gnome.Nautilus$"#
-	match app-id=r#"burp-StartBurp$"#
-	match app-id=r#"obsidian$"#
-	default-column-width { proportion 1.0; }
-}
+// window-rule {
+// 	match app-id=r#"thunar$"#
+// 	match app-id=r#"librewolf$"#
+// 	match app-id=r#"brave-browser$"#
+// 	 match app-id=r#"foot"#
+// 	match app-id=r#"$discord"#
+// 	match app-id=r#"st-256color"#
+// 	match app-id=r#"org.telegram.desktop$"#
+// 	match app-id=r#"chromium$"#
+// 	match app-id=r#"org.gnome.Evince$"#
+// 	 match app-id=r#"burp-StartBurp$"#
+// 	 match app-id=r#"obsidian$"#
+// 	default-column-width { proportion 1.0; }
+// }
 
 // File dialogs - Open/Save/Select
 window-rule {
