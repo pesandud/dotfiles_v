@@ -71,16 +71,23 @@ window#waybar {
 
 #workspaces button {
     color: @color4;
+		opacity: 0.2;
     padding: 0 0px;
     margin: 0 2px;
-    border-bottom: 2px solid transparent;
     border-radius: 0; /* Flat bottom looks better for underlines */
 }
 
 #workspaces button.active {
     color: @color4;
+		opacity: 1;
+		font-weight: bold;
+		font-size: 13px;
     background-color: transparent;
-    border-bottom: 2px solid @color4;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#workspaces button.inactive {
+    color: @foreground;
 }
 
 #workspaces button.urgent {
