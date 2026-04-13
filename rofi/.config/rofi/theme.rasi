@@ -1,6 +1,0 @@
-@import "config/general"
-@import "config/font"
-@import "config/disable-prompt"
-@import "colorscheme/onedark"
-
-@import "themes/murz"
