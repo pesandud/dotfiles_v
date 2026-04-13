@@ -82,7 +82,7 @@ binds {
 
 	// Application Shortcuts
 	MOD+RETURN                          hotkey-overlay-title="Open Terminal: foot" { spawn-sh "foot"; }
-	MOD+SHIFT+Q                         hotkey-overlay-title="Open powermenu: wlogout" { spawn-sh "wlogout"; }
+	MOD+SHIFT+Q                         hotkey-overlay-title="Open powermenu: wlogout" { spawn-sh "pgrep -x wlogout >/dev/null ||wlogout"; }
 	MOD+D                               hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "pgrep -x wofi >/dev/null || wofi"; }
 	MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "librewolf"; }
 	MOD+E                               hotkey-overlay-title="File Manager: Thunar" { spawn-sh "thunar"; }
@@ -246,7 +246,9 @@ layout {
 			color "#191724"
 	}
 
-	struts {}
+	struts {
+		top -1
+	}
 
 }
 
@@ -404,7 +406,7 @@ window-rule {
 
 // Global window appearance
 window-rule {
-	geometry-corner-radius 5
+	geometry-corner-radius 6
 	clip-to-geometry true
 }
 

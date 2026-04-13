@@ -4,19 +4,40 @@ font=Cantarelle Regular
 #font-size=9
 
 effect-blur=7x5
+image=/home/cat/Pictures/Wallpapers/Custom/blue-girlie.jpg
 indicator
 indicator-radius=120
 indicator-thickness=20
 clock
 timestr=%I:%M %p
 datestr=%A, %d %B
-ring-color=4C566A
-key-hl-color=A3BE8C
-line-color=2E3440
-separator-color=3B4252
-inside-color=3B4252
-bs-hl-color=A3BE8C
-layout-bg-color=3B4252
-layout-border-color=4C566A
-layout-text-color=D8DEE9
-text-color=D8DEE9
+
+# --- TokyoNight Colors ---
+# Background/Inside: #1a1b26 (Night background)
+# Ring/Border: #7aa2f7 (Blue)
+# Text/Foreground: #c0caf5 (Foreground)
+# Positive/Success: #9ece6a (Green)
+# Negative/Wrong: #f7768e (Red)
+
+line-color=1a1b26
+ring-color=7aa2f7
+inside-color=1a1b26
+separator-color=1a1b26
+
+# Typing feedback
+key-hl-color=9ece6a
+bs-hl-color=f7768e
+
+# Text colors
+text-color=c0caf5
+layout-text-color=c0caf5
+
+# Wrong password state
+ring-ver-color=9ece6a
+inside-ver-color=1a1b26
+ring-wrong-color=f7768e
+inside-wrong-color=1a1b26
+
+# Layout box
+layout-bg-color=16161e
+layout-border-color=7aa2f7

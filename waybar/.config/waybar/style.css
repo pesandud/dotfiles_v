@@ -2,7 +2,7 @@
 
 /* Global Reset & Typography */
 * {
-	font-family: "CodeNewRoman Nerd Font Propo";
+	font-family: "Ioskeley Mono";
 	font-size: 13px; /* Slightly bumped up for legibility */
 	font-weight: bold;
 	border: none;
@@ -38,14 +38,21 @@ window#waybar {
 	padding: 0 12px;
 	margin: 4px 4px;
 	color: @foreground;
-	background-color: #24272d
-; /* Subtle module background */
+	background-color: #24272d; /* Subtle module background */
 	border-radius: 8px;
 }
 
 #custom-controls-handle {
 	margin-right: 5px;
+	padding-right: 5px;
+	padding-left: 4px;
 }
+
+#idle_inhibitor {
+	padding-right: 15px;
+	padding-left: 10px;
+}
+
 /* Hover effects */
 #custom-power:hover,
 #battery:hover,
@@ -55,26 +62,30 @@ window#waybar {
 	color: @color6; /* Cyan highlight on hover */
 }
 
-/* Workspaces */
 #workspaces {
-	background-color: transparent; /* Container is clear */
+	padding-left: 0;
+	margin-left: 20px;
+	margin-right: 0;
+	padding-right: 0;
 }
 
 #workspaces button {
-	color: @color4; /* Blue */
-	padding: 0 8px;
-	margin: 0 2px;
-	border-radius: 6px;
+    color: @color4;
+    padding: 0 0px;
+    margin: 0 2px;
+    border-bottom: 2px solid transparent;
+    border-radius: 0; /* Flat bottom looks better for underlines */
 }
 
 #workspaces button.active {
-	color: @color0;
-	background-color: @color4; /* Active workspace is a solid blue pill */
+    color: @color4;
+    background-color: transparent;
+    border-bottom: 2px solid @color4;
 }
 
 #workspaces button.urgent {
-	color: @color0;
-	background-color: @color1; /* Red for urgent */
+    color: @color1;
+    border-bottom: 2px solid @color1;
 }
 
 /* Specific Module Colors & Styles */
@@ -87,7 +98,7 @@ window#waybar {
 }
 
 #clock {
-	color: @color5; /* Purple/Magenta */
+	color: @color4; /* Purple/Magenta */
 	font-weight: 900;
 }
 
@@ -108,16 +119,16 @@ window#waybar {
 }
 
 #backlight {
-	color: @color3; /* Yellow */
+	color: @color4; /* Yellow */
 }
 
 #battery {
-	color: @color2; /* Green */
+	color: @color4; /* Green */
 }
 
 #battery.charging,
 #battery.plugged {
-	color: @color2;
+	color: @color4;
 	text-shadow: 0 0 5px @color2;
 }
 
@@ -134,11 +145,11 @@ window#waybar {
 	color: @color1;
 }
 
-#cpu { color: @color5; }
-#memory { color: @color2; }
+#cpu { color: @color4; }
+#memory { color: @color4; }
 
 #custom-power {
-	color: @color1; /* Red */
+	color: @color4; /* Red */
 	margin-right: 10px;
 }
 

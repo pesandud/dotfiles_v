@@ -26,15 +26,15 @@
   // modules
   "custom/launcher": {
     "format": "",
-    "on-click": "pgrep -x wofi >/dev/null || wofi",
+    // "on-click": "pgrep -x wofi >/dev/null || wofi",
     "tooltip": false,
   },
 
   "niri/workspaces": {
-    "format": "{icon}",
+    "format": "{icon}{index}",
     "format-icons": {
-      "default": "󰄰",
-      "active": "󰄯",
+      "default": "",
+      "active": "",
     },
   },
 
@@ -98,9 +98,9 @@
     },
     "modules": [
       "custom/controls-handle",
-      "idle_inhibitor",
       "backlight",
       "pulseaudio",
+      "idle_inhibitor",
       "custom/screenshot",
       "custom/clipboard",
       "custom/nightmode",
