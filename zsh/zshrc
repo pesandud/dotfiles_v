@@ -2,6 +2,9 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+zstyle ':completion:*' use-cache on
+
 autoload -Uz compinit
 if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m-1) ]]; then
   compinit -C
@@ -10,10 +13,13 @@ else
 fi
 
 zinit ice wait"0" lucid
-zinit snippet OMZ::lib/completion.zsh
+zinit light zsh-users/zsh-autosuggestions
 
 zinit ice wait"0" lucid
-zinit light Aloxaf/fzf-tab
+zinit light zsh-users/zsh-syntax-highlighting
+
+zinit ice wait"0" lucid
+zinit light zsh-users/zsh-completions
 
 # zinit ice depth"1" atload'source ~/.p10k.zsh'
 # zinit light romkatv/powerlevel10k
@@ -23,31 +29,31 @@ zinit light Aloxaf/fzf-tab
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
 # 2. Configure ZVM Hooks
-# function zvm_config() {
-#   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-#   ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-# 	ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-#   ZVM_COMMAND_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-# }
+function zvm_config() {
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+  ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+	ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+  ZVM_COMMAND_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+}
 
 # This hook runs after ZVM finishes its setup
-# function zvm_after_init() {
-#   zvm_bindkey viins '^R' fzf-history-widget
-#   zvm_bindkey viins '^T' fzf-file-widget
-#   zvm_bindkey viins '^G' fzf-cd-widget
-# }
+function zvm_after_init() {
+  zvm_bindkey viins '^R' fzf-history-widget
+  zvm_bindkey viins '^T' fzf-file-widget
+  zvm_bindkey viins '^G' fzf-cd-widget
+}
 
 # Keep this for search-logic consistency
-# function zvm_after_lazy_keybindings() {
-#   zvm_bindkey viins '^P' history-search-backward
-#   zvm_bindkey viins '^N' history-search-forward
-#   zvm_bindkey viins '^U' backward-kill-word
-#   zvm_bindkey viins '^R' fzf-history-widget
-# }
+function zvm_after_lazy_keybindings() {
+  zvm_bindkey viins '^P' history-search-backward
+  zvm_bindkey viins '^N' history-search-forward
+  zvm_bindkey viins '^U' backward-kill-word
+  zvm_bindkey viins '^R' fzf-history-widget
+}
 
 # 3. Load ZVM (Non-Turbo, to ensure it grabs the keys on startup)
-# zinit ice depth"1"
-# zinit light jeffreytse/zsh-vi-mode
+zinit ice depth"1"
+zinit light jeffreytse/zsh-vi-mode
 
 # Starship configuration
 # export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
@@ -74,16 +80,10 @@ export BAT_THEME="tokyonight_night"
 export EDITOR=nvim
 
 # path
-typeset -U path
-path=(
-	~/scripts
-	~/.local/bin
-	~/.npm_global/bin
-	$JAVA_HOME/bin
-	$(go env GOPATH)/bin
-  ~/learn/osdev/babysteps/toolchain/bin
-	$path
-)
+# Add paths only if they exist to keep the shell snappy
+for d in ~/scripts ~/.local/bin ~/.npm_global/bin $JAVA_HOME/bin $(go env GOPATH)/bin; do
+  [[ -d "$d" ]] && path=("$d" $path)
+done
 
 # PATH additions
 # for p in ~/.local/bin ~/Applications/depot_tools; do
@@ -106,24 +106,26 @@ path=(
 # bindkey '^r' fzf-history-widget
 # bindkey '^t' fzf-file-widget
 # bindkey '^g' fzf-cd-widget
-bindkey -e
+
+## emacs mode (not usable to me as a vim user)
+# bindkey -e
 # Move cursor between words with Ctrl+Left/Right
-bindkey '^[[1;5C' forward-word
-bindkey '^[[1;5D' backward-word
-
-# Delete an entire word with Ctrl+Backspace
-bindkey '^H' backward-kill-word
-
-# Use Alt+s to prepend "sudo " to the current command
-bindkey -s '\es' '^asudo ^e'
-
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-
-bindkey "^p" up-line-or-beginning-search # Up Arrow
-bindkey "^n" down-line-or-beginning-search # Down Arrow
+# bindkey '^[[1;5C' forward-word
+# bindkey '^[[1;5D' backward-word
+#
+# # Delete an entire word with Ctrl+Backspace
+# bindkey '^H' backward-kill-word
+#
+# # Use Alt+s to prepend "sudo " to the current command
+# bindkey -s '\es' '^asudo ^e'
+#
+# autoload -U up-line-or-beginning-search
+# autoload -U down-line-or-beginning-search
+# zle -N up-line-or-beginning-search
+# zle -N down-line-or-beginning-search
+#
+# bindkey "^p" up-line-or-beginning-search # Up Arrow
+# bindkey "^n" down-line-or-beginning-search # Down Arrow
 
 
 # zle-keymap-select() {
@@ -385,7 +387,7 @@ alias viniri="vi ~/.config/niri/config.kdl"
 # alias vipr="vi ~/.config/hypr/hyprland.conf"
 
 # Zsh-specific plugins
-# source $HOME/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 # source $HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 
 eval "$(zoxide init zsh)"

@@ -5,7 +5,7 @@ spawn-at-startup "xwayland-satellite &"
 spawn-sh-at-startup "wl-paste --type text --watch cliphist store" // Stores only text data
 spawn-sh-at-startup "wl-paste --type image --watch cliphist store" // Stores only image data
 spawn-at-startup "batsignal" "-w" "40" "-c" "20" "-d" "15" "-p"
-spawn-sh-at-startup "swaybg -m fill -i /home/cat/Pictures/Wallpapers/Custom/blue-girlie.jpg"
+spawn-sh-at-startup "swaybg -m fill -i /home/cat/dotfiles/walls/blue-girlie.jpg"
 
 // General Settings
 prefer-no-csd
@@ -81,7 +81,7 @@ binds {
 	MOD+SHIFT+ESCAPE                    { show-hotkey-overlay; }
 
 	// Application Shortcuts
-	MOD+RETURN                          hotkey-overlay-title="Open Terminal: foot" { spawn-sh "foot"; }
+	MOD+RETURN                          hotkey-overlay-title="Open Terminal" { spawn-sh "foot"; }
 	MOD+SHIFT+Q                         hotkey-overlay-title="Open powermenu: wlogout" { spawn-sh "pgrep -x wlogout >/dev/null ||wlogout"; }
 	MOD+D                               hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "pgrep -x wofi >/dev/null || wofi"; }
 	MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "librewolf"; }
@@ -224,6 +224,18 @@ binds {
 	Mod+Shift+E { quit; }
 }
 
+// workspaces
+// not needed tho
+// workspace "1: terminal"
+// workspace "2: browser"
+// workspace "3: notes"
+// workspace "4: other"
+//
+// window-rule {
+//     match app-id=r#"^librewolf$"#
+//     open-on-workspace "2: browser"
+// }
+
 // Layout Settings
 layout {
 	gaps 1
@@ -237,7 +249,7 @@ layout {
 	}
 
 	focus-ring {
-			width 1
+			width 1.5
 			active-color "#7aa2f7"
 	}
 
@@ -411,10 +423,10 @@ window-rule {
 }
 
 // Inactive window transparency
-window-rule {
-	match is-active=false
-	opacity 0.9
-}
+// window-rule {
+// 	match is-active=false
+// 	opacity 0.9
+// }
 
 // Environment Variables
 environment {

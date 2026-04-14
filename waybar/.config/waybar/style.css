@@ -2,7 +2,7 @@
 
 /* Global Reset & Typography */
 * {
-	font-family: "Ioskeley Mono";
+	font-family: "Maple Mono NF";
 	font-size: 13px; /* Slightly bumped up for legibility */
 	font-weight: bold;
 	border: none;
@@ -37,9 +37,10 @@ window#waybar {
 #tray {
 	padding: 0 12px;
 	margin: 4px 4px;
-	color: @foreground;
+  /* color: @foreground; */
 	background-color: #24272d; /* Subtle module background */
 	border-radius: 8px;
+	color: @color4;
 }
 
 #custom-controls-handle {
