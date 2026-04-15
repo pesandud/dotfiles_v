@@ -6,8 +6,8 @@ return {
         config = function()
             require("tokyonight").setup({
                 styles = {
-                    keywords = { italic = false },
-                    comments = { italic = false },
+                    -- keywords = { italic = false },
+                    -- comments = { italic = false },
                 },
                 transparent = false,
                 on_colors = function(colors)
