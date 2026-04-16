@@ -40,6 +40,7 @@ window#waybar {
   /* color: @foreground; */
 	background-color: #24272d; /* Subtle module background */
 	border-radius: 8px;
+	border: 0.4px solid @color4;
 	color: @color4;
 }
 
@@ -100,6 +101,7 @@ window#waybar {
 #custom-launcher {
 	font-size: 16px;
 	padding-right: 0px;
+	border: none;
 	margin-right: 0px;
 	color: #1793d1; /* archlinux mlue */
 	background: transparent;
