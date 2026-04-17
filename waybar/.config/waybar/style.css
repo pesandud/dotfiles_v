@@ -2,7 +2,7 @@
 
 /* Global Reset & Typography */
 * {
-	font-family: "Maple Mono NF";
+	font-family: "JetBrainsMono Nerd Font Propo";
 	font-size: 13px; /* Slightly bumped up for legibility */
 	font-weight: bold;
 	border: none;
@@ -139,7 +139,7 @@ window#waybar {
 #battery.charging,
 #battery.plugged {
 	color: @color4;
-	text-shadow: 0 0 5px @color2;
+	text-shadow: 0 0 2px @color2;
 }
 
 #battery.critical:not(.charging) {

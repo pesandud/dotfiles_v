@@ -26,7 +26,7 @@
   // modules
   "custom/launcher": {
     "format": "",
-    // "on-click": "pgrep -x wofi >/dev/null || wofi",
+    "on-click": "niri msg action open-overview",
     "tooltip": false,
   },
 

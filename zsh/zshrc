@@ -21,50 +21,48 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait"0" lucid
 zinit light zsh-users/zsh-completions
 
-# zinit ice depth"1" atload'source ~/.p10k.zsh'
-# zinit light romkatv/powerlevel10k
-
-# 1. Load FZF scripts FIRST
+# Load FZF scripts FIRST
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
-# 2. Configure ZVM Hooks
 function zvm_config() {
   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
   ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-	ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-	ZVM_COMMAND_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+	# ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+	# ZVM_COMMAND_MODE_CURSOR=$ZVM_CURSOR_BLOCK
 }
 
-# This hook runs after ZVM finishes its setup
+autoload -Uz history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+
 function zvm_after_init() {
   zvm_bindkey viins '^R' fzf-history-widget
   zvm_bindkey viins '^T' fzf-file-widget
   zvm_bindkey viins '^G' fzf-cd-widget
-}
-
-# Keep this for search-logic consistency
-function zvm_after_lazy_keybindings() {
-  zvm_bindkey viins '^P' history-search-backward
-  zvm_bindkey viins '^N' history-search-forward
+  zvm_bindkey viins '^P' history-beginning-search-backward
+  zvm_bindkey viins '^N' history-beginning-search-forward
   zvm_bindkey viins '^U' backward-kill-word
   zvm_bindkey viins '^R' fzf-history-widget
+
+	autoload -Uz edit-command-line
+	zle -N edit-command-line; bindkey '^x^e' edit-command-line
+	clear-keep-buffer(){ zle clear-screen }; zle -N clear-keep-buffer; bindkey '^Fl' clear-keep-buffer
+	copy-cmd(){ echo -n $BUFFER | wl-copy; zle -M "copied!" }; zle -N copy-cmd; bindkey '^Y' copy-cmd
+	fancy-ctrl-z () { if [[ $#BUFFER -eq 0 ]]; then fg 2>/dev/null || zle redisplay; else zle push-input; zle clear-screen; fi }; zle -N fancy-ctrl-z; bindkey '^Z' fancy-ctrl-z
+	vi-yank-copy() { zle .vi-yank; echo -n "$CUTBUFFER" | wl-copy 2>/dev/null }; zle -N vi-yank-copy; bindkey -M vicmd 'y' vi-yank-copy
+
 }
 
-# 3. Load ZVM (Non-Turbo, to ensure it grabs the keys on startup)
+# function zvm_after_lazy_keybindings() {
+# }
+
 zinit ice depth"1"
 zinit light jeffreytse/zsh-vi-mode
 
-# Starship configuration
-# export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
-# export STARSHIP_CACHE=~/.starship/cache
-# eval "$(starship init zsh)"
-
-# Format man pages
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-# exports
 declare -x http_proxy=socks5h://192.168.42.129:9050
 declare -x https_proxy=socks5h://192.168.42.129:9050
 # PROMPT='%B%F{#7aa2f7}%n %F{#565f89}%~ %F{#9aa5ce}$%b%f '
@@ -80,7 +78,6 @@ export BAT_THEME="tokyonight_night"
 export EDITOR=nvim
 
 # path
-# Add paths only if they exist to keep the shell snappy
 for d in ~/scripts ~/.local/bin ~/.npm_global/bin $JAVA_HOME/bin $(go env GOPATH)/bin; do
   [[ -d "$d" ]] && path=("$d" $path)
 done
@@ -139,13 +136,8 @@ done
 # _fix_cursor() { echo -ne '\e[6 q' } # Ensure beam on startup
 # precmd_functions+=(_fix_cursor)
 # Widgets
-autoload -Uz edit-command-line
-zle -N edit-command-line; bindkey '^x^e' edit-command-line
-clear-keep-buffer(){ zle clear-screen }; zle -N clear-keep-buffer; bindkey '^Fl' clear-keep-buffer
-copy-cmd(){ echo -n $BUFFER | wl-copy; zle -M "copied!" }; zle -N copy-cmd; bindkey '^Y' copy-cmd
-fancy-ctrl-z () { if [[ $#BUFFER -eq 0 ]]; then fg 2>/dev/null || zle redisplay; else zle push-input; zle clear-screen; fi }; zle -N fancy-ctrl-z; bindkey '^Z' fancy-ctrl-z
-vi-yank-copy() { zle .vi-yank; echo -n "$CUTBUFFER" | wl-copy 2>/dev/null }; zle -N vi-yank-copy; bindkey -M vicmd 'y' vi-yank-copy
 
+# fancy stuff
 export FZF_DEFAULT_OPTS="--highlight-line --info=inline-right --ansi --layout=reverse --border=none --color=bg+:#283457,bg:#16161e,border:#27a1b9,fg:#c0caf5,gutter:#16161e,header:#ff9e64,hl+:#2ac3de,hl:#2ac3de,info:#545c7e,marker:#ff007c,pointer:#ff007c,prompt:#2ac3de,query:#c0caf5:regular,scrollbar:#27a1b9,separator:#ff9e64,spinner:#ff007c"
 export FZF_DEFAULT_OPTS="--highlight-line --info=inline-right --ansi --layout=reverse --border=none --color=border:#27a1b9,fg:#c0caf5,gutter:#16161e,header:#ff9e64,hl+:#2ac3de,hl:#2ac3de,info:#545c7e,marker:#ff007c,pointer:#ff007c,prompt:#2ac3de,query:#c0caf5:regular,scrollbar:#27a1b9,separator:#ff9e64,spinner:#ff007c"
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
@@ -153,6 +145,34 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 zstyle ':fzf-tab:*' fzf-flags --height=40% --border --layout=reverse
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'if [ -d $realpath ]; then eza --tree --color=always --level=2 $realpath; else bat --color=always --style=numbers --line-range=:500 $realpath; fi'
+
+# completion styles
+# Enable arrow key navigation in the completion menu
+zstyle ':completion:*' menu select
+
+# Group completions by category (Commands, Aliases, Files, etc.)
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format '%F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format '%F{red}No matches for:%f %d'
+
+# Use the same colors as your 'ls' (eza) command
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# Case-insensitive matching, and matching inside words
+# Also allows for typo correction (up to 2 errors)
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r: those'
+
+# Don't complete the parent directory (..)
+zstyle ':completion:*' ignore-parents parent pwd ..
+
+# Automatically sort files by modification time (optional, but cool for 'vi' or 'cat')
+# zstyle ':completion:*:*:vi:*:*' file-sort access
+# zstyle ':completion:*:*:cat:*:*' file-sort modification
+
+# Better process completion (for kill, etc.)
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:processes' command 'ps -au$USER'
 
 # Zsh-specific settings
 HISTFILE=~/.zsh_history
@@ -386,14 +406,4 @@ alias viniri="vi ~/.config/niri/config.kdl"
 # alias visw="vi ~/.config/sway/config"
 # alias vipr="vi ~/.config/hypr/hyprland.conf"
 
-# Zsh-specific plugins
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-# source $HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-
 eval "$(zoxide init zsh)"
-
-# zinit ice wait"0" lucid
-# zinit light zsh-users/zsh-autosuggestions
-
-# zinit ice wait"0" lucid atinit"zpcompinit; zpcdreplay"
-# zinit light zsh-users/zsh-syntax-highlighting

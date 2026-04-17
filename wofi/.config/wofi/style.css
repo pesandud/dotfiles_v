@@ -7,7 +7,7 @@ window {
   /* Ultra thin, dark border so it doesn't "pop" too much */
   border: 1px solid #24283b; 
   border-radius: 10px;
-  font-family: "maple mono nf";
+  font-family: "JetBrainsMono Nerd Font Propo";
 	font-weight: bold;
   font-size: 14px;
 }
