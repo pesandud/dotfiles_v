@@ -47,16 +47,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
-local asm_group = vim.api.nvim_create_augroup("asm_file_settings", { clear = true })
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "gas" },
-  group = asm_group,
-  desc = "Set GAS assembly comment character to #",
-  callback = function()
-    vim.opt_local.commentstring = "# %s"
-  end,
-})
+-- local asm_group = vim.api.nvim_create_augroup("asm_file_settings", { clear = true })
+--
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "gas" },
+--   group = asm_group,
+--   desc = "Set GAS assembly comment character to #",
+--   callback = function()
+--     vim.opt_local.commentstring = "# %s"
+--   end,
+-- })
 
 -------------------
 -- keymaps --------
@@ -179,8 +179,8 @@ require("lazy").setup({
 		config = function()
 			require("tokyonight").setup({
 				styles = {
-					-- keywords = { italic = false },
-					-- comments = { italic = false },
+					keywords = { italic = false },
+					comments = { italic = false },
 				},
 				transparent = false,
 				on_colors = function(colors)
@@ -239,13 +239,13 @@ require("lazy").setup({
 			end, { noremap = true, silent = true, desc = "Delete Buffer (Force)" })
 		end,
 	},
-	{
-		"m4xshen/hardtime.nvim",
-		lazy = false,
-		dependencies = { "MunifTanjim/nui.nvim" },
-		config = function()
-			require("hardtime").setup()
-		end,
-	},
+	-- {
+	-- 	"m4xshen/hardtime.nvim",
+	-- 	lazy = false,
+	-- 	dependencies = { "MunifTanjim/nui.nvim" },
+	-- 	config = function()
+	-- 		require("hardtime").setup()
+	-- 	end,
+	-- },
 	install = { colorscheme = { "habamax" } },
 })

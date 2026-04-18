@@ -104,13 +104,15 @@ binds {
   MOD+Q { close-window; }
 
   MOD+H { focus-column-left; }
-  MOD+J { focus-workspace-down; }
-  MOD+K { focus-workspace-up; }
+  MOD+J { focus-window-down; }
+  MOD+K { focus-window-up; }
   MOD+L { focus-column-right; }
 
+  MOD+N { focus-workspace-down; }
+  MOD+P { focus-workspace-up; }
   MOD+LEFT  { focus-column-left; }
-  MOD+DOWN  { focus-window-down; }
-  MOD+UP    { focus-window-up; }
+  // MOD+DOWN  { focus-window-down; }
+  // MOD+UP    { focus-window-up; }
   MOD+RIGHT { focus-column-right; }
 
   // Move windows within workspace
@@ -215,7 +217,7 @@ binds {
   PRINT       { screenshot; }
   SHIFT+PRINT { screenshot-screen write-to-disk=true; }
   MOD+CTRL+S  { screenshot-window write-to-disk=true; }
-  MOD+P       { spawn-sh "pgrep -x hyprpicker >/dev/null || hyprpicker"; }
+  // MOD+P       { spawn-sh "pgrep -x hyprpicker >/dev/null || hyprpicker"; }
 
   // Application Restarts
   MOD+SHIFT+W { spawn "sh" "-c" "pgrep -x waybar >/dev/null && killall waybar || waybar -c /home/cat/dotfiles/waybar/.config/waybar/config.jsonc -s /home/cat/dotfiles/waybar/.config/waybar/style.css &"; }
@@ -291,7 +293,7 @@ window-rule {
   match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
   match app-id=r#"brave$"# title="^Picture-in-Picture$"
   match app-id=r#"burp-StartBurp$"#
-  match app-id=r#"satty$"#
+  //match app-id=r#"satty$"#
   match app-id=r#"gsr-ui$"#
   open-floating true
 }
