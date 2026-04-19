@@ -1,7 +1,7 @@
 # a simple mlue rice
 (
     wm: niri
-    term: kitty
+    term: kitty (bloat; but eye candy)
     bar: waybar
 )
 ### bloat(all) + slop(some)

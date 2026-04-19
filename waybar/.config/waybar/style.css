@@ -45,6 +45,7 @@ window#waybar {
 }
 
 #custom-controls-handle {
+	color: @background;
 	margin-right: 5px;
 	padding-right: 5px;
 	padding-left: 4px;
@@ -66,26 +67,26 @@ window#waybar {
 
 #workspaces {
 	padding-left: 0;
-	margin-left: 20px;
+	margin-left: 7px;
 	margin-right: 0;
 	padding-right: 0;
 }
 
 #workspaces button {
-    color: @color4;
-		opacity: 0.2;
-    padding: 0 0px;
-    margin: 0 2px;
-    border-radius: 0; /* Flat bottom looks better for underlines */
+	color: @color4;
+	opacity: 0.2;
+	padding: 0 0px;
+	margin: 0 2px;
+	border-radius: 0; /* Flat bottom looks better for underlines */
 }
 
 #workspaces button.active {
-    color: @color4;
-		opacity: 1;
-		font-weight: bold;
-		font-size: 13px;
-    background-color: transparent;
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	color: @color4;
+	opacity: 1;
+	font-weight: bold;
+	font-size: 15px;
+	background-color: transparent;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #workspaces button.inactive {
@@ -100,11 +101,11 @@ window#waybar {
 /* Specific Module Colors & Styles */
 #custom-launcher {
 	font-size: 16px;
-	padding-right: 0px;
+	padding-left: 7px;
+	padding-right: 7px;
 	border: none;
 	margin-right: 0px;
 	color: #1793d1; /* archlinux mlue */
-	background: transparent;
 }
 
 #clock {

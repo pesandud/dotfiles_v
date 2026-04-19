@@ -5,7 +5,8 @@ spawn-at-startup "xwayland-satellite &"
 spawn-sh-at-startup "wl-paste --type text --watch cliphist store" // Stores only text data
 spawn-sh-at-startup "wl-paste --type image --watch cliphist store" // Stores only image data
 spawn-at-startup "batsignal" "-w" "40" "-c" "20" "-d" "15" "-p"
-spawn-sh-at-startup "swaybg -m fill -i /home/cat/dotfiles/walls/blue-girlie.jpg"
+spawn-sh-at-startup "swaybg -m fill -i /home/cat/dotfiles/walls/mitsuha-miyamizu-5120x2880-14863.png
+"
 
 // General Settings
 prefer-no-csd
@@ -37,16 +38,14 @@ input {
   }
 
   mouse {
-    accel-profile "flat"
-    accel-speed 0.9
     scroll-factor 1.0
+    accel-profile "flat"
   }
 
   touchpad {
     dwt
     tap
     natural-scroll
-    accel-speed 0.9
     accel-profile "flat"
   }
 
@@ -82,7 +81,7 @@ binds {
   MOD+SHIFT+ESCAPE { show-hotkey-overlay; }
 
   // Application Shortcuts
-  MOD+RETURN hotkey-overlay-title="Open Terminal" { spawn-sh "kitty"; }
+  MOD+RETURN hotkey-overlay-title="Open Terminal" { spawn-sh "foot"; }
   MOD+SHIFT+Q hotkey-overlay-title="Open powermenu: wlogout" { spawn-sh "pgrep -x wlogout >/dev/null ||wlogout"; }
   MOD+D hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "pgrep -x wofi >/dev/null || wofi"; }
   MOD+B hotkey-overlay-title="Open Browser: firefox" { spawn-sh "librewolf"; }

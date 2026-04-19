@@ -31,18 +31,18 @@
   },
 
   "niri/workspaces": {
-    "format": "{icon}{index}",
-    "format-icons": {
-      "default": "",
-      "active": "",
-    },
+    "format": "{icon}",
+		"format-icons": {
+			"default": "○",
+			"active": "●",
+		},
   },
 
   "cava": {
-    "framerate": 60, // Increased for smoother animation
-    "autosens": 1, // Keep enabled, but we will cap it
-    "sensitivity": 1, // Start much lower (1 instead of 100)
-    "bars": 14, // Slightly fewer bars helps clarity in a small bar
+    "framerate": 60,
+    "autosens": 1,
+    "sensitivity": 1,
+    "bars": 14,
     "lower_cutoff_freq": 50,
     "higher_cutoff_freq": 10000,
     "hide_on_silence": true,
@@ -51,11 +51,11 @@
     "stereo": true,
     "reverse": false,
     "bar_delimiter": 0,
-    "monstercat": true, // Turning this ON helps "smooth" the peaks together
+    "monstercat": true,
     "waves": false,
-    "noise_reduction": 0.99, // Slightly lower to reduce "jitter"
+    "noise_reduction": 0.99,
     "input_delay": 2,
-    "format-icons": [" ", "▂", "▃", "▄", "▅", "▆", "▇", "█"], // Added a blank space for silence
+    "format-icons": [" ", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     "actions": {
       "on-click-right": "mode",
     },
@@ -76,7 +76,7 @@
 	"clock": {
     "format": "{:%H:%M - %A, %B %d }",
     "format-alt": "󰥔 {:%H:%M  󰃮 %d %b}",
-    "tooltip-format": "<span font='CodeNewRoman Nerd Font Mono 10'><tt>{calendar}</tt></span>",
+    "tooltip-format": "<span font='JetBrainsMono Nerd Font 10'><tt>{calendar}</tt></span>",
     "timezones": ["Asia/Colombo"],
     "calendar": {
         "mode": "month",
