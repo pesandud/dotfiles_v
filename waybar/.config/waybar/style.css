@@ -162,9 +162,8 @@ window#waybar {
 }
 
 /* Tooltip Styling */
-/* In your Waybar style.css */
 tooltip {
-    background: transparent; /* Let Niri handle the background look */
+    background: transparent;
     border: 1px solid @color4;
     border-radius: 10px;
 }
