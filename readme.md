@@ -1,8 +1,9 @@
-# a simple mlue rice
+# a simple rice
 (
     wm: niri
-    term: kitty (bloat; but eye candy)
+    term: foot
     bar: waybar
 )
 ### bloat(all) + slop(some)
-![](./pre.png)
+![](./prev/1.png)
+![](./prev/2.png)
