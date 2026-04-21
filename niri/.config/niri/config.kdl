@@ -5,8 +5,7 @@ spawn-at-startup "xwayland-satellite &"
 spawn-sh-at-startup "wl-paste --type text --watch cliphist store" // Stores only text data
 spawn-sh-at-startup "wl-paste --type image --watch cliphist store" // Stores only image data
 spawn-at-startup "batsignal" "-w" "40" "-c" "20" "-d" "15" "-p"
-spawn-sh-at-startup "swaybg -m fill -i /home/cat/dotfiles/walls/mitsuha-miyamizu-5120x2880-14863.png
-"
+spawn-sh-at-startup "swaybg -m fill -i /home/cat/dotfiles/walls/mitsuha.png"
 
 // General Settings
 prefer-no-csd
