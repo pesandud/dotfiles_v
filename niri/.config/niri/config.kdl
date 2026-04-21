@@ -18,13 +18,6 @@ output "eDP-1" {
   scale 1
 }
 
-// Make the wallpaper stationary, rather than moving with workspaces.
-layer-rule {
-  // This is for swaybg; change for other wallpaper tools.
-  // Find the right namespace by running niri msg layers.
-  match namespace="^wallpaper$"
-  place-within-backdrop true
-}
 
 input {
   focus-follows-mouse
@@ -225,7 +218,7 @@ binds {
 
 // Layout Settings
 layout {
-  gaps 1
+  gaps 5
   center-focused-column "never"
   background-color "transparent"
 
@@ -247,6 +240,9 @@ layout {
 
   struts {
     top -1
+		bottom 0
+		left 0
+		right 0
   }
 }
 
@@ -284,11 +280,97 @@ animations {
   }
 }
 
+// layer rules
+// Make the wallpaper stationary, rather than moving with workspaces.
+layer-rule {
+  // This is for swaybg; change for other wallpaper tools.
+  // Find the right namespace by running niri msg layers.
+  match namespace="^wallpaper$"
+  place-within-backdrop true
+}
+
+
+layer-rule {
+    match namespace="waybar"
+    match at-startup=true
+    match layer="top"
+
+    // Properties that apply continuously.
+    opacity 0.6
+    // block-out-from "screencast"
+    // block-out-from "screen-capture"
+
+    shadow {
+        on
+        softness 40
+        spread 5
+        offset x=0 y=5
+        draw-behind-window true
+        color "#00000064"
+        // inactive-color "#00000064"
+    }
+
+    geometry-corner-radius 15
+    place-within-backdrop true
+    // baba-is-float true
+
+    background-effect {
+        xray true
+        blur true
+        noise 0.05
+        saturation 3
+    }
+
+    popups {
+        opacity 0.7
+        geometry-corner-radius 10
+
+				background-effect {
+					xray true
+					blur true // This creates the "glass" look
+					noise 0.02 // Reduced noise for clarity
+					saturation 1.5 // High saturation (3) can make it look "glowy"
+        }
+    }
+}
+
+layer-rule {
+	match namespace="^wofi$"
+	baba-is-float true
+}
+
 // Window Rules
+// Global window appearance
 window-rule {
-  match app-id=r#"waterfox$"# title="^Picture-in-Picture$"
-  match app-id=r#"chromium$"# title="^Picture-in-Picture$"
-  match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+	geometry-corner-radius 6
+	clip-to-geometry true
+
+	// opacity 0.9
+
+	shadow {
+		on
+	}
+
+	background-effect {
+		xray true
+		blur true
+		noise 0.05
+		saturation 3
+	}
+}
+
+window-rule {
+	clip-to-geometry true
+	background-effect {
+		xray true
+		blur true
+	}
+}
+
+window-rule {
+  // match app-id=r#"waterfox$"# title="^Picture-in-Picture$"
+  // match app-id=r#"chromium$"# title="^Picture-in-Picture$"
+  // match app-id=r#"firefox$"# title="^Picture-in-Picture$"
   match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
   match app-id=r#"brave$"# title="^Picture-in-Picture$"
   match app-id=r#"burp-StartBurp$"#
@@ -385,12 +467,6 @@ window-rule {
 window-rule {
   match app-id=r#"steam"# title=r#".*(Friends|Settings|Properties).*"#
   open-floating true
-}
-
-// Global window appearance
-window-rule {
-  geometry-corner-radius 6
-  clip-to-geometry true
 }
 
 // Environment Variables

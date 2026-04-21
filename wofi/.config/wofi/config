@@ -1,6 +1,6 @@
 # mode & placement
 show=drun
-location=top
+location=center
 width=700
 lines=8
 columns=1
@@ -17,7 +17,7 @@ hide_scroll=false
 prompt=
 
 # terminal
-term=alacritty
+term=foot
 
 # keybinds (vim-ish)
 key_up=Ctrl-p

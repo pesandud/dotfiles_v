@@ -182,7 +182,7 @@ require("lazy").setup({
 					keywords = { italic = false },
 					comments = { italic = false },
 				},
-				transparent = false,
+				transparent = true,
 				on_colors = function(colors)
 					colors.bg = "#16161e"
 				end,
@@ -198,7 +198,7 @@ require("lazy").setup({
 			require("mini.ai").setup()
 			require("mini.surround").setup()
 			require("mini.clue").setup()
-			require("mini.tabline").setup()
+			-- require("mini.tabline").setup()
 			require("mini.indentscope").setup({
 				options = {
 					border = "top",

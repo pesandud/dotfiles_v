@@ -68,7 +68,8 @@ declare -x https_proxy=socks5h://192.168.42.129:9050
 # PROMPT='%B%F{#7aa2f7}%n %F{#565f89}%~ %F{#9aa5ce}$%b%f '
 # PROMPT='%B%F{#7aa2f7}%n%F{#565f89}@%f%F{#7aa2f7}%m%f%F{#565f89}:%~%F{#9aa5ce}$%b%f '
 # PROMPT='%B%F{#7aa2f7}%n%F{#565f89}%F{#565f89}:%~%F{#9aa5ce}$%b%f '
-PROMPT='[%n@%m %1~]%# '
+# PROMPT='[%n@%m %1~]%# '
+PROMPT="%n@%m:%~$ "
 
 export JAVA_HOME=/usr/lib/jvm/java-26-openjdk
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -144,7 +145,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --e
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 zstyle ':fzf-tab:*' fzf-flags --height=40% --border --layout=reverse
-zstyle ':fzf-tab:complete:*:*' fzf-preview 'if [ -d $realpath ]; then eza --tree --color=always --level=2 $realpath; else bat --color=always --style=numbers --line-range=:500 $realpath; fi'
+# zstyle ':fzf-tab:complete:*:*' fzf-preview 'if [ -d $realpath ]; then eza --tree --color=always --level=2 $realpath; else bat --color=always --style=numbers --line-range=:500 $realpath; fi'
 
 # completion styles
 # Enable arrow key navigation in the completion menu
@@ -391,11 +392,14 @@ alias t="tmux"
 # alias copy="xclip -selection clipboard"
 
 # ls replacements (matching fish exactly)
-alias ls='eza -l --icons --color=always --group-directories-first'
-alias la='eza -al --icons --color=always --group-directories-first '
-alias ll='eza -l --icons --color=always --group-directories-first '
-alias lt='eza -a --tree --icons --color=always --group-directories-first '
-alias l.='eza -a | grep -e "^\."'
+alias ls="ls --color=auto"
+alias la="ls -lah"
+alias ll="ls -ll"
+# alias ls='eza -l --icons --color=always --group-directories-first'
+# alias la='eza -al --icons --color=always --group-directories-first '
+# alias ll='eza -l --icons --color=always --group-directories-first '
+# alias lt='eza -a --tree --icons --color=always --group-directories-first '
+# alias l.='eza -a | grep -e "^\."'
 
 alias sdm="(cd ~/docs; $BROWSER intel_manual.pdf)"
 alias lw="$BROWSER"

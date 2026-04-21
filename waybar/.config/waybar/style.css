@@ -34,18 +34,18 @@ window#waybar {
 #cpu,
 #memory,
 #custom-power,
+#custom-controls-handle,
 #tray {
 	padding: 0 12px;
 	margin: 4px 4px;
   /* color: @foreground; */
 	background-color: #24272d; /* Subtle module background */
-	border-radius: 8px;
+	border-radius: 20px;
 	border: 0.4px solid @color4;
 	color: @color4;
 }
 
 #custom-controls-handle {
-	color: @background;
 	margin-right: 5px;
 	padding-right: 5px;
 	padding-left: 4px;
@@ -74,7 +74,6 @@ window#waybar {
 
 #workspaces button {
 	color: @color4;
-	opacity: 0.2;
 	padding: 0 0px;
 	margin: 0 2px;
 	border-radius: 0; /* Flat bottom looks better for underlines */
@@ -82,7 +81,6 @@ window#waybar {
 
 #workspaces button.active {
 	color: @color4;
-	opacity: 1;
 	font-weight: bold;
 	font-size: 15px;
 	background-color: transparent;
@@ -100,7 +98,6 @@ window#waybar {
 
 /* Specific Module Colors & Styles */
 #custom-launcher {
-	font-size: 16px;
 	padding-left: 7px;
 	padding-right: 7px;
 	border: none;
@@ -165,10 +162,11 @@ window#waybar {
 }
 
 /* Tooltip Styling */
+/* In your Waybar style.css */
 tooltip {
-	background: @color0;
-	border: 1px solid @color4;
-	border-radius: 10px;
+    background: transparent; /* Let Niri handle the background look */
+    border: 1px solid @color4;
+    border-radius: 10px;
 }
 
 tooltip label {
