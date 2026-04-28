@@ -30,7 +30,7 @@ input {
   }
 
   mouse {
-    scroll-factor 1.0
+    scroll-factor 2
     accel-profile "flat"
   }
 
@@ -295,7 +295,7 @@ layer-rule {
     match layer="top"
 
     // Properties that apply continuously.
-    opacity 0.6
+    opacity 0.8
     // block-out-from "screencast"
     // block-out-from "screen-capture"
 
@@ -341,6 +341,8 @@ layer-rule {
 // Window Rules
 // Global window appearance
 window-rule {
+	exclude app-id=r#"^mako$"#
+
 	geometry-corner-radius 6
 	clip-to-geometry true
 
@@ -358,13 +360,10 @@ window-rule {
 	}
 }
 
-window-rule {
-	clip-to-geometry true
-	background-effect {
-		xray true
-		blur true
-	}
-}
+// layer-rule {
+//     match namespace="notifications"
+//     geometry-corner-radius 6
+// }
 
 window-rule {
   // match app-id=r#"waterfox$"# title="^Picture-in-Picture$"
@@ -425,10 +424,10 @@ window-rule {
   open-floating true
 }
 
-window-rule {
-  match app-id=r#"satty"#
-  open-floating true
-}
+// window-rule {
+//   match app-id=r#"satty"#
+//   open-floating true
+// }
 
 window-rule {
   match title=r#".*Authentication.*"#

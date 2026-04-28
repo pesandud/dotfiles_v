@@ -15,8 +15,8 @@ fi
 zinit ice wait"0" lucid
 zinit light zsh-users/zsh-autosuggestions
 
-# zinit ice wait"0" lucid
-# zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait"0" lucid
+zinit light zsh-users/zsh-syntax-highlighting
 
 zinit ice wait"0" lucid
 zinit light zsh-users/zsh-completions
@@ -79,7 +79,7 @@ export BAT_THEME="tokyonight_night"
 export EDITOR=nvim
 
 # path
-for d in ~/scripts ~/.local/bin ~/.npm_global/bin $JAVA_HOME/bin $(go env GOPATH)/bin; do
+for d in ~/scripts ~/.local/bin ~/.npm_global/bin $JAVA_HOME/bin $(go env GOPATH)/bin ~/learn/osdev/babysteps/toolchain; do
   [[ -d "$d" ]] && path=("$d" $path)
 done
 
@@ -262,7 +262,9 @@ u(){ yay -Rns "${@}"; }
 
 tns() { tmux new -s "${1:-main}"; }
 ftns() {
-  local dir=$(fzf --walker=dir)
+  #	local dir=local dir=$(fzf --walker=dir)
+	local dir=$(find . -type d -print | fzf)
+
   [[ -z "$dir" ]] && return
   local session_name=$(basename "$dir" | tr '.' '_')
 

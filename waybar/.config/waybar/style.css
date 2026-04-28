@@ -137,7 +137,7 @@ window#waybar {
 #battery.charging,
 #battery.plugged {
 	color: @color4;
-	text-shadow: 0 0 2px @color2;
+	/* text-shadow: 0 0 2px @color2; */
 }
 
 #battery.critical:not(.charging) {

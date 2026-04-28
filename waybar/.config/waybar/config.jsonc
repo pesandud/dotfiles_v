@@ -26,7 +26,7 @@
   // modules
   "custom/launcher": {
     "format": "",
-    "on-click": "niri msg action open-overview",
+    "on-click": "niri msg action toggle-overview",
     "tooltip": false,
   },
 
