@@ -1,0 +1,499 @@
+	//// Startup Applications
+spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
+spawn-sh-at-startup "waybar"
+spawn-at-startup "xwayland-satellite &"
+spawn-sh-at-startup "wl-paste --type text --watch cliphist store" // Stores only text data
+spawn-sh-at-startup "wl-paste --type image --watch cliphist store" // Stores only image data
+spawn-at-startup "batsignal" "-w" "40" "-c" "20" "-d" "15" "-p"
+spawn-sh-at-startup "swaybg -m fill -i /home/cat/dotfiles/walls/mitsuha.png"
+
+// General Settings
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"
+
+output "eDP-1" {
+  mode "1920x1080@60.024"
+  variable-refresh-rate on-demand=true
+  scale 1
+}
+
+
+input {
+  focus-follows-mouse
+  keyboard {
+    repeat-delay 250
+    repeat-rate 35
+    xkb {
+      layout "us"
+      // options "caps:escape"
+    }
+  }
+
+  mouse {
+    scroll-factor 2
+    accel-profile "flat"
+  }
+
+  touchpad {
+    dwt
+    tap
+    natural-scroll
+    accel-profile "flat"
+  }
+
+  // workspace-auto-back-and-forth
+}
+
+hotkey-overlay {
+  skip-at-startup
+}
+
+gestures {
+  hot-corners {
+    off
+  }
+}
+
+cursor {
+  xcursor-theme "Bibata-Modern-Ice"
+  xcursor-size 24
+  hide-when-typing
+  hide-after-inactive-ms 5000
+}
+
+overview {
+  backdrop-color "#1E1E2E"
+  workspace-shadow {
+    on
+  }
+}
+
+binds {
+  // Shortcuts Panel
+  MOD+SHIFT+ESCAPE { show-hotkey-overlay; }
+
+  // Application Shortcuts
+  MOD+RETURN hotkey-overlay-title="Open Terminal" { spawn-sh "foot"; }
+  MOD+SHIFT+Q hotkey-overlay-title="Open powermenu: wlogout" { spawn-sh "pgrep -x wlogout >/dev/null ||wlogout"; }
+  MOD+D hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "pgrep -x wofi >/dev/null || wofi"; }
+  MOD+B hotkey-overlay-title="Open Browser: firefox" { spawn-sh "librewolf"; }
+  MOD+E hotkey-overlay-title="File Manager: Thunar" { spawn-sh "thunar"; }
+
+  // Media Keys
+  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+  XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+  XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+  XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+  XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
+  XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+  XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+  XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
+
+  // Window Management
+  MOD+Q { close-window; }
+
+  MOD+H { focus-column-left; }
+  MOD+J { focus-window-down; }
+  MOD+K { focus-window-up; }
+  MOD+L { focus-column-right; }
+
+  MOD+N { focus-workspace-down; }
+  MOD+P { focus-workspace-up; }
+  MOD+LEFT  { focus-column-left; }
+  // MOD+DOWN  { focus-window-down; }
+  // MOD+UP    { focus-window-up; }
+  MOD+RIGHT { focus-column-right; }
+
+  // Move windows within workspace
+  MOD+SHIFT+LEFT  { move-column-left; }
+  MOD+SHIFT+DOWN  { move-window-down; }
+  MOD+SHIFT+UP    { move-window-up; }
+  MOD+SHIFT+RIGHT { move-column-right; }
+
+  MOD+SHIFT+H { move-column-left; }
+  MOD+SHIFT+J { move-column-to-workspace-down; }
+  MOD+SHIFT+K { move-column-to-workspace-up; }
+  MOD+SHIFT+L { move-column-right; }
+
+  // Move to workspace edges
+  MOD+SHIFT+HOME { move-column-to-first; }
+  MOD+SHIFT+END  { move-column-to-last; }
+
+  MOD+HOME { focus-column-first; }
+  MOD+END  { focus-column-last; }
+
+  // Monitor Management - Move between monitors
+  MOD+CTRL+LEFT  { focus-monitor-left; }
+  MOD+CTRL+RIGHT { focus-monitor-right; }
+  MOD+CTRL+UP    { focus-monitor-up; }
+  MOD+CTRL+DOWN  { focus-monitor-down; }
+
+  MOD+CTRL+H { focus-monitor-left; }
+  MOD+CTRL+L { focus-monitor-right; }
+  MOD+CTRL+K { focus-monitor-up; }
+  MOD+CTRL+J { focus-monitor-down; }
+
+  // Move windows to different monitors
+  MOD+SHIFT+CTRL+LEFT  { move-column-to-monitor-left; }
+  MOD+SHIFT+CTRL+RIGHT { move-column-to-monitor-right; }
+  MOD+SHIFT+CTRL+UP    { move-column-to-monitor-up; }
+  MOD+SHIFT+CTRL+DOWN  { move-column-to-monitor-down; }
+
+  MOD+SHIFT+CTRL+H { move-column-to-monitor-left; }
+  MOD+SHIFT+CTRL+L { move-column-to-monitor-right; }
+  MOD+SHIFT+CTRL+K { move-column-to-monitor-up; }
+  MOD+SHIFT+CTRL+J { move-column-to-monitor-down; }
+
+  // Workspace Management
+  MOD+ESCAPE hotkey-overlay-title="Open Overview" repeat=false { toggle-overview; }
+  MOD+WHEELSCROLLDOWN cooldown-ms=100 { focus-workspace-down; }
+  MOD+WHEELSCROLLUP   cooldown-ms=100 { focus-workspace-up; }
+
+  // Move windows to different workspaces - using wheel matches K/J pattern
+  MOD+SHIFT+WHEELSCROLLDOWN cooldown-ms=100 { move-column-to-workspace-down; }
+  MOD+SHIFT+WHEELSCROLLUP   cooldown-ms=100 { move-column-to-workspace-up; }
+
+  // Column navigation with mouse
+  MOD+WHEELSCROLLRIGHT { focus-column-right; }
+  MOD+WHEELSCROLLLEFT  { focus-column-left; }
+  MOD+CTRL+WHEELSCROLLRIGHT { move-column-right; }
+  MOD+CTRL+WHEELSCROLLLEFT  { move-column-left; }
+
+  // Numbered Workspaces
+  MOD+1 { focus-workspace 1; }
+  MOD+2 { focus-workspace 2; }
+  MOD+3 { focus-workspace 3; }
+  MOD+4 { focus-workspace 4; }
+  MOD+5 { focus-workspace 5; }
+  MOD+6 { focus-workspace 6; }
+  MOD+7 { focus-workspace 7; }
+  MOD+8 { focus-workspace 8; }
+  MOD+9 { focus-workspace 9; }
+
+  // Move windows to numbered workspaces with MOD+SHIFT
+  MOD+SHIFT+1 { move-column-to-workspace 1; }
+  MOD+SHIFT+2 { move-column-to-workspace 2; }
+  MOD+SHIFT+3 { move-column-to-workspace 3; }
+  MOD+SHIFT+4 { move-column-to-workspace 4; }
+  MOD+SHIFT+5 { move-column-to-workspace 5; }
+  MOD+SHIFT+6 { move-column-to-workspace 6; }
+  MOD+SHIFT+7 { move-column-to-workspace 7; }
+  MOD+SHIFT+8 { move-column-to-workspace 8; }
+  MOD+SHIFT+9 { move-column-to-workspace 9; }
+
+  MOD+TAB { focus-workspace-previous; }
+
+  // Layout Controls
+  MOD+C       { center-column; }
+  MOD+CTRL+C  { center-visible-columns; }
+  MOD+BRACKETLEFT  { set-column-width "-10%"; }
+  MOD+BRACKETRIGHT { set-column-width "+10%"; }
+  MOD+SHIFT+BRACKETLEFT  { set-window-height "-10%"; }
+  MOD+SHIFT+BRACKETRIGHT { set-window-height "+10%"; }
+
+  // Window resizing with mouse
+  MOD+CTRL+WHEELSCROLLDOWN { set-window-height "-5%"; }
+  MOD+CTRL+WHEELSCROLLUP   { set-window-height "+5%"; }
+
+  // Window Modes
+  MOD+V       { toggle-window-floating; }
+  Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+  MOD+SHIFT+F { fullscreen-window; }
+  MOD+F       { maximize-column; }
+
+  // Utils
+  MOD+SHIFT+S { spawn "~/dotfiles/scripts/ss_satty.sh"; }
+  PRINT       { screenshot; }
+  SHIFT+PRINT { screenshot-screen write-to-disk=true; }
+  MOD+CTRL+S  { screenshot-window write-to-disk=true; }
+  // MOD+P       { spawn-sh "pgrep -x hyprpicker >/dev/null || hyprpicker"; }
+
+  // Application Restarts
+  MOD+SHIFT+W { spawn "sh" "-c" "pgrep -x waybar >/dev/null && killall waybar || waybar -c /home/cat/dotfiles/waybar/.config/waybar/config.jsonc -s /home/cat/dotfiles/waybar/.config/waybar/style.css &"; }
+  Mod+Shift+E { quit; }
+}
+
+// Layout Settings
+layout {
+  gaps 5
+  center-focused-column "never"
+  background-color "transparent"
+
+  preset-column-widths {
+    proportion 0.33333
+    proportion 0.5
+    proportion 0.66667
+  }
+
+  focus-ring {
+    width 1.5
+    active-color "#7aa2f7"
+  }
+
+  insert-hint {
+    on
+    color "#191724"
+  }
+
+  struts {
+    top -1
+		bottom 0
+		left 0
+		right 0
+  }
+}
+
+// Animation Settings
+animations {
+  workspace-switch {
+    spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+  }
+  window-open {
+    duration-ms 200
+    curve "ease-out-quad"
+  }
+  window-close {
+    duration-ms 200
+    curve "ease-out-cubic"
+  }
+  horizontal-view-movement {
+    spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+  }
+  window-movement {
+    spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+  }
+  window-resize {
+    spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+  }
+  config-notification-open-close {
+    spring damping-ratio=0.6 stiffness=1200 epsilon=0.001
+  }
+  screenshot-ui-open {
+    duration-ms 300
+    curve "ease-out-quad"
+  }
+  overview-open-close {
+    spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+  }
+}
+
+// layer rules
+// Make the wallpaper stationary, rather than moving with workspaces.
+layer-rule {
+  // This is for swaybg; change for other wallpaper tools.
+  // Find the right namespace by running niri msg layers.
+  match namespace="^wallpaper$"
+  place-within-backdrop true
+}
+
+
+layer-rule {
+    match namespace="waybar"
+    match at-startup=true
+    match layer="top"
+
+    // Properties that apply continuously.
+    opacity 0.8
+    // block-out-from "screencast"
+    // block-out-from "screen-capture"
+
+    shadow {
+        on
+        softness 40
+        spread 5
+        offset x=0 y=5
+        draw-behind-window true
+        color "#00000064"
+        // inactive-color "#00000064"
+    }
+
+    geometry-corner-radius 15
+    place-within-backdrop true
+    // baba-is-float true
+
+
+    popups {
+        opacity 0.8
+        geometry-corner-radius 10
+
+				background-effect {
+					// xray true
+					blur true // This creates the "glass" look
+					noise 0.02 // Reduced noise for clarity
+					saturation 1.5 // High saturation (3) can make it look "glowy"
+        }
+    }
+}
+
+layer-rule {
+	match namespace="^wofi$"
+	baba-is-float true
+	background-effect {
+		blur true
+		xray false
+	}
+}
+
+// Window Rules
+// Global window appearance
+window-rule {
+	exclude app-id=r#"^mako$"#
+
+	geometry-corner-radius 6
+	clip-to-geometry true
+
+	// opacity 0.9
+
+	shadow {
+		on
+	}
+
+	background-effect {
+		xray false
+		blur true
+		noise 0.05
+		saturation 3
+	}
+}
+
+// layer-rule {
+//     match namespace="notifications"
+//     geometry-corner-radius 6
+// }
+
+window-rule {
+  // match app-id=r#"waterfox$"# title="^Picture-in-Picture$"
+  // match app-id=r#"chromium$"# title="^Picture-in-Picture$"
+  // match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+  match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
+  match app-id=r#"brave$"# title="^Picture-in-Picture$"
+  match app-id=r#"burp-StartBurp$"#
+  //match app-id=r#"satty$"#
+  match app-id=r#"gsr-ui$"#
+  open-floating true
+}
+
+// File dialogs - Open/Save/Select
+window-rule {
+  match title=r#".*(Open|Save|Select).*"#
+  open-floating true
+  default-column-width { proportion 0.0; }
+  max-width 800
+  max-height 1000
+}
+
+window-rule {
+  match title=r#".*File.*"#
+  open-floating true
+  default-column-width { proportion 0.0; }
+  max-width 800
+  max-height 1000
+}
+
+window-rule {
+  match app-id=r#"org\.gtk\.FileChooserDialog"#
+  open-floating true
+  default-column-width { proportion 0.0; }
+  max-width 800
+  max-height 1000
+}
+
+window-rule {
+  match title=r#".*Sign in - Google Accounts — Librewolf"#
+  open-floating true
+}
+
+// System dialogs
+window-rule {
+  match title=r#".*(Dialog|Properties|Preferences|Settings|Rename).*"#
+  open-floating true
+}
+
+window-rule {
+  match app-id=r#"zenity"#
+  open-floating true
+}
+
+// Authentication dialogs
+window-rule {
+  match app-id=r#"org\.kde\.polkit-kde-authentication-agent-1"#
+  open-floating true
+}
+
+// window-rule {
+//   match app-id=r#"satty"#
+//   open-floating true
+// }
+
+window-rule {
+  match title=r#".*Authentication.*"#
+  open-floating true
+}
+
+// Password managers
+window-rule {
+  match app-id=r#"org\.keepassxc\.KeePassXC"# title=r#".*Auto-Type.*"#
+  open-floating true
+}
+
+window-rule {
+  match app-id=r#"Bitwarden"# title=r#".*unlock.*"#
+  open-floating true
+}
+
+// Notification and system utilities
+window-rule {
+  match app-id=r#"nm-connection-editor"#
+  open-floating true
+}
+
+window-rule {
+  match app-id=r#"blueman-manager"#
+  open-floating true
+}
+
+window-rule {
+  match app-id=r#"pavucontrol"#
+  open-floating true
+}
+
+// Steam dialogs
+window-rule {
+  match app-id=r#"steam"# title=r#".*(Friends|Settings|Properties).*"#
+  open-floating true
+}
+
+// Environment Variables
+environment {
+  _JAVA_AWT_WM_NONREPARENTING "1"
+  AWT_TOOLKIT "MToolkit"
+  ELECTRON_OZONE_PLATFORM_HINT "auto"
+  XDG_SESSION_TYPE "wayland"
+  XDG_CURRENT_DESKTOP "niri"
+
+  // Wayland Platform Settings
+  QT_QPA_PLATFORM "wayland"
+  QT_QPA_PLATFORMTHEME "gtk3"
+  QT_QPA_PLATFORMTHEME_QT6 "gtk3"
+  QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+  QT_AUTO_SCREEN_SCALE_FACTOR "1"
+
+  // GTK Settings
+  GDK_BACKEND "wayland,x11"
+
+  // Firefox Wayland
+  MOZ_ENABLE_WAYLAND "1"
+  MOZ_DBUS_REMOTE "1"
+
+  // SDL Applications
+  SDL_VIDEODRIVER "wayland"
+
+  // CLUTTER Applications
+  CLUTTER_BACKEND "wayland"
+
+  // Performance
+  VDPAU_DRIVER "va_gl"
+  LIBVA_DRIVER_NAME "iHD"
+}

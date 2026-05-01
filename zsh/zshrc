@@ -408,7 +408,7 @@ alias lw="$BROWSER"
 # alias vii3="vi ~/.config/i3/config"
 # alias vist="vi ~/dotfiles/st-flexipatch/config.h"
 alias viniri="vi ~/.config/niri/config.kdl"
-# alias vivi="vi ~/.config/nvim"
+alias vivi="vi ~/.config/nvim/init.lua"
 # alias visw="vi ~/.config/sway/config"
 # alias vipr="vi ~/.config/hypr/hyprland.conf"
 

@@ -1,0 +1,72 @@
+# --- General & Theme ---
+theme = dankcolors
+command = /usr/bin/zsh
+gtk-single-instance = true
+
+# --- Font Configuration ---
+# Ported from existing config
+font-family = "CaskaydiaCove Nerd Font Propo"
+font-size = 16
+
+# --- Window Appearance ---
+window-decoration = false
+# Ported from existing config
+window-padding-x = 5
+window-padding-y = 2
+background-opacity = 0.9
+# Retained from default
+background-blur-radius = 32
+
+# Material 3 UI elements / Tabs (Retained from default)
+unfocused-split-opacity = 0.7
+unfocused-split-fill = #44464f
+gtk-titlebar = false
+
+# --- Cursor Configuration ---
+# Ported from existing config
+cursor-style = block
+cursor-blink = false
+cursor-style-blink = false
+
+# --- Scrollback ---
+scrollback-limit = 3023
+
+# --- Terminal Features & Shell ---
+mouse-hide-while-typing = true
+copy-on-select = false
+confirm-close-surface = false
+
+# Retained from default
+app-notifications = no-clipboard-copy,no-config-reload
+shell-integration = detect
+shell-integration-features = cursor,sudo,title,no-cursor
+
+# --- Bell ---
+# Ported from existing config
+visual-bell = false
+audible-bell = false
+
+# --- Keybindings ---
+# Scroll bindings (from existing)
+keybind = alt+k=scroll_page_lines:-1
+keybind = alt+j=scroll_page_lines:1
+keybind = alt+shift+k=scroll_page_fractional:-1.0
+keybind = alt+shift+j=scroll_page_fractional:1.0
+keybind = alt+g=scroll_to_top
+keybind = alt+shift+g=scroll_to_bottom
+
+# Clipboard (from existing)
+keybind = alt+c=copy_to_clipboard
+keybind = alt+v=paste_from_clipboard
+
+# Font sizing (from existing)
+keybind = alt+equals=increase_font_size:1
+keybind = alt+minus=decrease_font_size:1
+keybind = alt+zero=reset_font_size
+
+# Window / Tab management (Merged)
+keybind = ctrl+shift+n=new_window
+keybind = ctrl+t=new_tab
+
+# Custom character injection
+keybind = shift+enter=text:\n

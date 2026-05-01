@@ -1,0 +1,37 @@
+# --- General & Theme ---
+theme = dankcolors
+command = /usr/bin/zsh
+gtk-single-instance = true
+
+# --- Font Configuration ---
+font-family = "CaskaydiaCove Nerd Font Propo"
+font-size = 16
+
+# --- Window Appearance ---
+window-decoration = false
+window-padding-x = 5
+window-padding-y = 2
+background-opacity = 0.9
+
+# Material 3 UI elements / Tabs (Retained from default)
+unfocused-split-opacity = 0.7
+unfocused-split-fill = #44464f
+gtk-titlebar = false
+
+# --- Cursor Configuration ---
+# cursor-style = block
+# cursor-blink = false
+# cursor-style-blink = false
+
+# --- Scrollback ---
+scrollback-limit = 3023
+
+# --- Terminal Features & Shell ---
+mouse-hide-while-typing = true
+copy-on-select = false
+confirm-close-surface = false
+
+# Retained from default
+app-notifications = no-clipboard-copy,no-config-reload
+shell-integration = detect
+shell-integration-features = cursor,sudo,title,no-cursor

@@ -1,0 +1,7 @@
+
+output "eDP-1" {
+  mode "1920x1080@60.024"
+  variable-refresh-rate on-demand=true
+  scale 1
+}
+

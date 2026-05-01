@@ -5,11 +5,13 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
-vim.g.netrw_banner = 0
+-- vim.g.netrw_banner = 0
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.o.undofile = true
 vim.o.number = true
 vim.o.relativenumber = true
--- vim.o.mouse = 'a'
+vim.o.mouse = 'a'
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.signcolumn = 'yes'
@@ -78,9 +80,9 @@ map({ "n", "v" }, "<leader>Y", '"+Y', { desc = "[Y]ank line to system clipboard"
 map({ "n", "v" }, "<leader>p", '"+p', { desc = "[P]aste from system clipboard" })
 map({ "n", "v" }, "<leader>P", '"+P', { desc = "[P]aste before from system clipboard" })
 map({ "n", "v" }, "<leader>d", '"_d', { desc = "[D]elete without yanking" })
-map("n", "<leader>e", function()
-	vim.cmd("Ex")
-end, { desc = "NetRW" })
+-- map("n", "<leader>e", function()
+-- 	vim.cmd("Ex")
+-- end, { desc = "NetRW" })
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
@@ -133,6 +135,8 @@ vim.keymap.set("n", "gcO", function() insert_comment("O") end, { desc = "Insert 
 -------------------
 -- plugins --------
 -------------------
+-- lazy -----------
+-------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -180,7 +184,7 @@ require("lazy").setup({
 			require("tokyonight").setup({
 				styles = {
 					keywords = { italic = false },
-					comments = { italic = false },
+					comments = { italic = true },
 				},
 				transparent = true,
 				on_colors = function(colors)
@@ -198,7 +202,7 @@ require("lazy").setup({
 			require("mini.ai").setup()
 			require("mini.surround").setup()
 			require("mini.clue").setup()
-			-- require("mini.tabline").setup()
+			require("mini.tabline").setup()
 			require("mini.indentscope").setup({
 				options = {
 					border = "top",
@@ -239,13 +243,64 @@ require("lazy").setup({
 			end, { noremap = true, silent = true, desc = "Delete Buffer (Force)" })
 		end,
 	},
-	-- {
-	-- 	"m4xshen/hardtime.nvim",
-	-- 	lazy = false,
-	-- 	dependencies = { "MunifTanjim/nui.nvim" },
-	-- 	config = function()
-	-- 		require("hardtime").setup()
-	-- 	end,
-	-- },
+	{
+		"nvim-tree/nvim-tree.lua",
+		version = "*",
+		lazy = false,
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("nvim-tree").setup({
+				-- Improves performance and visual stability
+				sync_root_with_cwd = true,
+				respect_buf_cwd = true,
+				update_focused_file = {
+					enable = true,
+					update_root = true,
+				},
+				-- Visual tweaks
+				view = {
+					width = 35,
+					side = "left",
+					relativenumber = true, -- Great for jumping between files with j/k
+				},
+				renderer = {
+					indent_markers = {
+						enable = true,
+					},
+					icons = {
+						show = {
+							file = true,
+							folder = true,
+							folder_arrow = true,
+							git = true,
+						},
+					},
+				},
+				-- Diagnostic integration (shows red/yellow icons for LSP errors)
+				diagnostics = {
+					enable = true,
+					show_on_dirs = true,
+					icons = {
+						hint = "",
+						info = "",
+						warning = "",
+						error = "",
+					},
+				},
+				filters = {
+					dotfiles = false,
+					custom = { "^.git$" },
+				},
+			})
+
+			-- Recommended Keymaps
+			local keymap = vim.keymap
+			keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file explorer" })
+			keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle explorer on current file" })
+			keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<cr>", { desc = "Refresh file explorer" })
+		end,
+	},
 	install = { colorscheme = { "habamax" } },
 })
