@@ -157,150 +157,85 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 require("lazy").setup({
-	{
-		'nvim-treesitter/nvim-treesitter',
-		event = { "BufReadPost", "BufNewFile" },
-		build = ':TSUpdate',
-		config = function(_, opts)
-			require('nvim-treesitter').setup(opts)
-		end,
-		opts = {
-			ensure_installed = {
-				'bash', 'c', 'lua', 'markdown', 'markdown_inline',
-				'vim', 'vimdoc', 'python', 'cpp', 'css',
+	spec = {
+		{ import = "plugins" },
+		{
+			'nvim-treesitter/nvim-treesitter',
+			event = { "BufReadPost", "BufNewFile" },
+			build = ':TSUpdate',
+			config = function(_, opts)
+				require('nvim-treesitter').setup(opts)
+			end,
+			opts = {
+				ensure_installed = {
+					'bash', 'c', 'lua', 'markdown', 'markdown_inline',
+					'vim', 'vimdoc', 'python', 'cpp', 'css',
+				},
+				auto_install = true,
+				highlight = {
+					enable = true,
+				},
+				indent = { enable = true },
 			},
-			auto_install = true,
-			highlight = {
-				enable = true,
-			},
-			indent = { enable = true },
 		},
-	},
-	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("tokyonight").setup({
-				styles = {
-					keywords = { italic = false },
-					comments = { italic = true },
-				},
-				transparent = true,
-				on_colors = function(colors)
-					colors.bg = "#16161e"
-				end,
-			})
+		{
+			"echasnovski/mini.nvim",
+			enabled = true,
+			config = function()
+				require("mini.ai").setup()
+				require("mini.surround").setup()
+				require("mini.clue").setup()
+				require("mini.tabline").setup()
+				require("mini.indentscope").setup({
+					options = {
+						border = "top",
+					},
+					symbol = "│",
+				})
 
-			vim.cmd([[colorscheme tokyonight-night]])
-		end,
-	},
-	{
-		"echasnovski/mini.nvim",
-		enabled = true,
-		config = function()
-			require("mini.ai").setup()
-			require("mini.surround").setup()
-			require("mini.clue").setup()
-			require("mini.tabline").setup()
-			require("mini.indentscope").setup({
-				options = {
-					border = "top",
-				},
-				symbol = "│",
-			})
+				vim.api.nvim_create_autocmd("FileType", {
+					pattern = { "alpha", "dashboard", "fzf", "help", "lazy", "mason" },
+					callback = function()
+						vim.b.miniindentscope_disable = true
+					end,
+				})
 
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = { "alpha", "dashboard", "fzf", "help", "lazy", "mason" },
-				callback = function()
-					vim.b.miniindentscope_disable = true
-				end,
-			})
-
-			vim.api.nvim_set_hl(0, "MiniTablineCurrent", {
-				fg = "#1a1b26",
-				bg = "#7aa2f7",
-				bold = true,
-			})
-
-			vim.keymap.set("n", "<leader>x", function()
-				local bd = require("mini.bufremove").delete
-				if vim.bo.modified then
-					local choice = vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
-					if choice == 1 then -- Yes
-						vim.cmd.write()
+				vim.keymap.set("n", "<leader>x", function()
+					local bd = require("mini.bufremove").delete
+					if vim.bo.modified then
+						local choice = vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
+						if choice == 1 then -- Yes
+							vim.cmd.write()
+							bd(0)
+						elseif choice == 2 then -- No
+							bd(0, true)
+						end
+					else
 						bd(0)
-					elseif choice == 2 then -- No
-						bd(0, true)
 					end
-				else
-					bd(0)
-				end
-			end, { noremap = true, silent = true, desc = "Delete Buffer" })
+				end, { noremap = true, silent = true, desc = "Delete Buffer" })
 
-			vim.keymap.set("n", "<leader>bd", function()
-				require("mini.bufremove").delete(0, true)
-			end, { noremap = true, silent = true, desc = "Delete Buffer (Force)" })
-		end,
-	},
-	{
-		"nvim-tree/nvim-tree.lua",
-		version = "*",
-		lazy = false,
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
+				vim.keymap.set("n", "<leader>bd", function()
+					require("mini.bufremove").delete(0, true)
+				end, { noremap = true, silent = true, desc = "Delete Buffer (Force)" })
+			end,
 		},
-		config = function()
-			require("nvim-tree").setup({
-				-- Improves performance and visual stability
-				sync_root_with_cwd = true,
-				respect_buf_cwd = true,
-				update_focused_file = {
-					enable = true,
-					update_root = true,
-				},
-				-- Visual tweaks
-				view = {
-					width = 35,
-					side = "left",
-					relativenumber = true, -- Great for jumping between files with j/k
-				},
-				renderer = {
-					indent_markers = {
-						enable = true,
-					},
-					icons = {
-						show = {
-							file = true,
-							folder = true,
-							folder_arrow = true,
-							git = true,
-						},
-					},
-				},
-				-- Diagnostic integration (shows red/yellow icons for LSP errors)
-				diagnostics = {
-					enable = true,
-					show_on_dirs = true,
-					icons = {
-						hint = "",
-						info = "",
-						warning = "",
-						error = "",
-					},
-				},
-				filters = {
-					dotfiles = false,
-					custom = { "^.git$" },
-				},
-			})
-
-			-- Recommended Keymaps
-			local keymap = vim.keymap
-			keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file explorer" })
-			keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle explorer on current file" })
-			keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<cr>", { desc = "Refresh file explorer" })
-		end,
+		{
+			"nvim-tree/nvim-tree.lua",
+			version = "*",
+			lazy = false,
+			dependencies = {
+				"nvim-tree/nvim-web-devicons",
+			},
+			config = function()
+				require("nvim-tree").setup({})
+				-- Recommended Keymaps
+				local keymap = vim.keymap
+				keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file explorer" })
+				keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle explorer on current file" })
+				keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<cr>", { desc = "Refresh file explorer" })
+			end,
+		},
 	},
 	install = { colorscheme = { "habamax" } },
 })

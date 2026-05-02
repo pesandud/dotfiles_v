@@ -409,6 +409,12 @@ window-rule {
     }
 }
 
+window-rule {
+	match app-id=r#"^librewolf$"#
+	match app-id=r#"^brave-browser$"#
+	open-on-workspace "3"
+}
+
 // WezTerm: empty default width (DMS shell fix for initial configure bug)
 window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#

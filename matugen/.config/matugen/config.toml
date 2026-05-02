@@ -1,0 +1,5 @@
+[config]
+
+[templates.tmux]
+input_path = '/home/cat/.config/matugen/templates/tmux.conf'
+output_path = '/home/cat/.config/tmux/themes/matugen.tmux'

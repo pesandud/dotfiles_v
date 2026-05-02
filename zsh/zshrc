@@ -79,9 +79,18 @@ export BAT_THEME="tokyonight_night"
 export EDITOR=nvim
 
 # path
-for d in ~/scripts ~/.local/bin ~/.npm_global/bin $JAVA_HOME/bin $(go env GOPATH)/bin ~/learn/osdev/babysteps/toolchain; do
-  [[ -d "$d" ]] && path=("$d" $path)
-done
+typeset -u path=(
+	$path
+	~/scripts 
+	~/.local/bin
+	~/.npm_global/bin
+	$JAVA_HOME/bin
+	$(go env GOPATH)/bin
+	~/learn/osdev/babysteps/toolchain
+)
+# for d in $PATH; do
+#   [[ -d "$d" ]] && path=("$d" $path)
+# done
 
 # PATH additions
 # for p in ~/.local/bin ~/Applications/depot_tools; do
